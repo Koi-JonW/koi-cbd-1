@@ -97,7 +97,7 @@
     </div>
     <div class="k-overview--topicals k-overview--item">
       <div class="k-overview--item__card">
-        <a href="<?php echo site_url().'/cbd-bath-beauty'; ?>">
+        <a href="<?php echo site_url().'/cbd-bath-body'; ?>">
           <figure class="k-figure k-figure--rounded ">
             <div class="k-figure--liner">
               <img class="k-figure--img" data-src="<?php echo $overview_fields['product_overview_cbd_bath_beauty_background_image']['url']; ?>" alt="<?php echo $overview_fields['product_overview_cbd_bath_beauty_background_image']['alt']; ?>" />
@@ -106,11 +106,11 @@
           </figure>
         </a>
         <h3 class="k-headline k-headline--xs">
-          <a href="<?php echo site_url().'/cbd-bath-beauty'; ?>">CBD Bath & Body</a>
+          <a href="<?php echo site_url().'/cbd-bath-body'; ?>">CBD Bath & Body</a>
         </h3>
         <div class="k-rte-content">
           <p><?php echo $overview_fields['product_overview_cbd_bath_beauty_description']; ?></p>
-          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-bath-beauty'; ?>">Shop CBD Bath & Body &rarr;</a>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-bath-body'; ?>">Shop CBD Bath & Body &rarr;</a>
         </div>
       </div>
     </div>

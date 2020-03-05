@@ -33,6 +33,7 @@
     </div>    
   </div>
   <div class="k-inner k-inner--md k-overview__card-container">
+
     <div class="k-overview--item k-overview--item">
       <div class="k-overview--item__card k-overview--item__card--tinctures">
         <a href="<?php echo site_url().'/cbd-tinctures'; ?>">
@@ -52,7 +53,29 @@
         </div>
       </div>
     </div>
-
+    <div class="k-overview--merch k-overview--item">
+      <div class="k-overview--item__card k-overview--item__card--merch">
+        
+        <figure class="k-figure k-figure--rounded ">
+          <a href="<?php echo site_url().'/cbd-skincare'; ?>">
+            <div class="k-figure--liner">
+              <img class="k-figure--img" data-src="<?php echo $overview_fields['merch_bg_image']['url']; ?>" alt="<?php echo $overview_fields['merch_bg_image']['alt']; ?>" />
+            </div>
+            <img data-src="<?php echo $overview_fields['merch_corner_image']['url']; ?>" alt="<?php echo $overview_fields['merch_corner_image']['alt']; ?>" class="k-cornerimg">
+          </a>
+        </figure>
+        
+        <div class="k-overview--merch__text">
+          <h3 class="k-headline k-headline--xs">
+            <a href="<?php echo site_url().'/cbd-skincare'; ?>">CBD Skincare</a>
+          </h3>
+          <div class="k-rte-content">
+            <p><?php echo $overview_fields['merch_copy']; ?></p>
+            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-skincare'; ?>">Shop CBD Skincare &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="k-overview--topicals k-overview--item">
       <div class="k-overview--item__card">
         <a href="<?php echo site_url().'/cbd-topicals'; ?>">
@@ -64,15 +87,33 @@
           </figure>
         </a>
         <h3 class="k-headline k-headline--xs">
-          <a href="<?php echo site_url().'/cbd-topicals'; ?>">CBD Topicals</a>
+          <a href="<?php echo site_url().'/cbd-topicals'; ?>">CBD Balms</a>
         </h3>
         <div class="k-rte-content">
           <p><?php echo $overview_fields['topicals_copy']; ?></p>
-          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-topicals'; ?>">Shop CBD Topicals &rarr;</a>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-topicals'; ?>">Shop CBD Balms &rarr;</a>
         </div>
       </div>
     </div>
-
+    <div class="k-overview--topicals k-overview--item">
+      <div class="k-overview--item__card">
+        <a href="<?php echo site_url().'/cbd-bath-beauty'; ?>">
+          <figure class="k-figure k-figure--rounded ">
+            <div class="k-figure--liner">
+              <img class="k-figure--img" data-src="<?php echo $overview_fields['product_overview_cbd_bath_beauty_background_image']['url']; ?>" alt="<?php echo $overview_fields['product_overview_cbd_bath_beauty_background_image']['alt']; ?>" />
+            </div>
+            <img data-src="<?php echo $overview_fields['product_overview_cbd_bath_beauty_corner_image']['url']; ?>" alt="<?php echo $overview_fields['product_overview_cbd_bath_beauty_corner_image']['alt']; ?>" class="k-cornerimg">
+          </figure>
+        </a>
+        <h3 class="k-headline k-headline--xs">
+          <a href="<?php echo site_url().'/cbd-bath-beauty'; ?>">CBD Bath & Body</a>
+        </h3>
+        <div class="k-rte-content">
+          <p><?php echo $overview_fields['product_overview_cbd_bath_beauty_description']; ?></p>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-bath-beauty'; ?>">Shop CBD Bath & Body &rarr;</a>
+        </div>
+      </div>
+    </div>
     <div class="k-overview--edibles k-overview--item">
       <div class="k-overview--item__card">
         <a href="<?php echo site_url().'/cbd-gummies'; ?>">
@@ -85,16 +126,15 @@
         </a>
         <div class="k-overview--edibles__text">
           <h3 class="k-headline k-headline--xs">
-            <a href="<?php echo site_url().'/cbd-gummies'; ?>">CBD Gummies</a>
+            <a href="<?php echo site_url().'/cbd-gummies'; ?>">CBD Gummies & Softgels</a>
           </h3>
           <div class="k-rte-content">
             <p><?php echo $overview_fields['edibles_copy']; ?></p>
-            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-gummies'; ?>">Shop CBD Gummies &rarr;</a>
+            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-gummies'; ?>">Shop CBD Gummies & Softgels &rarr;</a>
           </div>
         </div>
       </div>
-    </div>    
-
+    </div>
     <div class="k-overview--pets k-overview--item">
       <div class="k-overview--item__card">
         <a href="<?php echo site_url().'/cbd-for-pets'; ?>">
@@ -114,10 +154,8 @@
         </div>
       </div>
     </div>
-
     <div class="k-overview--vape k-overview--item">
-      <div class="k-overview--item__card">
-        
+      <div class="k-overview--item__card">        
         <figure class="k-figure k-figure--rounded ">
           <a href="<?php echo site_url().'/cbd-vape-juice'; ?>">
             <div class="k-figure--liner">
@@ -129,39 +167,34 @@
         
         <div class="k-overview--vape__text">
           <h3 class="k-headline k-headline--xs">
-            <a href="<?php echo site_url().'/cbd-vape-juice'; ?>">CBD Vape Juice</a>
+            <a href="<?php echo site_url().'/cbd-vape-juice'; ?>">CBD Vape Juices and Devices</a>
           </h3>
           <div class="k-rte-content">
             <p><?php echo $overview_fields['vape_copy']; ?></p>
-            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-vape-juice'; ?>">Shop CBD Vape Juice &rarr;</a>
+            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-vape-juice'; ?>">Shop CBD Vape Juices and Devices &rarr;</a>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="k-overview--merch k-overview--item">
-      <div class="k-overview--item__card k-overview--item__card--merch">
-        
-        <figure class="k-figure k-figure--rounded ">
-          <a href="<?php echo site_url().'/merchandise'; ?>">
+    <div class="k-overview--topicals k-overview--item">
+      <div class="k-overview--item__card">
+        <a href="<?php echo site_url().'/cbd-inhalers'; ?>">
+          <figure class="k-figure k-figure--rounded ">
             <div class="k-figure--liner">
-              <img class="k-figure--img" data-src="<?php echo $overview_fields['merch_bg_image']['url']; ?>" alt="<?php echo $overview_fields['merch_bg_image']['alt']; ?>" />
+              <img class="k-figure--img" data-src="<?php echo $overview_fields['product_overview_cbd_inhalers_background_image']['url']; ?>" alt="<?php echo $overview_fields['product_overview_cbd_inhalers_background_image']['alt']; ?>" />
             </div>
-            <img data-src="<?php echo $overview_fields['merch_corner_image']['url']; ?>" alt="<?php echo $overview_fields['merch_corner_image']['alt']; ?>" class="k-cornerimg">
-          </a>
-        </figure>
-        
-        <div class="k-overview--merch__text">
-          <h3 class="k-headline k-headline--xs">
-            <a href="<?php echo site_url().'/merchandise'; ?>">Koi Merchandise</a>
-          </h3>
-          <div class="k-rte-content">
-            <p><?php echo $overview_fields['merch_copy']; ?></p>
-            <a class="k-button k-button--primary" href="<?php echo site_url().'/merchandise'; ?>">Shop Merchandise &rarr;</a>
-          </div>
+            <img data-src="<?php echo $overview_fields['product_overview_cbd_inhalers_corner_image']['url']; ?>" alt="<?php echo $overview_fields['product_overview_cbd_inhalers_corner_image']['alt']; ?>" class="k-cornerimg">
+          </figure>
+        </a>
+        <h3 class="k-headline k-headline--xs">
+          <a href="<?php echo site_url().'/cbd-inhalers'; ?>">CBD Inhalers</a>
+        </h3>
+        <div class="k-rte-content">
+          <p><?php echo $overview_fields['product_overview_cbd_inhalers_description']; ?></p>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-inhalers'; ?>">Shop CBD Inhalers &rarr;</a>
         </div>
       </div>
-    </div>    
+    </div>
 
   </div>
 </section>

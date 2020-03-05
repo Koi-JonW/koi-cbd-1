@@ -59,6 +59,12 @@
     'merch_copy' => $site_content['product_overview_merch_supporting_copy'],
     'merch_bg_image' => $site_content['product_overview_merch_bg_image'],
     'merch_corner_image' => $site_content['product_overview_merch_corner_image'],
+    'product_overview_cbd_bath_beauty_description' => $site_content['product_overview_cbd_bath_beauty_description'],
+    'product_overview_cbd_bath_beauty_background_image' => $site_content['product_overview_cbd_bath_beauty_background_image'],
+    'product_overview_cbd_bath_beauty_corner_image' => $site_content['product_overview_cbd_bath_beauty_corner_image'],
+    'product_overview_cbd_inhalers_description' => $site_content['product_overview_cbd_inhalers_description'],
+    'product_overview_cbd_inhalers_background_image' => $site_content['product_overview_cbd_inhalers_background_image'],
+    'product_overview_cbd_inhalers_corner_image' => $site_content['product_overview_cbd_inhalers_corner_image'],
   );
   include(locate_template('partials/home-overview.php'));
 

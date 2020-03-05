@@ -36,11 +36,11 @@ get_header();
 		if( have_rows('boxes') ):
 		while ( have_rows('boxes') ) : the_row(); ?>
 		<div class="box-area">
-			<div class="icon-box-area">
+			<div class="icon-box-area" style="text-align: center;">
 				<img src="<?php the_sub_field('icon_box_section'); ?>" alt="box-icon"/>
 			</div><!--end icon-box-area-->
-			<div class="title-box-area"><?php the_sub_field('title_box_section'); ?></div><!--end title-box-area-->
-			<div class="description-box-area"><?php the_sub_field('description_box_section'); ?></div><!--end description-box-area-->
+			<div class="title-box-area" style="text-align: center;"><?php the_sub_field('title_box_section'); ?></div><!--end title-box-area-->
+			<div class="description-box-area" style="text-align: center;"><?php the_sub_field('description_box_section'); ?></div><!--end description-box-area-->
 		</div><!--end box-area-->   	
 		<?php endwhile; endif; ?>
 	</div><!--end k-inner k-inner--md-->

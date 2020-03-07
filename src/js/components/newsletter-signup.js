@@ -28,6 +28,8 @@ export function debounce(func, wait, immediate) {
 export function toggleNewsletterSignup(event) {
   if (event) {
     event.stopPropagation();
+  } else {
+    return; // eject from nav dropdown?
   }
 
   closeAllDropdowns();

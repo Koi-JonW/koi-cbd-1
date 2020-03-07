@@ -109,9 +109,13 @@ function setDefaultResults() {
     },
     {
       categoryName: 'hempFlower',
-      sku: ['HeavensKush4G'],
+      sku: ['HeavensKush4G', 'FLW-NAT-1RL-0001'],
       button: $('[data-category="hempFlower"]'),
-      unit: '4 G tin',
+      unit: ['4 G Tin', '1 G Pre-roll'],
+      alias: {
+        name: ['Hemp Flower - Tin', 'Hemp Flower - Pre-roll'],
+        variant: ["Heaven's Kush", 'Hawaiian Haze'],
+      },
       labResults: [],
     },
     {
@@ -229,11 +233,11 @@ function displayTermPrompt() {
   `);
 }
 
-function getTabMarkup(test, category) {
+function getTabMarkup(test, category, index) {
   const tab = /*html*/ `
     <div class="k-latestbatch--tabs__tab" data-product-sku="${
       test.productsku
-    }" data-category="${category.categoryName}">
+    }" data-category="${category.categoryName}" data-category-index="${index}">
       <span class="k-latestbatch__variant-name">
         ${test.strength ? test.strength : test.ordername}
       </span>
@@ -249,35 +253,103 @@ function appendVariantTabs(category) {
   if (category.categoryName === 'lotion') {
     // lotion strength is *currently* always 200mg, so use the product name instead
     // this may change in the future as new products are added
-    category.labResults.forEach(Test => {
+    category.labResults.forEach((Test, index) => {
       Test.results.strength = Test.results.ordername
         .split('Koi Lotion')[1]
         .split('200')[0];
-      tabs += getTabMarkup(Test.results, category);
+      tabs += getTabMarkup(Test.results, category, index);
     });
   } else if (category.categoryName === 'gummies') {
     // gummies *currently* only have 1 strength, so use the name instead.
     // this may change in the future as new products are added
-    category.labResults.forEach(Test => {
+    category.labResults.forEach((Test, index) => {
       Test.results.strength = Test.results.ordername
         .split('Koi')[1]
         .split('Fruit')[0];
-      tabs += getTabMarkup(Test.results, category);
+      tabs += getTabMarkup(Test.results, category, index);
+    });
+  } else if (category.categoryName === 'hempFlower') {
+    category.labResults.forEach((Test, index) => {
+      Test.results.ordername = category.alias.name[index];
+      Test.results.variantAlias = category.alias.variant[index];
+
+      tabs += getTabMarkup(Test.results, category, index);
     });
   } else if (category) {
-    category.labResults.forEach(Test => {
-      tabs += getTabMarkup(Test.results, category);
+    category.labResults.forEach((Test, index) => {
+      tabs += getTabMarkup(Test.results, category, index);
     });
   }
   $tabAppendTarget.html(tabs);
   assignTabListeners();
 }
 
+function getUnitIndex() {
+  const { target } = event;
+
+  if (target.dataset && target.dataset.categoryIndex) {
+    return parseInt(event.target.dataset.categoryIndex);
+  } else {
+    return false;
+  }
+}
+
+function evaluateCategoryUnits(index, category) {
+  let visibleUnit;
+
+  if (Array.isArray(category.unit)) {
+    index = getUnitIndex();
+
+    switch (true) {
+      case index !== false: {
+        visibleUnit = category.unit[index];
+        break;
+      }
+      case !index: {
+        visibleUnit = category.unit[0];
+        break;
+      }
+      default: {
+        visibleUnit = category.unit;
+      }
+    }
+  } else if (category && category.unit) {
+    visibleUnit = category.unit;
+  }
+
+  return visibleUnit;
+}
+
+function evaluateVariantAlias(test) {
+  let alias;
+
+  switch (true) {
+    case typeof test.results.variantAlias === 'string': {
+      alias = test.results.variantAlias;
+      break;
+    }
+    case test.results.strength !== false: {
+      alias = test.results.strength;
+      break;
+    }
+    default: {
+      alias = 'N/A';
+    }
+  }
+
+  return alias;
+}
+
 function appendMarkup(test, $appendTarget, category, event = false) {
   try {
+    let index = false;
+
     if (event) {
       appendVariantTabs(category);
     }
+
+    const visibleUnit = evaluateCategoryUnits(index, category);
+    const variantAlias = evaluateVariantAlias(test);
 
     $appendTarget.append(/*html*/ `
     <div class="k-latestbatch__results">
@@ -289,23 +361,13 @@ function appendMarkup(test, $appendTarget, category, event = false) {
         </div>
         <div class="k-latestbatch__results-column">
           <div>
-            <p class="k-latestbatch--strength">Variant: ${
-              test.results.strength !== false ? test.results.strength : 'N/A'
-            }</p>
-            ${
-              category // if there's a category
-                ? category.unit // and there's a category.unit
-                  ? /*html*/ `<p class="k-latestbatch--size">Size: ${category.unit}</p>`
-                  : ''
-                : ''
-            }
+            <p class="k-latestbatch--strength">Variant: ${variantAlias}</p>
+            <p class="k-latestbatch--size">Size: ${visibleUnit}</p>
             <p class="k-latestbatch--batch">Batch #: ${test.results.batchid}</p>
           </div>
         </div>
         <div class="k-latestbatch__results-column">
-          <a id="k-coaurl" class="k-button" href="${
-            test.results.coaurl
-          }" target="_blank">View this product's Certificate of Analysis (COA)</a>
+          <a id="k-coaurl" class="k-button" href="${test.results.coaurl}" target="_blank">View this product's Certificate of Analysis (COA)</a>
         </div>
       </div>
     </div>

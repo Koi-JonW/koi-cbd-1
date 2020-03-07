@@ -221,7 +221,12 @@
             $parent_id = $product->get_id();
             $parent_name = $product->get_name();
             $wc_bundled_product = wc_get_product($bundled_item->get_data()['product_id']);
-            $variations = $wc_bundled_product->get_available_variations();
+            $wc_bundled_product_type = $wc_bundled_product->get_type();
+            if($wc_bundled_product_type == 'variable'){
+              $variations = $wc_bundled_product->get_available_variations();
+            } else {
+              $variations = [];
+            }
             $discount_amount = $bundled_item->get_data()['discount'] / 100;
             $bundled_item_name = $wc_bundled_product->get_name();
           ?>

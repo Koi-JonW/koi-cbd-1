@@ -1,0 +1,87 @@
+#banner-lp{width:100%; font-family:GT America,sans-serif; padding:22% 0% 5% 0%;
+	.k-inner{display:flex; flex-wrap:wrap;}
+	.banner-l{width:48%; margin:0 0%;}
+	.banner-r{width:44%; margin:0 0% 0% 6%;}
+}
+
+.banner-small-titles{font-size:16px; line-height:16px; color:#fff; text-transform:uppercase;}
+.banner-titles{font-family:Recoleta Regular,serif; font-size:65px; line-height:65px; color:#fff; padding:10px 0px 0px 0px;}
+.banner-description{font-size:16px; line-height:26px; color:#fff; margin-bottom:-25px;}
+
+#boxes-section{width:100%; font-family:GT America,sans-serif; padding:70px 0px;
+	.content-area{display:flex; flex-wrap:wrap; width:100%; max-width:1400px; margin:0 auto;}
+}
+.box-area{width:27.33%; margin:3%;}
+.icon-box-area img{width:100%; max-width:100px;}
+.title-box-area{font-size:21px; padding:20px 0px 15px 0px;}
+.description-box-area{font-size:14px; line-height:24px;}
+
+#middle-area-section{width:95%; border-radius:8px; text-align:center; font-family:GT America,sans-serif; padding:13% 0px 11% 0px !important; background-attachment: fixed !important; margin:0 auto;}
+.middle-area-small{font-size:16px; text-transform:uppercase; color:#c0d8be;}
+.middle-area-big{font-family:Recoleta Regular,serif; font-size:50px; line-height:50px; color:#fff; padding:40px 0px 90px 0px;}
+.middle-area-link{color:#fff !important; font-size:18px; line-height:18px; border:1px solid #fff !important; padding:25px 60px !important; display:inline-block; border-radius:6px;}
+
+#sign-up-area{width:100%; text-align:center; padding:8% 0% 2% 0% !important;
+	.content-sign-up-area{width:95%; max-width:825px; margin:0 auto;}
+}
+#sign-up-area .k-button{padding:15px 60px !important;}
+.title-sign-up-section{font-family:Recoleta Regular,serif; font-size:50px; line-height:50px; color:#000;}
+.content-sign-up-section{font-size:16px; line-height:24px; margin-top:40px; margin-bottom:50px;}
+
+.title-box-area-v2{font-size:21px; padding:0px 0px 15px 0px;
+	span{font-size:16px; color:#c0d8be;}
+	}
+
+.content-box-qa{margin-bottom:35px;}
+.box-qa{width:100%; display:flex; text-align:left; margin:10px 0px;}
+.title-qa{width:90%; font-family:Recoleta Regular,serif; font-size:25px; line-height:25px;}
+.simbol-qa-pos{width:10%; text-align:center; font-family:Recoleta Regular,serif; font-size:30px; color:#f4b13e; cursor:pointer;}
+.simbol-qa-neg{width:10%; text-align:center; font-family:Recoleta Regular,serif; font-size:30px; color:#f4b13e; cursor:pointer;}
+.box-content-qa{text-align:left; font-family:Recoleta Regular,serif; font-size:15px; width:90%;}
+#landing-page-sections{
+.k-promoslider{padding-bottom:10px !important;}
+}
+
+.new-boxes-27{width:48%; margin:1% 1%; text-align:left; background-color:#f5f5f5; box-sizing:border-box; padding:15px 20px; font-family:GT America,sans-serif; font-size:14px; line-height:24px;}
+.new-boxes-27-title{font-family:Recoleta Regular,serif; font-size:25px; line-height:25px; padding-bottom:15px;}
+
+@media only screen and (max-width:768px){
+#banner-lp{padding:50px 0% 50px 0%;
+	.k-inner{display:flex; flex-wrap:wrap;}
+	.banner-l{width:100%; margin:0 0% 10px 0%; text-align:center;}
+	.banner-r{width:100%; margin:0 0% 0px 0%; text-align:center;}
+}
+
+.banner-titles{font-size:45px; line-height:45px; color:#fff; padding:10px 0px 0px 0px;}
+.banner-description{font-size:16px; line-height:24px; color:#fff; margin-bottom:0px;}
+
+#boxes-section{padding:50px 0px;}
+.box-area{width:96%; margin:4% 2% 2% 2%;}
+.icon-box-area{width:80px; margin:0 auto;}
+.title-box-area{font-size:21px; padding:0px 0px 0px 0px; text-align:center;}
+.description-box-area{font-size:14px; line-height:24px; text-align:center;}
+
+#middle-area-section{padding:50px 0px 50px 0px !important;}
+.middle-area-big{font-size:35px; line-height:40px; padding:25px 0px 40px 0px;}
+.middle-area-link{font-size:16px; line-height:16px; padding:15px 40px !important;}
+
+#sign-up-area{padding:50px 0% 50px 0% !important;
+	.content-sign-up-area{width:95%; max-width:825px; margin:0 auto;}
+	.k-button{padding:12px 50px !important;}
+}
+.title-sign-up-section{font-size:35px; line-height:40px;}
+.content-sign-up-section{font-size:14px; line-height:24px; margin-top:20px; margin-bottom:25px;}
+
+.title-box-area-v2{font-size:21px; padding:0px 0px 5px 0px; text-align:center;} 
+.title-box-area-v2 {
+	span{font-size:16px; color:#c0d8be;}
+}
+.content-box-qa{margin-bottom:25px;}
+.title-qa{width:90%; font-size:18px; line-height:22px;}
+.simbol-qa-pos{width:10%; font-size:30px; }
+.simbol-qa-neg{width:10%; font-size:30px; }
+.box-content-qa{font-size:14px; line-height:16px; width:100%;}
+
+.new-boxes-27{width:100%; margin:1% 0%; padding:15px 15px; }
+.new-boxes-27-title{font-size:22px; line-height:23px;}
+}

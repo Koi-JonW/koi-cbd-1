@@ -25,12 +25,12 @@ $url = site_url();
 
     </div>
   </div>
-  <div class="k-header--top k-promobanner k-header__newsletter-trigger k-header__newsletter-trigger--mobile">
+  <div class="k-header--top k-promobanner">
     <div class="k-inner k-inner--xl">
       <div class="k-promobanner--item">
         <span class="k-upcase">Free shipping on all US orders over $35</span>
       </div>
-      <div class="k-promobanner--item">
+      <div class="k-promobanner--item k-header__newsletter-trigger k-header__newsletter-trigger--mobile">
       <?php $newsletter_field = get_field('header_newsletter_copy', 'options'); ?>
         <span class="k-upcase k-header__newsletter-trigger k-header__newsletter-trigger--desktop"><?php echo $newsletter_field; ?></span>
       </div>

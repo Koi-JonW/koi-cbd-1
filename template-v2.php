@@ -27,7 +27,7 @@ get_header();
 	</div><!--end area-50-p-->
 	<div class="area-50-p">
 		<div class="btns-area">
-			<span>Hi, User!<br/>You Have X Points.</span>
+			<span>Hi, <span class="swell-user" style="display: inline-block;"><?php $current_user = wp_get_current_user(); echo($current_user->user_firstname ? $current_user->user_firstname : $current_user->user_login);?></span><br/>You Have <span class="swell-point-balance" style="display: inline-block;">X</span> Points.</span>
 			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
 		</div><!--end btns-area-->
 	</div><!--end area-50-p-->
@@ -87,23 +87,24 @@ get_header();
 
 <script>
     $(document).on("swell:initialized", () => {
-        swellAPI.getActiveCampaigns().forEach(campaign => {
-                $(".swell-campaign-list").append(
-                    $("<li>").addClass("campaign").append(
-                        $("<div>").append(
-                            $("<i>").addClass(`fa ${campaign.icon}`),
-                            $("<p>", {text: campaign.rewardText}),
-                            $("<h5>", {text: campaign.title})
-                        ).attr('id', `campaign-${campaign.id}`)
-                    ).addClass("swell-campaign-link")
-                    .attr(
-                            {
-                                "data-campaign-id": campaign.id,
-                                "data-display-mode": "modal"
-                            }
-                        )
-                );
-        });
+		if($(".swell-campaign-list").length){
+			swellAPI.getActiveCampaigns().forEach(campaign => {
+				$(".swell-campaign-list").append(
+					$("<li>").addClass("campaign").append(
+						$("<div>").append(
+							$("<i>").addClass(`fa ${campaign.icon}`),
+							$("<p>", {text: campaign.rewardText}),
+							$("<h5>", {text: campaign.title})
+						).attr('id', `campaign-${campaign.id}`)
+					).addClass("swell-campaign-link").attr(
+						{
+							"data-campaign-id": campaign.id,
+							"data-display-mode": "modal"
+						}
+					)
+				);
+			});
+		}
     });
 </script>
 

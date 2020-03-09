@@ -87,8 +87,16 @@ get_header();
 
 <script>
     $(document).on("swell:initialized", () => {
+		console.log('event :: swell:initialized');
 		if($(".swell-campaign-list").length){
+			console.log('element :: swell-campaign-list found');
+			console.log('-- getActiveCampaigns: BEGIN');
+			console.log(swellAPI.getActiveCampaigns());
+			console.log('-- getActiveCampaigns: END');
 			swellAPI.getActiveCampaigns().forEach(campaign => {
+				console.log('-- campaign: BEGIN');
+				console.log(campaign);
+				console.log('-- campaign: END');
 				$(".swell-campaign-list").append(
 					$("<li>").addClass("campaign").append(
 						$("<div>").append(

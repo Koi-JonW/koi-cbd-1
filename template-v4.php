@@ -74,4 +74,8 @@ get_header();
     </div>
 </section>
 
+<script>
+	var $ = jQuery.noConflict();
+</script>
+
 <?php get_footer(lp); ?>

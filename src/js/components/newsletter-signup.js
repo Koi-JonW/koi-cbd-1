@@ -7,6 +7,7 @@ const $signup = $('.k-header__newsletter-signup');
 const $submit = $('.k-header__newsletter-submit');
 const $form = $('.k-header__newsletter-signup form');
 const openClass = 'k-header__newsletter-signup--open';
+let scrollYPos = 0;
 
 export function debounce(func, wait, immediate) {
   let timeout;
@@ -25,11 +26,17 @@ export function debounce(func, wait, immediate) {
 }
 
 export function toggleNewsletterSignup(event) {
-  event.stopPropagation();
+  if (event) {
+    event.stopPropagation();
+  } else {
+    return; // eject from nav dropdown?
+  }
 
   closeAllDropdowns();
 
   $body.toggleClass('newsletter-signup');
+
+  scrollYPos = window.pageYOffset;
 
   $signup.slideToggle({
     duration: 225,
@@ -55,7 +62,9 @@ $form.submit(e => {
 });
 
 function checkSignup() {
-  if ($signup.hasClass(openClass)) {
+  const currentYPos = window.pageYOffset;
+  const difference = Math.abs(scrollYPos - currentYPos);
+  if ($signup.hasClass(openClass) && difference > window.innerHeight) {
     $signup.slideUp();
     $signup.removeClass(openClass);
   } else {

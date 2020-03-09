@@ -94,29 +94,39 @@ get_header();
 </section><!--end redeem-->
 
 <script>
-    $(document).on("swell:initialized", () => {
-        swellAPI.getActiveCampaigns().forEach(campaign => {
-                $(".swell-campaign-list").append(
-                    $("<li>").addClass("campaign").append(
-                        $("<div>").append(
-                            $("<i>").addClass(`fa ${campaign.icon}`),
-                            $("<p>", {text: campaign.rewardText}),
-                            $("<h5>", {text: campaign.title})
-                        ).attr('id', `campaign-${campaign.id}`)
-                    ).addClass("swell-campaign-link")
-                    .attr(
-                            {
-                                "data-campaign-id": campaign.id,
-                                "data-display-mode": "modal"
-                            }
-                        )
-                );
-        });
-    });
+	var $ = jQuery.noConflict();
+</script>
+<script>
+
+	function swellCore(swellCampaigns){
+		if($(".swell-campaign-list").length){
+			swellCampaigns.forEach(campaign => {
+				$(".swell-campaign-list").append(
+					$("<li>").addClass("campaign").append(
+						$("<div>").append(
+							$("<i>").addClass(`fa ${campaign.icon}`),
+							$("<p>", {text: campaign.rewardText}),
+							$("<h5>", {text: campaign.title})
+						).attr('id', `campaign-${campaign.id}`)
+					).addClass("swell-campaign-link").attr({
+							"data-campaign-id": campaign.id,
+							"data-display-mode": "modal"
+					})
+				);
+			});
+		}
+	}
+
+	var checkSellApi = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCampaigns = swellAPI.getActiveCampaigns();
+			if (swellCampaigns && swellCampaigns.length){
+            	clearInterval(checkSellApi);
+            	swellCore(swellCampaigns);
+			}
+        }
+    }, 100);
+
 </script>
 
-<?php
-
-
-get_footer(lp);
-?>
+<?php get_footer(lp); ?>

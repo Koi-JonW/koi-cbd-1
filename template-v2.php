@@ -84,19 +84,14 @@ get_header();
 	</div><!--end k-inner k-inner--md-->	
 </section><!--end banner-refer-->
 
-
 <script>
-    $(document).on("swell:initialized", () => {
-		console.log('event :: swell:initialized');
+	var $ = jQuery.noConflict();
+</script>
+<script>
+
+	function swellCampaignsCore(swellCampaigns){
 		if($(".swell-campaign-list").length){
-			console.log('element :: swell-campaign-list found');
-			console.log('-- getActiveCampaigns: BEGIN');
-			console.log(swellAPI.getActiveCampaigns());
-			console.log('-- getActiveCampaigns: END');
-			swellAPI.getActiveCampaigns().forEach(campaign => {
-				console.log('-- campaign: BEGIN');
-				console.log(campaign);
-				console.log('-- campaign: END');
+			swellCampaigns.forEach(campaign => {
 				$(".swell-campaign-list").append(
 					$("<li>").addClass("campaign").append(
 						$("<div>").append(
@@ -104,20 +99,41 @@ get_header();
 							$("<p>", {text: campaign.rewardText}),
 							$("<h5>", {text: campaign.title})
 						).attr('id', `campaign-${campaign.id}`)
-					).addClass("swell-campaign-link").attr(
-						{
+					).addClass("swell-campaign-link").attr({
 							"data-campaign-id": campaign.id,
 							"data-display-mode": "modal"
-						}
-					)
+					})
 				);
 			});
 		}
-    });
+	}
+
+	function swellCustomerCore(swellCustomer){
+		if($(".swell-point-balance").length){
+			$(".swell-point-balance").text(swellCustomer.pointsBalance)
+		}
+	}
+
+	var checkSwellCampaigns = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCampaigns = swellAPI.getActiveCampaigns();
+			if (swellCampaigns && swellCampaigns.length){
+            	clearInterval(checkSwellCampaigns);
+            	swellCampaignsCore(swellCampaigns);
+			}
+        }
+    }, 100);
+
+	var checkSwellCustomer = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCustomer = swellAPI.getCustomerDetails();
+			if (swellCustomer && swellCustomer['pointsBalance'] !== 'undefined'){
+            	clearInterval(checkSwellCustomer);
+            	swellCustomerCore(swellCustomer);
+			}
+        }
+    }, 100);
+
 </script>
 
-<?php
-
-
-get_footer(lp);
-?>
+<?php get_footer(lp); ?>

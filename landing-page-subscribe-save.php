@@ -59,7 +59,7 @@ get_header();
 </section><!--end banner-section-lp-->
 <?php } ?>
 
-<section id="sign-up-area" style="padding-top:5%;">
+<section id="sign-up-area" style="padding-top:2% !important;">
 	<div class="content-sign-up-area">
 		<h3 class="title-sign-up-section" style="text-align:center; margin:0px;">
 			<?php the_field('title_qa_section'); ?>
@@ -77,10 +77,10 @@ get_header();
 	</div>
 </section><!--end boxes-section-->
 
-<section id="sign-up-area">
+<section id="sign-up-area" style="padding-top:2% !important;">
 	<div class="content-sign-up-area">
 		<div class="title-sign-up-section" style="text-align:center;">
-			General
+			<?php the_field('text_boxes_area'); ?>
 		</div><!--end title-sign-up-section-->
 		<div class="content-sign-up-section">
 		<?php

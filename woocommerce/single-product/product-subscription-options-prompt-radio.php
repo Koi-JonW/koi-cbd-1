@@ -16,15 +16,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
+<style type="text/css">
+.closed #no_option{
+background-color:#000;
+}
+.closed #yes_option{
+background-color:none;
+}
+.open #yes_option{
+background-color:#000;
+}
+.open #no_option{
+background-color:none;
+}
+</style>
+
 <div class="select_options_area">
 <ul class="select_option wcsatt-options-prompt-radios">
-	<li class="wcsatt-options-prompt-radio" id="yes_option"  onClick="yes_opt();" style="background-color: #f4b13e;">
+	<li class="wcsatt-options-prompt-radio" id="yes_option">
 		<label class="wcsatt-options-prompt-label wcsatt-options-prompt-label-subscription">
 			<input class="wcsatt-options-prompt-action-input" type="radio" name="subscribe-to-action-input" value="yes" />
 			<span class="wcsatt-options-prompt-action" style="text-transform:initial !important;">Yes<?php // echo $subscription_cta; ?></span>
 		</label>
 	</li>
-	<li class="wcsatt-options-prompt-radio" id="no_option" onClick="no_opt();" style="background-color: #000000;">
+	<li class="wcsatt-options-prompt-radio" id="no_option">
 		<label class="wcsatt-options-prompt-label wcsatt-options-prompt-label-one-time">
 			<input class="wcsatt-options-prompt-action-input" type="radio" name="subscribe-to-action-input" value="no" />
 			<span class="wcsatt-options-prompt-action" style="text-transform:initial !important;">No<?php // echo $one_time_cta; ?></span>
@@ -32,7 +47,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</li>
 </ul>
 </div>
-<div class="select_options_text">
+<script type="text/javascript">
+function changediscount(discount){
+var discount;
+	document.getElementById("valuediscount").innerHTML = discount;
+}
+</script>
+<div id="valuediscount" class="select_options_text">
 SUBSCRIBE & SAVE 10%
 </div>
 <div class="clear"></div>

@@ -36,7 +36,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 						continue;
 					}
 
-					?><option value="<?php echo esc_attr( $option[ 'value' ] ); ?>" onclick="yes_opt();"><?php echo $option[ 'dropdown' ]; ?></option><?php
+					?>
+<?php $sub = $option[ 'dropdown' ]; ?>
+<option value="<?php echo esc_attr( $option[ 'value' ] ); ?>" data-title="SUBSCRIBE & SAVE <?php echo substr($sub,-8,-5); ?>" ><?php echo $option[ 'dropdown' ]; ?></option><?php
 				}
 			?></select><?php
 		}
@@ -56,12 +58,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div>
 </div><!--end select-area -->
 <script type="text/javascript">
-function yes_opt(){
-	document.getElementById("yes_option").style.backgroundColor = "#000";
-	document.getElementById("no_option").style.backgroundColor = "#f4b13e";
-}
-function no_opt(){
-	document.getElementById("no_option").style.backgroundColor = "#000";
-	document.getElementById("yes_option").style.backgroundColor = "#f4b13e";
-}
+var $ = jQuery.noConflict();
+</script>
+<script>
+$('.wcsatt-options-product-dropdown').on('change', function(){
+$('#valuediscount').text(
+$(this).find(':selected').attr('data-title')
+);
+});
 </script>

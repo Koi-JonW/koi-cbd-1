@@ -15,8 +15,12 @@ get_header();
 		</div><!--end banner-l-->
 		<div class="banner-r">
 			<div class="banner-description-v2"><?php the_field('banner_content'); ?></div><!--end banner-description-->
+			<?php if ( is_user_logged_in() ) {
+			} else { ?>
 			<a href="" class="k-button k-button--primary">Join Now</a>
-			<div class="button-text-below">Already have an account? <a href="#">Log In.</a></div>
+			<div class="button-text-below">Already have an account? <a href="<?php echo esc_url( home_url( '/' ) ); ?>account/#0">Log In.</a></div>
+			<?php } ?>
+
 		</div><!--end banner-r-->
 	</div><!--end k-inner k-inner--md-->
 </section><!--end banner-lp-->
@@ -24,8 +28,19 @@ get_header();
 <section id="how-it-works" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">
 		<div class="template-title" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+<?php if ( is_user_logged_in() ) { ?>
 	<div class="area-50-p">
-		<img src="<?php the_field('how_it_works_image'); ?>" alt="<?php the_field('title_section_hiw'); ?>" class="img-tmp-100"/>
+		<img src="<?php the_field('how_it_works_image_lu'); ?>" alt="<?php the_field('title_section_hiw'); ?>" class="img-tmp-100"/>
+	</div><!--end area-50-p-->
+	<div class="area-50-p">
+		<div class="btns-area">
+			<span>Hi, <span class="swell-user" style="display: inline-block;"><?php $current_user = wp_get_current_user(); echo($current_user->user_firstname ? $current_user->user_firstname : $current_user->user_login);?></span><br/>You Have <span class="swell-point-balance" style="display: inline-block;">X</span> Points.</span>
+			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
+		</div><!--end btns-area-->
+	</div><!--end area-50-p-->
+<?php } else { ?>
+	<div class="area-50-p">
+				<img src="<?php the_field('how_it_works_image'); ?>" alt="<?php the_field('title_section_hiw'); ?>" class="img-tmp-100"/>		
 	</div><!--end area-50-p-->
 	<div class="area-50-p">
 		<?php
@@ -40,15 +55,18 @@ get_header();
 			</ul><!--end steps-area-->
 		<?php endif;?>
 	</div><!--end area-50-p-->
+<?php } ?>
 	</div><!--end k-inner-->
 </section><!--end how-it-works-->
 
 
 <section class="swell-campaign-list-container">
-    <h4 class="swell-campaign-list-title" style="text-align:<?php the_field('title_section_ways_align'); ?>"><?php the_field('title_section_ways'); ?></h4>
+    <h4 class="swell-campaign-list-title" style="text-align:<?php the_field('title_section_ways_align'); ?>; padding:0px !important;"><?php the_field('title_section_ways'); ?></h4>
 	<?php if(get_field('temp_img')){ ?><img src="<?php the_field('temp_img'); ?>" alt="temp" style="width:100%; max-width:1215px; display:block; margin:0 auto;"/><?php } ?>
-        <ul class="swell-campaign-list">
-        </ul>
+		<div class="k-inner k-inner--md flex-features">
+        	<ul class="swell-campaign-list">
+        	</ul>
+		</div><!--end k-inner-->
 </section>
 
 <section id="banner-refer">
@@ -103,7 +121,7 @@ get_header();
 			swellCampaigns.forEach(function(campaign){
 				$(".swell-campaign-list").append(
 					$("<li>").addClass("campaign").append(
-						$("<div>").append(
+						$("<div class='content-bx'>").append(
 							$("<i>").addClass(`fa ${campaign.icon}`),
 							$("<p>", {text: campaign.rewardText}),
 							$("<h5>", {text: campaign.title})

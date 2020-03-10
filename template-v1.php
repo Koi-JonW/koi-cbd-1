@@ -100,7 +100,7 @@ get_header();
 
 	function swellCore(swellCampaigns){
 		if($(".swell-campaign-list").length){
-			swellCampaigns.forEach(campaign => {
+			swellCampaigns.forEach(function(campaign){
 				$(".swell-campaign-list").append(
 					$("<li>").addClass("campaign").append(
 						$("<div>").append(

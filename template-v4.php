@@ -77,5 +77,25 @@ get_header();
 <script>
 	var $ = jQuery.noConflict();
 </script>
+<script>
 
+    function swellCustomerCore(swellCustomer){
+		if($(".check-rewards-table").length){
+			swellCustomer.referrals.forEach(function(campaign){
+                // --
+            });
+		}
+	}
+
+	var checkSwellCustomer = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCustomer = swellAPI.getCustomerDetails();
+			if (swellCustomer && swellCustomer['pointsBalance'] !== 'undefined'){
+            	clearInterval(checkSwellCustomer);
+            	swellCustomerCore(swellCustomer);
+			}
+        }
+    }, 100);
+
+</script>
 <?php get_footer(lp); ?>

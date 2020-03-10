@@ -53,7 +53,7 @@ var discount;
 	document.getElementById("valuediscount").innerHTML = discount;
 }
 </script>
-<div id="valuediscount" class="select_options_text">
-SUBSCRIBE & SAVE 10%
+<div class="select_options_text">
+<span id="valuediscount">SUBSCRIBE & SAVE 10%</span> <a href="<?php echo esc_url( home_url( '/' ) ); ?>subscribe-save-lp" style="color:#f2aa39; text-decoration:underline; text-transform:Initial; padding:0px 15px;">Learn More</a>
 </div>
 <div class="clear"></div>

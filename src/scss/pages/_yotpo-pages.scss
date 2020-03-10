@@ -205,6 +205,10 @@
 .my-paddings-v2{padding:100px 0px 100px 0px;}
 
 /* SERGIO STYLES */
+/* total width */
+/* background of the scrollbar except button or resizer */
+/* scrollbar itself */
+/* set button(top and bottom of the scrollbar) */
 #banner-refer-friend {
 	width: 100%;
 	padding: 6% 0% 6%;
@@ -525,6 +529,9 @@ div.check-rewards-table {
 	}
 }
 @media screen and (min-width: 992px) {
+	.img-mobile {
+		display: none;
+	}
 	#banner-refer-friend {
 		.banner-left {
 			width: 50%;
@@ -545,7 +552,7 @@ div.check-rewards-table {
 			height: 726px;
 		}
 		.banner-right {
-			width: 597px;
+			width: 580px;
 			height: 726px;
 		}
 		.banner-row {
@@ -559,9 +566,23 @@ div.check-rewards-table {
 	}
 }
 @media screen and (max-width: 991px) {
+	.img-desktop {
+		display: none;
+	}
+	.img-mobile {
+		width: 100%;
+		display: block;
+	}
 	#banner-refer-friend {
 		.banner-underline {
 			width: 100%;
+		}
+	}
+	#banner-thank-you {
+		.banner-right {
+			.banner-underline {
+				width: 100%;
+			}
 		}
 	}
 	.banner-step-1 {
@@ -586,4 +607,5 @@ div.check-rewards-table {
 		}
 	}
 }
+
 /* SERGIO STYLES */

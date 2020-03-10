@@ -43,7 +43,6 @@ get_header();
 	</div><!--end k-inner-->
 </section><!--end how-it-works-->
 
-
 <section class="swell-campaign-list-container">
     <h4 class="swell-campaign-list-title" style="text-align:<?php the_field('title_section_ways_align'); ?>"><?php the_field('title_section_ways'); ?></h4>
 	<?php if(get_field('temp_img')){ ?><img src="<?php the_field('temp_img'); ?>" alt="temp" style="width:100%; max-width:1215px; display:block; margin:0 auto;"/><?php } ?>

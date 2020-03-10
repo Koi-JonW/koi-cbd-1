@@ -108,12 +108,6 @@ get_header();
 		}
 	}
 
-	function swellCustomerCore(swellCustomer){
-		if($(".swell-point-balance").length){
-			$(".swell-point-balance").text(swellCustomer.pointsBalance)
-		}
-	}
-
 	var checkSwellCampaigns = setInterval(function(){
         if (typeof swellAPI == 'object' && swellAPI !== null){
 			var swellCampaigns = swellAPI.getActiveCampaigns();
@@ -123,6 +117,12 @@ get_header();
 			}
         }
     }, 100);
+
+	function swellCustomerCore(swellCustomer){
+		if($(".swell-point-balance").length){
+			$(".swell-point-balance").text(swellCustomer.pointsBalance)
+		}
+	}
 
 	var checkSwellCustomer = setInterval(function(){
         if (typeof swellAPI == 'object' && swellAPI !== null){

@@ -205,68 +205,385 @@
 .my-paddings-v2{padding:100px 0px 100px 0px;}
 
 /* SERGIO STYLES */
-#banner-refer-friend{width:100%; padding:6% 0% 6%; font-size: 20px; line-height: 26px; color:#fff;
-    .banner-above-titles-v2{font-family: Recoleta Regular,serif; font-size: 26px; line-height: 26px; color:#fff; padding: 10px 0 10px 0; text-align: center;}
-    .banner-titles-v2{font-family: Recoleta Regular,serif; font-size: 60px; line-height: 60px; color:#fff; padding: 10px 0 0px 0; text-align: center;}
-    .banner-description-v2{padding:10px 0px 30px; text-align: center; max-width: 390px; margin: 0 auto;}
-    .banner-left .banner-underline{ border-bottom: 1px solid #fff; width: 200px; margin: 0 auto; display: block;}
-    .k-button{padding:20px 75px; text-align: center; margin: 0 auto;}
-    .button-text-below{padding:30px 0px 10px; font-size: 16px; text-align: center;}
-    .yotpo-box{ text-align: center; margin: 0 auto; max-width: 400px; width: 100%; padding-bottom: 60px;}
-    .yotpo-box .k-button{margin-top: 10px; margin-bottom: 10px;}
-    .yotpo-box .input-text{height: 60px; width: 100%; padding-left: 20px; padding-right: 20px; background-color: rgba(255,255,255,0.8); border: none; margin-bottom: 10px; display: block;}
-    .yotpo-box .input-text::placeholder{color: #000000; font-size: 16px;}
-    .banner-right {
-        .check-rewards-title{font-family: Recoleta Regular,serif; font-size: 16px; text-decoration:underline; text-align: center; margin-bottom: 10px;}
-        .check-rewards-subtitle{font-family: Recoleta Regular,serif; font-size: 20px; text-align: center; margin-bottom: 10px;}
-        .check-rewards-table{height: 138px; overflow-y: scroll; max-width: 400px; margin: 0 auto; font-size: 14px; width: 100%;}
-        .check-rewards-table table{width: 100%; border-collapse: collapse;
-            tr{ border-bottom: 1px solid #ffffff;}
-            tr:last-child{ border-bottom: none;}
-        }
-        .banner-underline{ border-bottom: 1px solid #fff; width: 400px; margin: 0 auto; display: block; margin-top: 30px; margin-bottom: 30px;}
-        .check-rewards-below-table{font-family:  Recoleta Regular,serif;font-size: 26px;text-align: center; margin-top: 10px;}
-        .check-rewards-below-table-2{font-family: Recoleta Regular,serif; font-size: 14px; text-align: center; margin-bottom: 10px;}
-    }
+#banner-refer-friend {
+	width: 100%;
+	padding: 6% 0% 6%;
+	font-size: 20px;
+	line-height: 26px;
+	color: #fff;
+	.banner-above-titles-v2 {
+		font-family: Recoleta Regular,serif;
+		font-size: 26px;
+		line-height: 26px;
+		color: #fff;
+		padding: 10px 0 10px 0;
+		text-align: center;
+	}
+	.banner-titles-v2 {
+		font-family: Recoleta Regular,serif;
+		font-size: 60px;
+		line-height: 60px;
+		color: #fff;
+		padding: 10px 0 0px 0;
+		text-align: center;
+	}
+	.banner-description-v2 {
+		padding: 10px 0px 30px;
+		text-align: center;
+		max-width: 390px;
+		margin: 0 auto;
+	}
+	.banner-above-titles-v3 {
+		font-family: Recoleta Regular,serif;
+		font-size: 26px;
+		line-height: 26px;
+		color: #fff;
+		padding: 10px 0 10px 0;
+		text-align: center;
+	}
+	.banner-titles-v3 {
+		font-family: Recoleta Regular,serif;
+		font-size: 60px;
+		line-height: 60px;
+		color: #fff;
+		padding: 10px 0 0px 0;
+		text-align: center;
+	}
+	.banner-description-v3 {
+		padding: 10px 0px 30px;
+		text-align: center;
+		max-width: 390px;
+		margin: 0 auto;
+	}
+	.banner-underline {
+		border-bottom: 1px solid #fff;
+		width: 200px;
+		margin: 0 auto;
+		display: block;
+	}
+	.k-button {
+		padding: 20px 75px;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.button-text-below {
+		padding: 30px 0px 10px;
+		font-size: 16px;
+		text-align: center;
+	}
+	.yotpo-box {
+		text-align: center;
+		margin: 0 auto;
+		max-width: 400px;
+		width: 100%;
+		padding-bottom: 60px;
+		.k-button {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.input-text {
+			height: 60px;
+			width: 100%;
+			padding-left: 20px;
+			padding-right: 20px;
+			background-color: rgba(255, 255, 255, 0.8);
+			border: none;
+			margin-bottom: 10px;
+			display: block;
+			&::placeholder {
+				color: #000000;
+				font-size: 16px;
+			}
+		}
+	}
+	.banner-right {
+		.check-rewards-title {
+			font-family: Recoleta Regular,serif;
+			font-size: 16px;
+			text-decoration: underline;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		.check-rewards-subtitle {
+			font-family: Recoleta Regular,serif;
+			font-size: 20px;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		.check-rewards-table {
+			height: 138px;
+			overflow-y: scroll;
+			max-width: 400px;
+			margin: 0 auto;
+			font-size: 14px;
+			width: 100%;
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				tr {
+					border-bottom: 1px solid #ffffff;
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+		.banner-underline {
+			border-bottom: 1px solid #fff;
+			width: 400px;
+			margin: 0 auto;
+			display: block;
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		.check-rewards-below-table {
+			font-family: Recoleta Regular,serif;
+			font-size: 26px;
+			text-align: center;
+			margin-top: 10px;
+		}
+		.check-rewards-below-table-2 {
+			font-family: Recoleta Regular,serif;
+			font-size: 14px;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+	}
 }
-@media screen and (min-width: 992px){
-    #banner-refer-friend {
-        .banner-left{width: 50%;}
-        .banner-right{width: 50%;}
-        .banner-row{width: 100%; display: flex; flex-wrap: wrap; margin-top: 5px;}
-    }
-    #banner-thank-you {
-        .banner-left{width: 395px; height: 726px;}
-        .banner-right{width: 597px; height: 726px;}
-        .banner-row{max-width: 992px; height: 726px; width: 100%; display: flex; flex-wrap: wrap; margin: 0 auto;}
-    }
+#banner-thank-you {
+	width: 100%;
+	padding: 100px 0% 100px !important;
+	font-size: 20px;
+	line-height: 26px;
+	color: #fff;
+	background-color: #f4b13d;
+	min-height: 768px;
+	.banner-above-titles-v2 {
+		font-family: Recoleta Regular,serif;
+		font-size: 26px;
+		line-height: 26px;
+		color: #fff;
+		padding: 10px 0 10px 0;
+		text-align: center;
+	}
+	.banner-titles-v2 {
+		font-family: Recoleta Regular,serif;
+		font-size: 60px;
+		line-height: 60px;
+		color: #fff;
+		padding: 10px 0 0px 0;
+		text-align: center;
+	}
+	.banner-description-v2 {
+		padding: 10px 0px 30px;
+		text-align: center;
+		max-width: 390px;
+		margin: 0 auto;
+	}
+	.banner-above-titles-v3 {
+		font-family: Recoleta Regular,serif;
+		font-size: 26px;
+		line-height: 26px;
+		color: #fff;
+		padding: 10px 0 10px 0;
+		text-align: center;
+	}
+	.banner-titles-v3 {
+		font-family: Recoleta Regular,serif;
+		font-size: 60px;
+		line-height: 60px;
+		color: #fff;
+		padding: 10px 0 20px 0;
+		text-align: center;
+	}
+	.banner-description-v3 {
+		text-align: center;
+		max-width: 390px;
+		margin: 0 auto;
+	}
+	.banner-left {
+		.banner-underline {
+			border-bottom: 1px solid #fff;
+			width: 200px;
+			margin: 0 auto;
+			display: block;
+		}
+	}
+	.k-button {
+		padding: 20px 75px;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.button-text-below {
+		font-size: 16px;
+		text-align: center;
+		padding-bottom: 5px;
+	}
+	.yotpo-box {
+		text-align: center;
+		margin: 0 auto;
+		max-width: 400px;
+		width: 100%;
+		padding-bottom: 60px;
+		.k-button {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		.input-text {
+			height: 60px;
+			width: 100%;
+			padding-left: 20px;
+			padding-right: 20px;
+			background-color: rgba(255, 255, 255, 0.8);
+			border: none;
+			margin-bottom: 10px;
+			display: block;
+			&::placeholder {
+				color: #000000;
+				font-size: 16px;
+			}
+		}
+	}
+	.banner-right {
+		background-color: #000000;
+		color: #ffffff;
+		padding-top: 50px;
+		.check-rewards-title {
+			font-family: Recoleta Regular,serif;
+			font-size: 16px;
+			text-decoration: underline;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		.check-rewards-subtitle {
+			font-family: Recoleta Regular,serif;
+			font-size: 20px;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+		.check-rewards-table {
+			height: 138px;
+			overflow-y: scroll;
+			max-width: 400px;
+			margin: 0 auto;
+			font-size: 14px;
+			width: 100%;
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				tr {
+					border-bottom: 1px solid #ffffff;
+					&:last-child {
+						border-bottom: none;
+					}
+				}
+			}
+		}
+		.banner-underline {
+			border-bottom: 1px solid #fff;
+			width: 400px;
+			margin: 0 auto;
+			display: block;
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		.check-rewards-below-table {
+			font-family: Recoleta Regular,serif;
+			font-size: 26px;
+			text-align: center;
+			margin-top: 10px;
+		}
+		.check-rewards-below-table-2 {
+			font-family: Recoleta Regular,serif;
+			font-size: 14px;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+	}
+	>p {
+		text-align: center;
+		color: #000000;
+		font-family: Recoleta Regular,serif;
+		font-size: 30px;
+	}
 }
-#banner-thank-you{width:100%; padding:100px 0% 100px !important; font-size: 20px; line-height: 26px; color:#fff; background-color: #f4b13d; min-height: 768px;
-    .banner-above-titles-v2{font-family: Recoleta Regular,serif; font-size: 26px; line-height: 26px; color:#fff; padding: 10px 0 10px 0; text-align: center;}
-    .banner-titles-v2{font-family: Recoleta Regular,serif; font-size: 60px; line-height: 60px; color:#fff; padding: 10px 0 0px 0; text-align: center;}
-    .banner-description-v2{padding:10px 0px 30px; text-align: center; max-width: 390px; margin: 0 auto;}
-    .banner-above-titles-v3{font-family: Recoleta Regular,serif; font-size: 26px; line-height: 26px; color:#fff; padding: 10px 0 10px 0; text-align: center;}
-    .banner-titles-v3{font-family: Recoleta Regular,serif; font-size: 60px; line-height: 60px; color:#fff; padding: 10px 0 20px 0; text-align: center;}
-    .banner-description-v3{text-align: center; max-width: 390px; margin: 0 auto;}
-    .banner-left .banner-underline{ border-bottom: 1px solid #fff; width: 200px; margin: 0 auto; display: block;}
-    .k-button{padding:20px 75px; text-align: center; margin: 0 auto;}
-    .button-text-below{font-size: 16px; text-align: center; padding-bottom: 5px;}
-    .yotpo-box{text-align: center; margin: 0 auto; max-width: 400px; width: 100%; padding-bottom: 60px;}
-    .yotpo-box .k-button{margin-top: 10px; margin-bottom: 10px;}
-    .yotpo-box .input-text{height: 60px; width: 100%; padding-left: 20px; padding-right: 20px; background-color: rgba(255,255,255,0.8); border: none; margin-bottom: 10px; display: block;}
-    .yotpo-box .input-text::placeholder{color: #000000; font-size: 16px;}
-    .banner-right{background-color: #000000; color: #ffffff; padding-top: 50px;
-        .check-rewards-title{font-family: Recoleta Regular,serif; font-size: 16px; text-decoration:underline; text-align: center; margin-bottom: 10px;}
-        .check-rewards-subtitle{font-family: Recoleta Regular,serif; font-size: 20px; text-align: center; margin-bottom: 10px;}
-        .check-rewards-table{height: 138px; overflow-y: scroll; max-width: 400px; margin: 0 auto; font-size: 14px; width: 100%;}
-        .check-rewards-table table{width: 100%; border-collapse: collapse;
-            tr{ border-bottom: 1px solid #ffffff;}
-            tr:last-child{ border-bottom: none;}
-        }
-        .banner-underline{ border-bottom: 1px solid #fff; width: 400px; margin: 0 auto; display: block; margin-top: 30px; margin-bottom: 30px;}
-        .check-rewards-below-table{font-family:  Recoleta Regular,serif;font-size: 26px;text-align: center; margin-top: 10px;}
-        .check-rewards-below-table-2{font-family: Recoleta Regular,serif; font-size: 14px; text-align: center; margin-bottom: 10px;}
-    }
-    > p{text-align: center; color:#000000;font-family: Recoleta Regular,serif; font-size: 30px;}
+div.check-rewards-table {
+	&::-webkit-scrollbar {
+		background-color: transparent;
+		width: 8px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: #f4b13d;
+		border-radius: 16px;
+		border: none;
+	}
+	&::-webkit-scrollbar-button {
+		display: none;
+	}
+}
+@media screen and (min-width: 992px) {
+	#banner-refer-friend {
+		.banner-left {
+			width: 50%;
+		}
+		.banner-right {
+			width: 50%;
+		}
+		.banner-row {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 5px;
+		}
+	}
+	#banner-thank-you {
+		.banner-left {
+			width: 395px;
+			height: 726px;
+		}
+		.banner-right {
+			width: 597px;
+			height: 726px;
+		}
+		.banner-row {
+			max-width: 992px;
+			height: 726px;
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0 auto;
+		}
+	}
+}
+@media screen and (max-width: 991px) {
+	#banner-refer-friend {
+		.banner-underline {
+			width: 100%;
+		}
+	}
+	.banner-step-1 {
+		max-width: 460px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.banner-step-2 {
+		max-width: 460px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.banner-step-3 {
+		max-width: 460px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.yotpo-box {
+		max-width: 460px !important;
+		.input-text {
+			width: 100%;
+		}
+	}
 }
 /* SERGIO STYLES */

@@ -1,6 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
-/* Template Name: Template V1 */
+/* Template Name: Rewards */
 
 $root = get_template_directory_uri();
 $site_content = get_fields('option');
@@ -104,34 +104,6 @@ get_header();
 	</div><!--end k-inner-->
 </section><!--end vips-earn-->
 
-<script type="text/javascript">
-var $ = jQuery.noConflict();
-$(document).on('click','.opta',function(){
-	$('.opt_a').addClass("showmy");
-	$('.opt_b').removeClass("showmy");
-	$('.opt_c').removeClass("showmy");
-	$('.opta').addClass("activex");
-	$('.optb').removeClass("activex");
-	$('.optc').removeClass("activex");
-});
-$(document).on('click','.optb',function(){
-	$('.opt_b').addClass("showmy");
-	$('.opt_a').removeClass("showmy");
-	$('.opt_c').removeClass("showmy");
-	$('.optb').addClass("activex");
-	$('.opta').removeClass("activex");
-	$('.optc').removeClass("activex");
-});
-$(document).on('click','.optc',function(){
-	$('.opt_c').addClass("showmy");
-	$('.opt_a').removeClass("showmy");
-	$('.opt_b').removeClass("showmy");
-	$('.optc').addClass("activex");
-	$('.opta').removeClass("activex");
-	$('.optb').removeClass("activex");
-});
-</script>
-
 <section id="redeem" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">
 		<div class="redeem-l">
@@ -158,6 +130,32 @@ $(document).on('click','.optc',function(){
 
 <script>
 	var $ = jQuery.noConflict();
+</script>
+<script type="text/javascript">
+	$(document).on('click','.opta',function(){
+		$('.opt_a').addClass("showmy");
+		$('.opt_b').removeClass("showmy");
+		$('.opt_c').removeClass("showmy");
+		$('.opta').addClass("activex");
+		$('.optb').removeClass("activex");
+		$('.optc').removeClass("activex");
+	});
+	$(document).on('click','.optb',function(){
+		$('.opt_b').addClass("showmy");
+		$('.opt_a').removeClass("showmy");
+		$('.opt_c').removeClass("showmy");
+		$('.optb').addClass("activex");
+		$('.opta').removeClass("activex");
+		$('.optc').removeClass("activex");
+	});
+	$(document).on('click','.optc',function(){
+		$('.opt_c').addClass("showmy");
+		$('.opt_a').removeClass("showmy");
+		$('.opt_b').removeClass("showmy");
+		$('.optc').addClass("activex");
+		$('.opta').removeClass("activex");
+		$('.optb').removeClass("activex");
+	});
 </script>
 <script>
 

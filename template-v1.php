@@ -7,9 +7,9 @@ $site_content = get_fields('option');
 
 get_header();
 ?>
-<?php  include(locate_template('temporal-styles-css.php')); ?>
+<?php //  include(locate_template('temporal-styles-css.php')); ?>
 <section id="banner-lp-v2" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover;">
-	<div class="k-inner k-inner--md">
+	<div class="k-inner k-inner--md desk">
 		<div class="banner-l">
 			<div class="banner-titles-v2"><?php the_field('banner_title'); ?></div><!--end banner-titles-->
 		</div><!--end banner-l-->
@@ -25,12 +25,22 @@ get_header();
 	</div><!--end k-inner k-inner--md-->
 </section><!--end banner-lp-->
 
+<div class="k-inner k-inner--md resp">
+			<div class="banner-titles-v2"><?php the_field('banner_title'); ?></div><!--end banner-titles-->
+			<div class="banner-description-v2"><?php the_field('banner_content'); ?></div><!--end banner-description-->
+			<?php if ( is_user_logged_in() ) {
+			} else { ?>
+			<a href="" class="k-button k-button--primary">Join Now</a><a href="<?php echo esc_url( home_url( '/' ) ); ?>account/#0" class="k-button k-button--primary white-btn">Log In</a>
+			<?php } ?>
+</div><!--end k-inner-->
+
 <section id="how-it-works" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">
-		<div class="template-title" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+		<div class="template-title desk" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
 <?php if ( is_user_logged_in() ) { ?>
 	<div class="area-50-p">
 		<img src="<?php the_field('how_it_works_image_lu'); ?>" alt="<?php the_field('title_section_hiw'); ?>" class="img-tmp-100"/>
+		<div class="template-title resp" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
 	</div><!--end area-50-p-->
 	<div class="area-50-p">
 		<div class="btns-area">
@@ -41,6 +51,7 @@ get_header();
 <?php } else { ?>
 	<div class="area-50-p">
 				<img src="<?php the_field('how_it_works_image'); ?>" alt="<?php the_field('title_section_hiw'); ?>" class="img-tmp-100"/>		
+				<div class="template-title resp" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
 	</div><!--end area-50-p-->
 	<div class="area-50-p">
 		<?php
@@ -59,6 +70,7 @@ get_header();
 	</div><!--end k-inner-->
 </section><!--end how-it-works-->
 
+
 <section class="swell-campaign-list-container">
     <h4 class="swell-campaign-list-title" style="text-align:<?php the_field('title_section_ways_align'); ?>; padding:0px !important;"><?php the_field('title_section_ways'); ?></h4>
 	<?php if(get_field('temp_img')){ ?><img src="<?php the_field('temp_img'); ?>" alt="temp" style="width:100%; max-width:1215px; display:block; margin:0 auto;"/><?php } ?>
@@ -68,7 +80,7 @@ get_header();
 		</div><!--end k-inner-->
 </section>
 
-<section id="banner-refer">
+<section id="banner-refer" class="brefer-v">
 	<div class="k-inner k-inner--md" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px;">
 	<div class="small_title_banner"><?php the_field('small_title_banner'); ?></div>
 	<div class="big_title_banner"><?php the_field('big_title_banner'); ?></div>
@@ -80,11 +92,45 @@ get_header();
 <section id="vips-earn">
 	<div class="k-inner k-inner--md">
 		<div class="template-title" style="text-align:<?php the_field('title_section_vip_align'); ?>"><?php the_field('title_section_vip'); ?></div><!--end template-title-->
+		<ul class="bullet-selector">
+		<li class="bull-g opta activex"></li>
+		<li class="bull-g optb"></li>
+		<li class="bull-g optc"></li>
+		</ul>
+		<div style="width:100%; clear:both;"></div>
 		<div class="flex-features">
 			<?php the_field('table_code'); ?>
 		</div><!--end flex-features-->
 	</div><!--end k-inner-->
 </section><!--end vips-earn-->
+
+<script type="text/javascript">
+var $ = jQuery.noConflict();
+$(document).on('click','.opta',function(){
+	$('.opt_a').addClass("showmy");
+	$('.opt_b').removeClass("showmy");
+	$('.opt_c').removeClass("showmy");
+	$('.opta').addClass("activex");
+	$('.optb').removeClass("activex");
+	$('.optc').removeClass("activex");
+});
+$(document).on('click','.optb',function(){
+	$('.opt_b').addClass("showmy");
+	$('.opt_a').removeClass("showmy");
+	$('.opt_c').removeClass("showmy");
+	$('.optb').addClass("activex");
+	$('.opta').removeClass("activex");
+	$('.optc').removeClass("activex");
+});
+$(document).on('click','.optc',function(){
+	$('.opt_c').addClass("showmy");
+	$('.opt_a').removeClass("showmy");
+	$('.opt_b').removeClass("showmy");
+	$('.optc').addClass("activex");
+	$('.opta').removeClass("activex");
+	$('.optb').removeClass("activex");
+});
+</script>
 
 <section id="redeem" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">

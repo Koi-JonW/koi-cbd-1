@@ -96,7 +96,7 @@ get_header();
         <div class="button-text-below"><?php the_field('text_below_line_i'); ?></div>
         <div class="yotpo-box">
             <input id="customers-input" type="text" class="input-text" placeholder="Your email">
-            <a href="#" id="step-2" class="k-button k-button--primary">Next</a>
+            <a href="#" id="customers-send-btn" class="k-button k-button--primary">Next</a>
         </div>
     </div>
     <div class="banner-step-2" style="display: none;">
@@ -106,15 +106,15 @@ get_header();
         <div class="banner-underline"></div>
         <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
         <div class="yotpo-box">
-            <input type="text" id="friends-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
-            <a id="customers-send-btn" href="#" class="k-button k-button--primary">Send</a>
+            <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
+            <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
         </div>
     </div>
     <div class="banner-step-3" style="display: none;">
         <div class="banner-titles-v3">Thanks for referring</div>
         <div class="banner-above-titles-v3">Remind your friends to check their emails</div>
         <div class="yotpo-box">
-            <a id="step-1" href="#" class="k-button k-button--primary">Refer More Friends</a>
+            <a href="#" id="thank-you-back" class="k-button k-button--primary">Refer More Friends</a>
         </div>
     </div>
 </section>
@@ -122,57 +122,85 @@ get_header();
 <?php } ?>
 
 <script>
-	var $ = jQuery.noConflict();
+    var $ = jQuery.noConflict();
+</script>
+<script>
 
-    var customersInput = $("#customers-input");
-    var friendsInput = $("#friends-input");
-    var step1 = $("#step-1");
-    var step2 = $("#step-2");
-    var sendEmailBtn = $("#customers-send-btn");
+    var step_1 = $('.banner-step-1');
+    var step_2 = $('.banner-step-2');
+    var step_3 = $('.banner-step-3');
 
-    $(step1).click(function() {
-        $('.banner-step-3').hide();
-        $('.banner-step-1').show();
+    // --
+
+    $('#customers-send-btn').on('click', function(e) {
+
+        e.preventDefault();
+
+        var onSuccess = function() {
+            step_1.hide();
+            step_2.show();
+            step_3.hide();
+        }
+
+        var onError = function(err) {
+            console.log(err);
+        }
+
+        try {
+            swellAPI.identifyReferrer($('#customers-input').val(), onSuccess, onError);
+        } catch(err) {
+            console.log('-- Exception');
+            console.log(err);
+        }
+
+        // -- ToDo: Should be in onSuccess function
+        step_1.hide();
+        step_2.show();
+        step_3.hide();
+
     });
 
-    $(step2).click(function() {
-        if( $(customersInput).val().length !== 0 ){
-            $('.banner-step-1').hide();
-            $('.banner-step-2').show();
+    // --
+
+    $('#referred-customers-send-btn').on('click', function(e) {
+
+        e.preventDefault();
+
+        var onSuccess = function() {
+            step_1.hide();
+            step_2.hide();
+            step_3.show();
         }
+
+        var onError = function(err) {
+            console.log(err);
+        }
+
+        var emails = $('#referred-customers-input').val().split(',')
+
+        try {
+            swellAPI.sendReferralEmails(emails, onSuccess, onError);
+        } catch(err) {
+            console.log('-- Exception');
+            console.log(err);
+        }
+
+        // -- ToDo: Should be in onSuccess function
+        step_1.hide();
+        step_2.hide();
+        step_3.show();
+
     });
 
-    $(sendEmailBtn).click(function() {
-        if($(friendsInput).val().length !== 0){
-            onSuccess = function() {
-                $("#success").show();
-            }
-            onError = function() {
-                $("#error").show();
-            }
-            swellAPI.identifyReferrer(customersInput.val(), onSuccess, onError);
-            $('.banner-step-2').hide();
-            $('.banner-step-3').show();
-        }
+    // --
+
+    $('#thank-you-back').on('click', function(e){
+
+        step_1.show();
+        step_2.hide();
+        step_3.hide();
+
     });
-
-    function swellCustomerCore(swellCustomer){
-		if($(".check-rewards-table").length){
-			swellCustomer.referrals.forEach(function(campaign){
-                // --
-            });
-		}
-	}
-
-	var checkSwellCustomer = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCustomer = swellAPI.getCustomerDetails();
-			if (swellCustomer && swellCustomer['pointsBalance'] !== 'undefined'){
-            	clearInterval(checkSwellCustomer);
-            	swellCustomerCore(swellCustomer);
-			}
-        }
-    }, 100);
 
 </script>
 

@@ -1,7 +1,7 @@
 .swell-campaign-list {
         list-style: none;
         display: flex;
-        width: 50%;
+        width: 100%;    /* march 10 */
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
@@ -9,19 +9,25 @@
         position: relative;
     }
 
+	.content-bx{
+		position:absolute;
+		margin:10px;
+		top:0.5rem;
+		left:1rem;
+	}
     .campaign {
-        width: 33%;
+	   width: 32%;
+	   margin:0.5%;
         padding: 1rem;
         box-sizing: border-box;
         color: black;
         font-weight: 300;
         border: 1px solid #eee;
         position: relative;
-        min-height: 18rem;
-        display: flex;
-        flex-wrap: wrap;
+        min-height: 20rem;
         justify-content: center;
-        align-items: center;
+	   background:url('https://koicbddev.wpengine.com/wp-content/uploads/p-01.jpg') no-repeat center;
+	   color:#f4b13d;
     }
 
     .campaign i {
@@ -31,21 +37,24 @@
         text-align: center;
         color: black;
         margin-bottom: 2rem;
+	   display:none;
     }
 
     .campaign div {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        min-height: 8rem;
+	display:block;
+	width:100%;
+	text-align:left;
+     min-height:auto !important;
     }
 
     .campaign div h5 {
+	   font-family:GT America,sans-serif;
         width: 100%;
-        text-align: center;
+        text-align: left;
         font-weight: 300;
-        font-size: 12px;
+        font-size: 20px;
+	   margin:0px;
+
     }
 
     .swell-campaign-list-title {
@@ -65,8 +74,11 @@
 
     li.campaign p {
         width: 100%;
+	   margin-top:0px;
         margin-bottom: 0;
-        font-weight: 800;
+        font-weight: 400;
+	   font-family: Recoleta Regular,serif;
+		font-size: 25px;
     }
 
     .swell-campaign-list-title {
@@ -75,47 +87,14 @@
         text-align: center;
     }
 
-    @media screen and (max-width: 800px) {
-        .campaign {
-            width: 50%;
-        }
-        .campaign .pink {
-            padding: 0.3rem 0.5rem;
-        }
-
-        .campaign div h5 {
-            width: 100%;
-            text-align: center;
-            font-weight: 300;
-            font-size: 12px;
-        }
-
-        .campaign i {
-            height: 2rem;
-            width: 2rem;
-            font-size: 32px;
-        }
-
-        .swell-campaign-list {
-            width: 100%;
-        }
-      
-        .swell-campaign-list-title {
-            font-size: 24px;
-            margin-bottom: 0;
-        }  
-    }
-	
-
 .flex-features{display:flex; flex-wrap:wrap;}
 
-#banner-lp-v2{width:100%; padding:6% 0% 6%; font-size: 20px; line-height: 26px; color:#fff;
-	.banner-titles-v2{font-family: Recoleta Regular,serif; font-size: 60px; line-height: 60px; color:#fff; padding: 10px 0 20px 0;}
-	.banner-description-v2{padding:35px 0px;}
-	.k-button{padding:20px 75px;}
-	.button-text-below{padding:30px 0px;}
-	.button-text-below a{color:#fff; text-decoration:underline;}
-}
+#banner-lp-v2{width:100%; padding:6% 0% 6%; font-size: 20px; line-height: 26px; color:#fff;}
+.banner-titles-v2{font-family: Recoleta Regular,serif; font-size: 60px; line-height: 60px; color:#fff; padding: 10px 0 20px 0;}
+.banner-description-v2{padding:35px 0px;}
+.k-button{padding:20px 75px;}
+.button-text-below{padding:30px 0px;}
+.button-text-below a{color:#fff; text-decoration:underline;}
 
 .steps-area{width:100%; max-width:330px; margin:0 auto; padding:0px;
 	li{list-style:none; border-left:3px solid #000; margin:45px 0px 45px 0px; color:#000;}
@@ -123,6 +102,7 @@
 	.tt-li{font-family: Recoleta Regular,serif; font-size: 30px; line-height: 30px; padding:0px 15px;}
 	.dd-li{font-size:16px; line-height:16px; padding:15px 15px 0px 15px;}
 }
+
 
 #banner-refer{width:100%; text-align:center; color:#fff; padding:100px 0px;
 	.k-inner{padding:150px;}
@@ -144,14 +124,14 @@
 #redeem{width:100%;
 	.template-title{padding:0px 0px 5px 0px;}
 }
-.redeem-l{width:50%; margin:20px 0px 0px 0px;}
-.redeem-l img{max-width:400px;}
-
+.redeem-l{width:50%; margin:20px 0px 0px 0px;
+	img{max-width:400px; width:98%;}
+}
 .redeem-r{width:50%;}
 .points-range-orange{font-size:18px; line-height:18px; color:#f4b13d; border:2px dotted #f4b13d; border-radius:5px; padding:19px 60px 20px 60px; display:inline-block; margin:25px 0px 0px 0px;}
 
 .points-area{display:flex; flex-wrap:wrap; max-width:440px;}
-.points-box{width:200px; border:2px dotted #f4b13d; border-radius:5px; padding:25px 0px 25px 0px; display:inline-block; margin:25px 20px 0px 0px; text-align:center;}
+.points-box{width:46%; border:2px dotted #f4b13d; border-radius:5px; padding:25px 0px 25px 0px; display:inline-block; margin:25px 4% 0px 0px; text-align:center;}
 .discount-txt{font-family: Recoleta Regular,serif; font-size:28px; line-height:28px;}
 .points-txt{font-size:22px; line-height:22px;}
 
@@ -161,14 +141,15 @@
 .bg-orange-v2{background-color:#f4b13d; color:#fff !important; border-top:15px solid #f4b13d; margin-top:-50px;
 	span{font-family: Recoleta Regular,serif; font-size:22px; text-decoration:underline; padding-bottom:15px; display:block;}
 }
-
 .bg-orange-v3{background-color:#f4b13d; color:#fff !important; border-bottom:30px solid #f4b13d;}
+
 
 .btns-area{max-width:385px; margin:0 auto;
 	span{font-family: Recoleta Regular,serif;  font-size:45px; line-height:65px; display:block; padding-bottom:25px;}
 	a{display:block-inline; margin-bottom:20px;}
 	strong a{color:#f4b13e;}
 	strong{font-weight:normal; color:#f4b13e;}
+	.k-button{width:80%; padding:20px 0px;}
 }
 
 .white-btn{background-color:#fff; color:#f4b13e;}
@@ -179,6 +160,7 @@
 .template-title{font-family: Recoleta Regular,serif; font-size: 50px; line-height: 50px; width:100%; padding:50px 0px;}
 .content_section_redeem{font-size:18px; line-height:24px;}
 .swell-campaign-list-title{font-family: Recoleta Regular,serif !important; font-size: 50px !important; line-height: 50px !important; width:100% !important; padding:50px 0px !important;}
+
 
 .banner-links-sections{font-size:16px;
 	a{color:#fff; text-decoration:none; padding-left:20px; margin:0px 3px;}
@@ -200,9 +182,13 @@
 .area-65-p{width:65%; padding:15px 0px;}
 .white-borders{border:15px solid #fff;}
 
+.bullet-selector{display:none;}
+
 .img-tmp-100{width:98%;}
 .my-paddings{padding:100px 0px 0px 0px;}
 .my-paddings-v2{padding:100px 0px 100px 0px;}
+.resp{display:none;}
+.desk{display:block;}
 
 /* SERGIO STYLES */
 #banner-refer-friend {
@@ -587,3 +573,150 @@ div.check-rewards-table {
 	}
 }
 /* SERGIO STYLES */
+
+@media only screen and (max-width:920px){
+#banner-lp-v2{width:100%; padding:6% 0% 6%; font-size: 18px; line-height: 22px;}
+.banner-titles-v2{font-size: 50px; line-height: 50px; padding: 10px 0 0px 0;}
+.banner-description-v2{padding:15px 0px;}
+.k-button{padding:20px 75px;}
+.button-text-below{padding:30px 0px;
+	a{color:#fff; text-decoration:underline;}
+}
+
+.steps-area{width:100%; max-width:100%; margin:0 auto; padding:0px;
+	li{list-style:none; border-left:3px solid #000; margin:0px 0px 35px 0px; color:#000;}
+	.tt-li{font-size: 25px; line-height: 30px; padding:0px 15px;}
+	.dd-li{font-size:14px; line-height:14px; padding:15px 10px 0px 10px;}
+}
+
+#banner-refer{width:100%; text-align:center; color:#fff; padding:100px 0px;
+	.k-inner{padding:150px;}
+	.small_title_banner{font-family: Recoleta Regular,serif; font-size: 30px; line-height: 30px;}
+	.big_title_banner{font-family: Recoleta Regular,serif; font-size: 65px; line-height: 65px; padding:15px 0px 20px;}
+	.banner_description{font-size:23px; line-height:26px; padding-bottom:35px;}
+	.k-button{padding:15px 35px;}
+}
+
+.btns-area{max-width:385px; margin:0 auto;
+	span{ font-size:35px; line-height:50px; display:block; padding-bottom:15px;}
+}
+
+.template-title{font-size: 45px; line-height: 45px; padding:40px 0px;}
+.content_section_redeem{font-size:16px; line-height:22px;}
+.swell-campaign-list-title{font-size: 40px !important; line-height: 40px !important; width:100% !important; padding:40px 0px !important;}
+
+.campaign {width: 32%; margin:0.5%; min-height: 14rem;}
+
+.campaign div h5 {width: 100%; text-align: left; font-weight: 300; font-size: 15px; margin:0px;}
+li.campaign p {width: 100%; margin-top:0px; margin-bottom: 0; font-weight: 400; font-size: 20px;}
+
+
+.area-50-p{width:48%; padding:15px 0px; margin:0px 1%;}
+.area-35-p{width:35%; padding:15px 15px;}
+.area-65-p{width:65%; padding:15px 0px;}
+.white-borders{border:15px solid #fff;}
+
+}
+
+@media only screen and (max-width:767px){
+#banner-lp-v2{min-height:420px; background-position:right -100px top !important;}
+.resp .banner-titles-v2{font-size:80px !important; line-height:80px !important; color:#000 !important; padding-top:50px;}
+.resp .banner-description-v2{font-size:28px; line-height:33px; padding-bottom:40px;}
+.resp .k-button{font-size:22px; padding:12px 0px; width:40%; margin-right:2%;}
+.resp .white-btn{background-color:#fff; color:#f4b13e;}
+.resp .white-btn:hover{background-color:#f4b13e;}
+
+.brefer-v .k-inner{padding:150px 25px !important;}
+
+.steps-area{width:100%; max-width:100%; margin:0 auto; padding:0px;
+li{list-style:none; border-left:3px solid #000; margin:0px 0px 55px 0px; color:#000;}
+.tt-li{font-size: 30px; line-height: 30px; padding:0px 15px;}
+.dd-li{font-size:18px; line-height:18px; padding:15px 15px 0px 15px;}
+}
+
+.campaign{width: 48%; margin:1%; min-height: 16rem;}
+
+.campaign div h5 {width: 100%; text-align: left;  font-size:20px; margin:0px;}
+li.campaign p {width: 100%; margin-top:0px; margin-bottom: 0; font-size: 25px;}
+
+#redeem .template-title{padding:0px 0px 15px 0px; font-size:58px; line-height:58px;}
+.redeem-l{width:100%; margin:20px 0px 0px 0px;
+	img{max-width:100%; margin:0 auto; display:block; margin-bottom:50px;}
+}
+.redeem-r{width:100%;}
+.points-range-orange{font-size:25px; line-height:25px; margin:45px 0px 0px 2%; text-transform:uppercase;}
+
+.content_section_redeem{font-size:26px; line-height:30px;}
+
+.points-area{display:flex; flex-wrap:wrap; max-width:100%;}
+.points-box{width:46%; border:2px dotted #f4b13d; border-radius:5px; padding:35px 0px 35px 0px; display:inline-block; margin:25px 2% 0px 2%; text-align:center;}
+.discount-txt{font-family: Recoleta Regular,serif; font-size:28px; line-height:28px;}
+.points-txt{font-size:22px; line-height:22px; padding-top:10px;}
+
+.area-50-p{width:98%; padding:15px 0px; margin:0px 1%;}
+.area-35-p{width:98%; padding:15px 15px;}
+.area-65-p{width:98%; padding:15px 0px;}
+.white-borders{border:15px solid #fff;}
+
+.btns-area .k-button{width:100%; padding:10px 0px;}
+
+#vips-earn{width:100%; font-size:16px; line-height:20px;}
+.table-vips-left-55{width:50%; min-height:60px; box-sizing:border-box; padding:0px 5px;}
+.table-vips-left-15{width:50%; min-height:60px; text-align:center; padding:0px 5px;}
+.gray-borders{line-height:70px; padding-top:10px; padding-bottom:5px;
+	strong{font-size: 24px; line-height:45px;}
+}
+.tl{padding-top:25px;}
+.ob{font-size:50px; color:#f4b13d;}
+.opt_a{display:none;}
+.opt_b{display:none;}
+.opt_c{display:none;}
+
+.removea{display:none;}
+.showmy{display:block !important;}
+
+.bullet-selector{display:flex; flex-wrap:wrap; width:50%; float:right; margin:0px; padding:0px; align-items: center; justify-content: center;
+	li{list-style:none;}
+}
+.bull-g{width:10px; height:10px; background-color:#ff0000; border-radius:25px; background-color:#808080; margin:20px 5px;}
+.bull-g:hover{background-color:#000;}
+.activex{background-color:#000;}
+
+.my-paddings{padding:50px 0px 0px 0px;}
+.my-paddings-v2{padding:50px 0px 100px 0px;}
+
+.resp{display:block;}
+.desk{display:none;}
+}
+
+@media only screen and (max-width:630px){
+#banner-lp-v2{min-height:380px; background-position:right -200px top !important;}
+.resp .banner-titles-v2{font-size:45px !important; line-height:45px !important; padding-top:40px;}
+.resp .banner-description-v2{font-size:20px; line-height:22px; padding-bottom:40px;}
+.resp .k-button{font-size:18px; padding:12px 0px; width:100%; max-width:320px; margin:0 auto; margin-right:auto; margin-bottom:10px;}
+.resp .white-btn{background-color:#fff; color:#f4b13e;}
+.resp .white-btn:hover{background-color:#f4b13e;}
+
+#redeem .template-title{font-size:45px; line-height:45px;}
+.redeem-l{width:100%; margin:20px 0px 0px 0px;
+	img{margin-bottom:30px;}
+}
+.points-range-orange{font-size:20px; line-height:20px; margin:35px 0px 0px 2%; text-transform:uppercase;}
+
+.content_section_redeem{font-size:20px; line-height:22px;}
+
+.points-box{width:46%; padding:25px 0px 25px 0px; margin:20px 2% 0px 2%;}
+.discount-txt{font-size:25px; line-height:25px;}
+.points-txt{font-size:20px; line-height:22px;}
+
+}
+
+@media only screen and (max-width:480px){
+.template-title{font-size: 30px; line-height: 30px; padding:30px 0px;}
+.content_section_redeem{font-size:16px; line-height:22px;}
+.swell-campaign-list-title{font-size: 30px !important; line-height: 30px !important; width:100% !important; padding:30px 0px !important;}
+
+.campaign {width: 100%; margin:1% 0%; min-height: 14rem;}
+.campaign div h5 {width: 100%; text-align: left;  font-size:16px; margin:0px;}
+li.campaign p {width: 100%; margin-top:0px; margin-bottom: 0; font-size: 20px;}
+}

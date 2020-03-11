@@ -89,50 +89,22 @@ get_header();
 </script>
 <script>
 
-	function swellCampaignsCore(swellCampaigns){
-		if($(".swell-campaign-list").length){
-			swellCampaigns.forEach(campaign => {
-				$(".swell-campaign-list").append(
-					$("<li>").addClass("campaign").append(
-						$("<div>").append(
-							$("<i>").addClass(`fa ${campaign.icon}`),
-							$("<p>", {text: campaign.rewardText}),
-							$("<h5>", {text: campaign.title})
-						).attr('id', `campaign-${campaign.id}`)
-					).addClass("swell-campaign-link").attr({
-							"data-campaign-id": campaign.id,
-							"data-display-mode": "modal"
-					})
-				);
-			});
-		}
-	}
+$(document).ready(function() {
 
-	var checkSwellCampaigns = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCampaigns = swellAPI.getActiveCampaigns();
-			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSwellCampaigns);
-            	swellCampaignsCore(swellCampaigns);
-			}
-        }
-    }, 100);
+	var customersInput = $("#customers-input");
+  	var sendEmailBtn = $("#customers-send-btn");
 
-	function swellCustomerCore(swellCustomer){
-		if($(".swell-point-balance").length){
-			$(".swell-point-balance").text(swellCustomer.pointsBalance)
-		}
-	}
+  	$(sendEmailBtn).click(function() {
+    	onSuccess = function() {
+      		$("#success").show();
+    	}
+    	onError = function() {
+			$("#error").show();
+    	}
+	    swellAPI.identifyReferrer(customersInput.val(), onSuccess, onError);
+  	});
 
-	var checkSwellCustomer = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCustomer = swellAPI.getCustomerDetails();
-			if (swellCustomer && swellCustomer['pointsBalance'] !== 'undefined'){
-            	clearInterval(checkSwellCustomer);
-            	swellCustomerCore(swellCustomer);
-			}
-        }
-    }, 100);
+})
 
 </script>
 

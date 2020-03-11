@@ -16,11 +16,13 @@ get_header();
 		<div class="banner-r" style="width:100%; margin:0px 0px 0px 0px !important; text-align:center;">
 			<div class="banner-description" style="margin-bottom:0px;"><?php the_field('description_banner_lp'); ?></div><!--end banner-description-->
 		</div><!--end banner-r-->
-<div class="k-hero--action" style="text-align:center; width:100%; margin-top:40px;">
-            <a href="/cbd-gummies/" class="k-button k-button--primary">
-          Shop Softgels &nbsp; &#8594;
-        </a>
+		<?php if(get_field('show_button_banner')){ ?>
+		<div class="k-hero--action" style="text-align:center; width:100%; margin-top:40px;">
+            <a href="<?php the_field('button_url_banner'); ?>" class="k-button k-button--primary">
+          	<?php the_field('button_title_banner'); ?> &nbsp; &#8594;
+        	  </a>
         </div>
+	   <?php } ?>
 	</div><!--end k-inner k-inner--md-->
 </section><!--end banner-lp-->
 

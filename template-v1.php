@@ -7,7 +7,7 @@ $site_content = get_fields('option');
 
 get_header();
 ?>
-<?php  include(locate_template('temporal-styles-css.php')); ?>
+<?php //  include(locate_template('temporal-styles-css.php')); ?>
 <section id="banner-lp-v2" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover;">
 	<div class="k-inner k-inner--md desk">
 		<div class="banner-l">

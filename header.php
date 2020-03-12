@@ -66,6 +66,7 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
   .select_options_text{font-size:15px !important;}
   }
   </style>
+
 </head>
 <body <?php body_class(); ?>>
   <script>

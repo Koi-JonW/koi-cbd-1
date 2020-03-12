@@ -54,6 +54,6 @@ var discount;
 }
 </script>
 <div class="select_options_text">
-<span id="valuediscount">SUBSCRIBE & SAVE 10%</span> <a href="<?php echo esc_url( home_url( '/' ) ); ?>subscribe-save-lp" style="color:#f2aa39; text-decoration:underline; text-transform:Initial; padding:0px 15px;">Learn More</a>
+<span id="valuediscount">SUBSCRIBE & SAVE 10%</span> <a href="<?php echo esc_url( home_url( '/' ) ); ?>subscribe-save" style="color:#f2aa39; text-decoration:underline; text-transform:Initial; padding:0px 15px;">Learn More</a>
 </div>
 <div class="clear"></div>

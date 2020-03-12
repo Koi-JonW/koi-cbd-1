@@ -108,6 +108,7 @@ get_header();
 			<div class="box-qa">
 				<div class="title-qa">
 				<?php echo get_sub_field('question'); ?>
+				</div><!--end title-qa-->
 				</div>
 				<div id="close_<?php echo $id; ?>" class="simbol-qa-pos" onclick="qa<?php echo $id; ?>();" style="display:block;">+</div>
 				<div id="open_<?php echo $id; ?>" class="simbol-qa-neg" onclick="qaclose<?php echo $id; ?>();" style="display:none;">-</div>

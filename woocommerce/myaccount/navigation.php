@@ -30,12 +30,17 @@ do_action('woocommerce_before_account_navigation');
 <nav class="woocommerce-MyAccount-navigation">
 	<div class="k-dashboard--sidebar__liner">
 		<span class="k-dashboard__greeting">
-			<span class="k-headline k-headline--sm"><?php echo $username; ?></span>
+			<span class="k-headline k-headline--sm">Hi, <?php echo $username; ?></span>
 		</span>
 		<ul>
 			<?php foreach (wc_get_account_menu_items() as $endpoint => $label) : ?>
 				<li class="<?php echo wc_get_account_menu_item_classes($endpoint); ?>">
 					<a href="<?php echo esc_url(wc_get_account_endpoint_url($endpoint)); ?>"><?php echo esc_html($label); ?></a>
+					<?php if(esc_html($label) == "Dashboard"){ ?> 
+					</li>
+					<li>
+						<a href="<?php echo esc_url( home_url( '/005-koi-cbd-account-web' ) ); ?>">My Rewards</a>
+					<?php } ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>

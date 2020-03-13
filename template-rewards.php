@@ -159,52 +159,34 @@ get_header();
 </script>
 <script>
 
-	function swellCore(swellCampaigns){
-		if($('.swell-campaign-list').length){
-			swellCampaigns.forEach(function(campaign){
+	function setSwellActiveCampaigns(campaigns){
+		campaigns.forEach(function(campaign){
 
-				$('.swell-campaign-list').append(
-					$('<li>').append(
-						$('<div>').append(
-							$('<i>').addClass('fa ' + campaign.icon),
-							$('<p>').text(campaign.rewardText),
-							$('<h5>').text(campaign.title)
-						).addClass('content-bx').attr({
-							'id': 'campaign-' + campaign.id
-						})
-					).addClass('campaign swell-campaign-link').attr({
-						'data-campaign-id': campaign.id,
-						'data-display-mode': 'modal',
-						'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
+			$('.swell-campaign-list').append(
+				$('<li>').append(
+					$('<div>').append(
+						$('<i>').addClass('fa ' + campaign.icon),
+						$('<p>').text(campaign.rewardText),
+						$('<h5>').text(campaign.title)
+					).addClass('content-bx').attr({
+						'id': 'campaign-' + campaign.id
 					})
-				);
+				).addClass('campaign swell-campaign-link').attr({
+					'data-campaign-id': campaign.id,
+					'data-display-mode': 'modal',
+					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
+				})
+			);
 
-			});
-		}
+		});
 	}
 
-	var checkSwellApi = setInterval(function(){
+	var checkSwellActiveCampaigns = setInterval(function(){
         if (typeof swellAPI == 'object' && swellAPI !== null){
 			var swellCampaigns = swellAPI.getActiveCampaigns();
 			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSwellApi);
-            	swellCore(swellCampaigns);
-			}
-        }
-    }, 100);
-
-	function swellCustomerCore(swellCustomer){
-		if($('.swell-point-balance').length){
-			$('.swell-point-balance').text(swellCustomer.pointsBalance)
-		}
-	}
-
-	var checkSwellCustomer = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCustomer = swellAPI.getCustomerDetails();
-			if (swellCustomer && swellCustomer['pointsBalance'] !== 'undefined'){
-            	clearInterval(checkSwellCustomer);
-            	swellCustomerCore(swellCustomer);
+            	clearInterval(checkSwellActiveCampaigns);
+            	setSwellActiveCampaigns(swellCampaigns);
 			}
         }
     }, 100);

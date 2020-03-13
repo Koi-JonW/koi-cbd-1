@@ -142,7 +142,9 @@ get_header();
             step_3.hide();
         }
 
-        var onError = function(err) {
+        var onError = function(err, log=true) {
+            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            console.log('-- Error');
             console.log(err);
         }
 
@@ -151,12 +153,8 @@ get_header();
         } catch(err) {
             console.log('-- Exception');
             console.log(err);
+            onError(err, false);
         }
-
-        // -- ToDo: Should be in onSuccess function
-        step_1.hide();
-        step_2.show();
-        step_3.hide();
 
     });
 
@@ -172,7 +170,9 @@ get_header();
             step_3.show();
         }
 
-        var onError = function(err) {
+        var onError = function(err, log=true) {
+            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            console.log('-- Error');
             console.log(err);
         }
 
@@ -183,12 +183,8 @@ get_header();
         } catch(err) {
             console.log('-- Exception');
             console.log(err);
+            onError(err, false);
         }
-
-        // -- ToDo: Should be in onSuccess function
-        step_1.hide();
-        step_2.hide();
-        step_3.show();
 
     });
 

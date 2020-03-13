@@ -81,7 +81,7 @@ get_header();
 </section>
 
 <section id='banner-refer' class='brefer-v'>
-	<div class='k-inner k-inner--md' style='background:url('<?php echo(get_field('banner_background_refer')); ?>') no-repeat; background-size:cover; border-radius:10px;'>
+	<div class='k-inner k-inner--md' style='background: url(<?php echo(get_field('banner_background_refer')); ?>) no-repeat; background-size: cover; border-radius: 10px;'>
 	<div class='small_title_banner'><?php the_field('small_title_banner'); ?></div>
 	<div class='big_title_banner'><?php the_field('big_title_banner'); ?></div>
 	<div class='banner_description'><?php the_field('banner_description'); ?></div>

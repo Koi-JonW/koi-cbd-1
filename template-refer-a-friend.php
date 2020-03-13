@@ -20,8 +20,8 @@ get_header();
                 <div class="banner-underline"></div>
                 <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
                 <div class="yotpo-box">
-                    <input type="text" class="input-text" id="friends-input" placeholder="Your friends' emails (separated by commas)">
-                    <a href="#" id="customers-send-btn" class="k-button k-button--primary">Send</a>
+                    <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
+                    <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
                 </div>
             </div>
             <div class="banner-step-3" style="display: none;">
@@ -144,14 +144,16 @@ get_header();
 
         var onError = function(err, log=true) {
             alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            console.log('-- Error');
-            console.log(err);
+            if(log){
+                console.log('-- identifyReferrer Error');
+                console.log(err);
+            }
         }
 
         try {
             swellAPI.identifyReferrer($('#customers-input').val(), onSuccess, onError);
         } catch(err) {
-            console.log('-- Exception');
+            console.log('-- identifyReferrer Exception');
             console.log(err);
             onError(err, false);
         }
@@ -172,16 +174,18 @@ get_header();
 
         var onError = function(err, log=true) {
             alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            console.log('-- Error');
-            console.log(err);
+            if(log){
+                console.log('-- sendReferralEmails Error');
+                console.log(err);
+            }
         }
 
-        var emails = $('#referred-customers-input').val().split(',')
+        var emails = $('#referred-customers-input').val().split(',');
 
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
-            console.log('-- Exception');
+            console.log('-- sendReferralEmails Exception');
             console.log(err);
             onError(err, false);
         }

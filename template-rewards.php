@@ -17,7 +17,7 @@ get_header();
 			<div class='banner-description-v2'><?php the_field('banner_content'); ?></div><!--end banner-description-->
 			<?php if ( is_user_logged_in() ) {
 			} else { ?>
-			<a href='' class='k-button k-button--primary'>Join Now</a>
+			<a href='<?php echo esc_url( home_url( '/' ) ); ?>account/#0' class='k-button k-button--primary'>Join Now</a>
 			<div class='button-text-below'>Already have an account? <a href='<?php echo esc_url( home_url( '/' ) ); ?>account/#0'>Log In.</a></div>
 			<?php } ?>
 
@@ -85,7 +85,7 @@ get_header();
 	<div class='small_title_banner'><?php the_field('small_title_banner'); ?></div>
 	<div class='big_title_banner'><?php the_field('big_title_banner'); ?></div>
 	<div class='banner_description'><?php the_field('banner_description'); ?></div>
-	<a href='#' class='k-button k-button--primary'>Start Referring Now</a>
+	<a href='<?php echo esc_url( home_url( '/cbd-products' ) ); ?>' class='k-button k-button--primary'>Start Referring Now</a>
 	</div><!--end k-inner k-inner--md-->	
 </section><!--end banner-refer-->
 

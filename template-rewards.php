@@ -8,7 +8,7 @@ $site_content = get_fields('option');
 get_header();
 ?>
 <?php //  include(locate_template('temporal-styles-css.php')); ?>
-<section id='banner-lp-v2' style='background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover;'>
+<section id='banner-lp-v2' style='background: url(<?php echo(get_field("background_image")); ?>) no-repeat; background-size: cover;'>
 	<div class='k-inner k-inner--md desk'>
 		<div class='banner-l'>
 			<div class='banner-titles-v2'><?php the_field('banner_title'); ?></div><!--end banner-titles-->
@@ -183,11 +183,11 @@ get_header();
 		}
 	}
 
-	var checkSellApi = setInterval(function(){
+	var checkSwellApi = setInterval(function(){
         if (typeof swellAPI == 'object' && swellAPI !== null){
 			var swellCampaigns = swellAPI.getActiveCampaigns();
 			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSellApi);
+            	clearInterval(checkSwellApi);
             	swellCore(swellCampaigns);
 			}
         }

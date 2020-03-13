@@ -99,7 +99,11 @@ if($show_popup){ ?>
 		<?php } ?>
 	<div class="area-35-p white-borders">
 		<div class="btns-area">
-			<span style="padding-bottom:5px;">Hi, User!</span>
+<?php
+$current_user = wp_get_current_user();
+$username = $current_user->display_name;
+?>
+			<span style="padding-bottom:5px;">Hi, <?php echo $username; ?></span>
 <strong>MANAGE ACCOUNT</strong><br/>
 <a href="<?php echo esc_url( home_url( '/account' ) ); ?>" style="color:#000;">Dashboard</a><br/>
 <strong>My Rewards</strong><br/>
@@ -113,7 +117,7 @@ if($show_popup){ ?>
 	</div><!--end area-35-p-->
 	<div class="area-65-p">
 		<div class="btns-area" style="max-width:90% !important;">
-			<span>Hi, User!<br/>You Have X Points.</span>
+			<span>Hi, <?php echo $username; ?><br/>You Have X Points.</span>
 			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
 		</div><!--end btns-area-->
 	</div><!--end area-65-p-->

@@ -7,8 +7,8 @@ $site_content = get_fields('option');
 
 get_header();
 ?>
-<?php  include(locate_template('temporal-styles-css.php')); ?>
-
+<?php // include(locate_template('temporal-styles-css.php')); ?>
+<?php if ( is_user_logged_in() ) { ?>
 <?php
 $show_popup = $_GET['show'];
 if($show_popup){ ?>
@@ -101,14 +101,14 @@ if($show_popup){ ?>
 		<div class="btns-area">
 			<span style="padding-bottom:5px;">Hi, User!</span>
 <strong>MANAGE ACCOUNT</strong><br/>
-<a href="#" style="color:#000;">Dashboard</a><br/>
+<a href="<?php echo esc_url( home_url( '/account' ) ); ?>" style="color:#000;">Dashboard</a><br/>
 <strong>My Rewards</strong><br/>
-<a href="#" style="color:#000;">Orders</a><br/>
-<a href="#" style="color:#000;">Subscriptions</a><br/>
-<a href="#" style="color:#000;">Coupons</a><br/>
-<a href="#" style="color:#000;">Addresses</a><br/>
-<a href="#" style="color:#000;">Account details</a><br/>
-<strong><a href="#">Logout</a></strong><br/>
+<a href="<?php echo esc_url( home_url( '/account/orders' ) ); ?>" style="color:#000;">Orders</a><br/>
+<a href="<?php echo esc_url( home_url( '/account/subscriptions' ) ); ?>" style="color:#000;">Subscriptions</a><br/>
+<a href="<?php echo esc_url( home_url( '/account/wc-smart-coupons' ) ); ?>" style="color:#000;">Coupons</a><br/>
+<a href="<?php echo esc_url( home_url( '/account/edit-address' ) ); ?>" style="color:#000;">Addresses</a><br/>
+<a href="<?php echo esc_url( home_url( '/account/edit-account' ) ); ?>" style="color:#000;">Account details</a><br/>
+<strong><a href="<?php echo wp_logout_url(); ?>">Logout</a></strong><br/>
 		</div>
 	</div><!--end area-35-p-->
 	<div class="area-65-p">
@@ -123,11 +123,44 @@ if($show_popup){ ?>
 <section id="vips-earn" class="my-paddings">
 	<div class="k-inner k-inner--md">
 		<div class="template-title" style="text-align:<?php the_field('title_section_vip_align'); ?>"><?php the_field('title_section_vip'); ?></div><!--end template-title-->
+		<ul class="bullet-selector">
+		<li class="bull-g opta activex"></li>
+		<li class="bull-g optb"></li>
+		<li class="bull-g optc"></li>
+		</ul>
+		<div style="width:100%; clear:both;"></div>
 		<div class="flex-features" style="margin-top:50px;">
 			<?php the_field('table_code'); ?>
 		</div><!--end flex-features-->
 	</div><!--end k-inner-->
 </section><!--end vips-earn-->
+<script type="text/javascript">
+var $ = jQuery.noConflict();
+$(document).on('click','.opta',function(){
+	$('.opt_a').addClass("showmy");
+	$('.opt_b').removeClass("showmy");
+	$('.opt_c').removeClass("showmy");
+	$('.opta').addClass("activex");
+	$('.optb').removeClass("activex");
+	$('.optc').removeClass("activex");
+});
+$(document).on('click','.optb',function(){
+	$('.opt_b').addClass("showmy");
+	$('.opt_a').removeClass("showmy");
+	$('.opt_c').removeClass("showmy");
+	$('.optb').addClass("activex");
+	$('.opta').removeClass("activex");
+	$('.optc').removeClass("activex");
+});
+$(document).on('click','.optc',function(){
+	$('.opt_c').addClass("showmy");
+	$('.opt_a').removeClass("showmy");
+	$('.opt_b').removeClass("showmy");
+	$('.optc').addClass("activex");
+	$('.opta').removeClass("activex");
+	$('.optb').removeClass("activex");
+});
+</script>
 
 <section id="redeem" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">
@@ -154,7 +187,7 @@ if($show_popup){ ?>
 </section><!--end redeem-->
 
 <section id="banner-refer-friend" style="background:url('<?php the_field('background_image','658196'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
-    <div class="banner-row">
+    <div class="banner-row" style="max-width:94%; margin:0 auto;">
         <div class="banner-left">
             <div class="banner-above-titles-v2"><?php the_field('banner_above_title','658196'); ?></div>
             <div class="banner-titles-v2"><?php the_field('banner_title','658196'); ?></div>
@@ -220,10 +253,13 @@ if($show_popup){ ?>
             <div class="check-rewards-below-table"><?php the_field('text_below_table_i','658196'); ?></div>
             <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii','658196'); ?></div>
             <div class="yotpo-box">
-                <a href="" class="k-button k-button--primary">Shop Now</a>
+                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="k-button k-button--primary">Shop Now</a>
             </div>
         </div>
     </div>
 </section>
-
+<?php }else{ 
+	header("Location: /login");
+	die();
+} ?>
 <?php get_footer(lp); ?>

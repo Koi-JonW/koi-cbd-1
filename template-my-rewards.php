@@ -1,6 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
-/* Template Name: Template V5 */
+/* Template Name: My Rewards */
 
 $root = get_template_directory_uri();
 $site_content = get_fields('option');
@@ -117,7 +117,7 @@ $username = $current_user->display_name;
 	</div><!--end area-35-p-->
 	<div class="area-65-p">
 		<div class="btns-area" style="max-width:90% !important;">
-			<span>Hi, <?php echo $username; ?><br/>You Have X Points.</span>
+			<span>Hi, <?php echo $username; ?><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
 			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
 		</div><!--end btns-area-->
 	</div><!--end area-65-p-->
@@ -138,33 +138,6 @@ $username = $current_user->display_name;
 		</div><!--end flex-features-->
 	</div><!--end k-inner-->
 </section><!--end vips-earn-->
-<script type="text/javascript">
-var $ = jQuery.noConflict();
-$(document).on('click','.opta',function(){
-	$('.opt_a').addClass("showmy");
-	$('.opt_b').removeClass("showmy");
-	$('.opt_c').removeClass("showmy");
-	$('.opta').addClass("activex");
-	$('.optb').removeClass("activex");
-	$('.optc').removeClass("activex");
-});
-$(document).on('click','.optb',function(){
-	$('.opt_b').addClass("showmy");
-	$('.opt_a').removeClass("showmy");
-	$('.opt_c').removeClass("showmy");
-	$('.optb').addClass("activex");
-	$('.opta').removeClass("activex");
-	$('.optc').removeClass("activex");
-});
-$(document).on('click','.optc',function(){
-	$('.opt_c').addClass("showmy");
-	$('.opt_a').removeClass("showmy");
-	$('.opt_b').removeClass("showmy");
-	$('.optc').addClass("activex");
-	$('.opta').removeClass("activex");
-	$('.optb').removeClass("activex");
-});
-</script>
 
 <section id="redeem" class="my-paddings">
 	<div class="k-inner k-inner--md flex-features">
@@ -199,8 +172,8 @@ $(document).on('click','.optc',function(){
             <div class="banner-underline"></div>
             <div class="button-text-below"><?php the_field('text_below_line','658196'); ?></div>
             <div class="yotpo-box">
-                <input type="text" class="input-text" placeholder="Your friends' emails (separated by commas)">
-                <a href="" class="k-button k-button--primary">Send</a>
+                <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
+                <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
 			<div class="banner-links-sections">
 			 You can also share your link with the buttons below.<br/>
 			 <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
@@ -266,4 +239,112 @@ $(document).on('click','.optc',function(){
 	header("Location: /login");
 	die();
 } ?>
+<script>
+	var $ = jQuery.noConflict();
+</script>
+<script>
+    $(document).on('click','.opta',function(){
+        $('.opt_a').addClass("showmy");
+        $('.opt_b').removeClass("showmy");
+        $('.opt_c').removeClass("showmy");
+        $('.opta').addClass("activex");
+        $('.optb').removeClass("activex");
+        $('.optc').removeClass("activex");
+    });
+    $(document).on('click','.optb',function(){
+        $('.opt_b').addClass("showmy");
+        $('.opt_a').removeClass("showmy");
+        $('.opt_c').removeClass("showmy");
+        $('.optb').addClass("activex");
+        $('.opta').removeClass("activex");
+        $('.optc').removeClass("activex");
+    });
+    $(document).on('click','.optc',function(){
+        $('.opt_c').addClass("showmy");
+        $('.opt_a').removeClass("showmy");
+        $('.opt_b').removeClass("showmy");
+        $('.optc').addClass("activex");
+        $('.opta').removeClass("activex");
+        $('.optb').removeClass("activex");
+    });
+</script>
+<script>
+
+	function setSwellActiveCampaigns(campaigns){
+		campaigns.forEach(function(campaign){
+
+			$('.swell-campaign-list').append(
+				$('<li>').append(
+					$('<div>').append(
+						$('<i>').addClass('fa ' + campaign.icon),
+						$('<p>').text(campaign.rewardText),
+						$('<h5>').text(campaign.title)
+					).addClass('content-bx').attr({
+						'id': 'campaign-' + campaign.id
+					})
+				).addClass('campaign swell-campaign-link').attr({
+					'data-campaign-id': campaign.id,
+					'data-display-mode': 'modal',
+					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
+				})
+			);
+
+		});
+	}
+
+	var checkSwellActiveCampaigns = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCampaigns = swellAPI.getActiveCampaigns();
+			if (swellCampaigns && swellCampaigns.length){
+            	clearInterval(checkSwellActiveCampaigns);
+            	setSwellActiveCampaigns(swellCampaigns);
+			}
+        }
+    }, 100);
+
+    // --
+
+    $('#referred-customers-send-btn').on('click', function(e) {
+
+        e.preventDefault();
+
+        var onSuccess = function() {
+            step_1.hide();
+            step_2.hide();
+            step_3.show();
+        }
+
+        var onError = function(err, log=true) {
+            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            if(log){
+                console.log('-- sendReferralEmails Error');
+                console.log(err);
+            }
+        }
+
+        var emails = $('#referred-customers-input').val().split(',');
+
+        try {
+            swellAPI.sendReferralEmails(emails, onSuccess, onError);
+        } catch(err) {
+            console.log('-- sendReferralEmails Exception');
+            console.log(err);
+            onError(err, false);
+        }
+
+        });
+
+        // --
+
+        $('#thank-you-back').on('click', function(e){
+
+            step_1.show();
+            step_2.hide();
+            step_3.hide();
+
+        });
+
+    });
+
+</script>
 <?php get_footer(lp); ?>

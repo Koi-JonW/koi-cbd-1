@@ -131,7 +131,7 @@ get_header();
 <script>
 	var $ = jQuery.noConflict();
 </script>
-<script type='text/javascript'>
+<script>
 	$(document).on('click','.opta',function(){
 		$('.opt_a').addClass('showmy');
 		$('.opt_b').removeClass('showmy');

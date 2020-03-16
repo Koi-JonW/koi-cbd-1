@@ -7,6 +7,13 @@
     <div class="k-cart-sidebar__close" tabindex="0" aria-label="close"><h2>+</h2></div>
   </div>
 
+  <div class="k-cart-sidebar__swell">
+	  <select id="swell-redemption-dropdown">
+		  <option>Please select an option</option>
+	  </select>
+    <a id="swell-redemption-button" class="k-button k-button--primary" href="#">Apply</a>
+  </div>
+
   <div class="k-cart-sidebar__actions">
     <div class="k-liner">
       <div class="k-cart-sidebar__summary">
@@ -22,3 +29,10 @@
     </div>
   </div>
 </aside>
+
+<script>
+	var $ = jQuery.noConflict();
+</script>
+<script>
+	console.log($);
+</script>

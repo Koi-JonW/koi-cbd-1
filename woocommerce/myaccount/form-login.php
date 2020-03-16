@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 $root = get_template_directory_uri();
+$regadd = $_GET['reg'];
 ?>
 
 <section class="k-block k-block--md k-login">
@@ -37,7 +38,7 @@ $root = get_template_directory_uri();
 
 	<div class="k-login__forms" id="customer_login">
 		<div class="k-liner">
-			<div class="k-login__form k-login__form--default is-visible">
+			<div class="k-login__form k-login__form--default <?php if($regadd == "1"){ }else{ echo 'is-visible'; } ?>">
 				<div class="k-login__form__liner">
 			<?php endif; ?>
 
@@ -67,7 +68,7 @@ $root = get_template_directory_uri();
 							<button type="submit" class="k-button k-button--primary woocommerce-button button woocommerce-form-login__submit" name="login" value="<?php esc_attr_e('Log in', 'woocommerce'); ?>"><?php esc_html_e('Log in &rarr;', 'woocommerce'); ?></button>
 						</div>
 						
-						<p><a href="#0" class="k-toggle-register">Create an Account</a></p>
+						<p><a href="#0" id="adslink" class="k-toggle-register">Create an Account</a></p>
 						<p class="woocommerce-LostPassword lost_password">
 							<a href="<?php echo home_url(); ?>/wp-login.php?action=lostpassword"><?php esc_html_e('Lost your password?', 'woocommerce'); ?></a>
 						</p>
@@ -81,7 +82,7 @@ $root = get_template_directory_uri();
 				</div>
 			</div>
 
-			<div class="k-login__form k-login__form--register">
+			<div class="k-login__form k-login__form--register <?php if($regadd == "1"){ echo 'is-visible'; }else{ } ?>">
 				<div class="k-login__form__liner">
 					<h2><?php esc_html_e('Register A New Account', 'woocommerce'); ?></h2>
 

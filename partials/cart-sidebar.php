@@ -34,5 +34,56 @@
 	var $ = jQuery.noConflict();
 </script>
 <script>
-	console.log($);
+  var onSuccess = function(redemption) {
+    alert(redemption.couponCode);
+  };
+  var onError = function(err) {
+    $("#error").show();
+  };
+
+  $(document).on('swell:initialized', () => {
+
+    var customerDetails = swellAPI.getCustomerDetails();
+
+    swellAPI.getActiveRedemptionOptions().forEach(function(option){
+      if(customerDetails.pointsBalance >= option.costInPoints){
+        $("#swell-redemption-dropdown").append(
+          $("<option>").val(option.id).text(option.name + ' = ' + option.costText)
+        )
+      }
+    });
+
+    $("#swell-redemption-button").on('click', function(e){
+      e.preventDefault();
+      swellAPI.makeRedemption({
+        redemptionOptionId: $("#swell-redemption-dropdown option:selected").val()
+      }, onSuccess, onError);
+    })
+
+});
 </script>
+<style>
+.k-cart-sidebar__swell {
+  position: relative;
+  margin-top: -70px;
+  padding: 0 1em;
+}
+.k-cart-sidebar__swell select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.k-cart-sidebar__swell a {
+  display: block;
+}
+@media (min-width: 1199px){
+  .k-cart-sidebar__swell {
+      padding: 0 3em;
+  }
+}
+@media (min-width: 767px){
+  .k-cart-sidebar__swell {
+    padding: 0 3em;
+  }
+}
+</style>

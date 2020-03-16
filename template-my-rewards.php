@@ -332,8 +332,6 @@ $username = $current_user->display_name;
             onError(err, false);
         }
 
-        });
-
         // --
 
         $('#thank-you-back').on('click', function(e){

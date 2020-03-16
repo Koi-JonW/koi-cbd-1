@@ -8,9 +8,8 @@
   </div>
 
   <div class="k-cart-sidebar__swell">
-	  <select id="swell-redemption-dropdown">
-		  <option>Please select an option</option>
-	  </select>
+    <div>You Have <span class="swell-point-balance" style="display: inline-block;">X</span> Points.</div>
+	  <select id="swell-redemption-dropdown"></select>
     <a id="swell-redemption-button" class="k-button k-button--primary" href="#">Apply</a>
   </div>
 
@@ -34,30 +33,52 @@
 	var $ = jQuery.noConflict();
 </script>
 <script>
-  var onSuccess = function(redemption) {
-    alert(redemption.couponCode);
-  };
-  var onError = function(err) {
-    $("#error").show();
-  };
 
-  $(document).on('swell:initialized', () => {
+  var prepareRedemptionForm = function(){
 
     var customerDetails = swellAPI.getCustomerDetails();
 
+    $('#swell-redemption-dropdown').html('');
+    $('#swell-redemption-dropdown').append(
+      $('<option>').prop('disabled', true).prop('selected', true).text('Please select an option')
+    )
+
     swellAPI.getActiveRedemptionOptions().forEach(function(option){
       if(customerDetails.pointsBalance >= option.costInPoints){
-        $("#swell-redemption-dropdown").append(
-          $("<option>").val(option.id).text(option.name + ' = ' + option.costText)
+        $('#swell-redemption-dropdown').append(
+          $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
         )
       }
     });
 
-    $("#swell-redemption-button").on('click', function(e){
+  }
+
+  var onSuccess = function(redemption) {
+    alert('Use this coupon code: ' + redemption.couponCode);
+    prepareRedemptionForm();
+  };
+  var onError = function(err, log=true) {
+    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+    if(log){
+      console.log('-- makeRedemption Error');
+      console.log(err);
+    }
+  }
+
+  $(document).on('swell:setup', () => {
+
+    prepareRedemptionForm();
+
+    $('#swell-redemption-button').on('click', function(e){
       e.preventDefault();
-      swellAPI.makeRedemption({
-        redemptionOptionId: $("#swell-redemption-dropdown option:selected").val()
-      }, onSuccess, onError);
+      var redemptionOption = $('#swell-redemption-dropdown option:selected').val();
+      if(redemptionOption){
+        swellAPI.makeRedemption({
+          redemptionOptionId: redemptionOption
+        }, onSuccess, onError);
+      } else {
+        alert('Please select a redemption option');
+      }
     })
 
 });
@@ -65,7 +86,7 @@
 <style>
 .k-cart-sidebar__swell {
   position: relative;
-  margin-top: -70px;
+  margin-top: -90px;
   padding: 0 1em;
 }
 .k-cart-sidebar__swell select {

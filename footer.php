@@ -131,5 +131,68 @@ $root = get_template_directory_uri();
       backdrop.classList.remove('active');
     })();
   </script>
+
+  <!-- Swell Redemption -->
+  <script>
+	  var $ = jQuery.noConflict();
+  </script>
+  <script>
+
+  var prepareRedemptionForm = function(){
+
+    var customerDetails = swellAPI.getCustomerDetails();
+
+    $('.swell-redemption-dropdown').html('');
+    $('.swell-redemption-dropdown').append(
+      $('<option>').prop('selected', true).prop('disabled', true).text('Choose your rewards')
+    )
+
+    swellAPI.getActiveRedemptionOptions().forEach(function(option){
+      if(customerDetails.pointsBalance >= option.costInPoints){
+        $('.swell-redemption-dropdown').append(
+          $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
+        )
+      }
+    });
+
+  }
+
+  var onSuccess = function(redemption) {
+    alert('Your coupon code is: ' + redemption.couponCode);
+    var input_coupon = $('.k-checkout__coupon input[name="coupon_code"]');
+    if(input_coupon.length){
+      $('.k-checkout__coupon input[name="coupon_code"]').val(redemption.couponCode);
+    }
+    prepareRedemptionForm();
+  };
+
+  var onError = function(err, log=true) {
+    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+    if(log){
+      console.log('-- makeRedemption Error');
+      console.log(err);
+    }
+  }
+
+  $(document).on('swell:setup', () => {
+
+    prepareRedemptionForm();
+
+    $('.swell-redemption-button').on('click', function(e){
+      e.preventDefault();
+      var redemptionOption = $(this).parent().find('.swell-redemption-dropdown option:selected').val();
+      if(redemptionOption){
+        swellAPI.makeRedemption({
+          redemptionOptionId: redemptionOption
+        }, onSuccess, onError);
+      } else {
+        alert('Please select a redemption option');
+      }
+    })
+
+  });
+  </script>
+
+
 </body>
 </html>

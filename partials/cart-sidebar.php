@@ -9,8 +9,8 @@
 
   <div class="k-cart-sidebar__swell">
     <div>You Have <span class="swell-point-balance" style="display: inline-block;">X</span> Points.</div>
-	  <select id="swell-redemption-dropdown"></select>
-    <a id="swell-redemption-button" class="k-button k-button--primary" href="#">Apply</a>
+	  <select class="swell-redemption-dropdown"></select>
+    <a class="swell-redemption-button k-button k-button--primary" href="#">Apply</a>
   </div>
 
   <div class="k-cart-sidebar__actions">
@@ -29,60 +29,6 @@
   </div>
 </aside>
 
-<script>
-	var $ = jQuery.noConflict();
-</script>
-<script>
-
-  var prepareRedemptionForm = function(){
-
-    var customerDetails = swellAPI.getCustomerDetails();
-
-    $('#swell-redemption-dropdown').html('');
-    $('#swell-redemption-dropdown').append(
-      $('<option>').prop('disabled', true).prop('selected', true).text('Please select an option')
-    )
-
-    swellAPI.getActiveRedemptionOptions().forEach(function(option){
-      if(customerDetails.pointsBalance >= option.costInPoints){
-        $('#swell-redemption-dropdown').append(
-          $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
-        )
-      }
-    });
-
-  }
-
-  var onSuccess = function(redemption) {
-    alert('Use this coupon code: ' + redemption.couponCode);
-    prepareRedemptionForm();
-  };
-  var onError = function(err, log=true) {
-    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-    if(log){
-      console.log('-- makeRedemption Error');
-      console.log(err);
-    }
-  }
-
-  $(document).on('swell:setup', () => {
-
-    prepareRedemptionForm();
-
-    $('#swell-redemption-button').on('click', function(e){
-      e.preventDefault();
-      var redemptionOption = $('#swell-redemption-dropdown option:selected').val();
-      if(redemptionOption){
-        swellAPI.makeRedemption({
-          redemptionOptionId: redemptionOption
-        }, onSuccess, onError);
-      } else {
-        alert('Please select a redemption option');
-      }
-    })
-
-});
-</script>
 <style>
 .k-cart-sidebar__swell {
   position: relative;

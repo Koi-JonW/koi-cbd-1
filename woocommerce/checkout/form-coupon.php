@@ -23,6 +23,12 @@ if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
 
 ?>
 
+<div class="k-checkout__swell">
+    <div class="k-checkout__swell-title">You Have <span class="swell-point-balance" style="display: inline-block;">X</span> Points.</div>
+	<select class="swell-redemption-dropdown"></select>
+	<a class="swell-redemption-button k-button k-button--dark" href="#">Apply</a>
+</div>
+
 <div class="k-checkout__coupon">
 	<!-- <p class="form-row form-row-first"> -->
 		<label for="coupon_code">Coupon:</label>
@@ -34,3 +40,28 @@ if ( ! wc_coupons_enabled() ) { // @codingStandardsIgnoreLine.
 		<a type="submit" class="k-button k-button--dark" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></a>
 		<!-- </p> -->
 </div>
+
+<style>
+.k-checkout__swell {
+  position: relative;
+  width: 100%;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  text-align: right;
+  border-bottom: 1px solid #ddd;
+}
+.k-checkout__swell-title {
+  text-align: left;
+  text-transform: uppercase;
+}
+.k-checkout__swell select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dedede !important;
+  border-radius: 3px !important;
+}
+.k-checkout__swell a {
+  display: inline-block;
+}
+</style>

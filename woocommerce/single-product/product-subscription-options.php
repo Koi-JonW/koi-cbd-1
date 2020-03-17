@@ -66,4 +66,7 @@ $('#valuediscount').text(
 $(this).find(':selected').attr('data-title')
 );
 });
+$(".wcsatt-options-prompt-label-one-time").click(function(){
+$(".one-time-option input").prop("checked", true);
+});
 </script>

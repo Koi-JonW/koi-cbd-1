@@ -158,12 +158,20 @@ $root = get_template_directory_uri();
   }
 
   var onSuccess = function(redemption) {
+
     alert('Your coupon code is: ' + redemption.couponCode);
-    var input_coupon = $('.k-checkout__coupon input[name="coupon_code"]');
-    if(input_coupon.length){
-      $('.k-checkout__coupon input[name="coupon_code"]').val(redemption.couponCode);
-    }
+
     prepareRedemptionForm();
+
+    var postData = {
+      coupon_code: redemption.couponCode, 
+      security: '<?php echo(wp_create_nonce("apply-coupon")); ?>'
+    };
+
+    $.post('/?wc-ajax=apply_coupon', postData).done(function(data) {
+      window.location.href = '/checkout';
+    });
+
   };
 
   var onError = function(err, log=true) {

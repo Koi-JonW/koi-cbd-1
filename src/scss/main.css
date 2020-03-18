@@ -5873,26 +5873,33 @@ body.single-product .breadcrumbs {
 .swell-campaign-list {
   list-style: none;
   display: flex;
-  width: 50%;
+  width: 100%;
+  /* march 10 */
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 0;
   position: relative; }
 
+.content-bx {
+  position: absolute;
+  margin: 10px;
+  top: 0.5rem;
+  left: 1rem; }
+
 .campaign {
-  width: 33%;
+  width: 32%;
+  margin: 0.5%;
   padding: 1rem;
   box-sizing: border-box;
   color: black;
   font-weight: 300;
   border: 1px solid #eee;
   position: relative;
-  min-height: 18rem;
-  display: flex;
-  flex-wrap: wrap;
+  min-height: 20rem;
   justify-content: center;
-  align-items: center; }
+  background: url("https://koicbddev.wpengine.com/wp-content/uploads/p-01.jpg") no-repeat center;
+  color: #f4b13d; }
 
 .campaign i {
   height: 3rem;
@@ -5900,20 +5907,22 @@ body.single-product .breadcrumbs {
   font-size: 48px;
   text-align: center;
   color: black;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  display: none; }
 
 .campaign div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 8rem; }
+  display: block;
+  width: 100%;
+  text-align: left;
+  min-height: auto !important; }
 
 .campaign div h5 {
+  font-family: GT America,sans-serif;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-weight: 300;
-  font-size: 12px; }
+  font-size: 20px;
+  margin: 0px; }
 
 .swell-campaign-list-title {
   width: 100%;
@@ -5930,38 +5939,17 @@ button.swell-campaign-link {
 
 li.campaign p {
   width: 100%;
+  margin-top: 0px;
   margin-bottom: 0;
-  font-weight: 800; }
+  font-weight: 400;
+  font-family: Recoleta Regular,serif;
+  font-size: 25px; }
 
 .swell-campaign-list-title {
   width: 100%;
   font-size: 28px;
   text-align: center; }
 
-@media screen and (max-width: 800px) {
-  .campaign {
-    width: 50%; }
-
-  .campaign .pink {
-    padding: 0.3rem 0.5rem; }
-
-  .campaign div h5 {
-    width: 100%;
-    text-align: center;
-    font-weight: 300;
-    font-size: 12px; }
-
-  .campaign i {
-    height: 2rem;
-    width: 2rem;
-    font-size: 32px; }
-
-  .swell-campaign-list {
-    width: 100%; }
-
-  .swell-campaign-list-title {
-    font-size: 24px;
-    margin-bottom: 0; } }
 .flex-features {
   display: flex;
   flex-wrap: wrap; }
@@ -5972,21 +5960,26 @@ li.campaign p {
   font-size: 20px;
   line-height: 26px;
   color: #fff; }
-  #banner-lp-v2 .banner-titles-v2 {
-    font-family: Recoleta Regular,serif;
-    font-size: 60px;
-    line-height: 60px;
-    color: #fff;
-    padding: 10px 0 20px 0; }
-  #banner-lp-v2 .banner-description-v2 {
-    padding: 35px 0px; }
-  #banner-lp-v2 .k-button, #banner-lp-v2 form.cart button[type='submit'], form.cart #banner-lp-v2 button[type='submit'], #banner-lp-v2 .k-checkout #payment button#place_order, .k-checkout #payment #banner-lp-v2 button#place_order, #banner-lp-v2 .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-lp-v2 .woocommerce-Button {
-    padding: 20px 75px; }
-  #banner-lp-v2 .button-text-below {
-    padding: 30px 0px; }
-  #banner-lp-v2 .button-text-below a {
-    color: #fff;
-    text-decoration: underline; }
+
+.banner-titles-v2 {
+  font-family: Recoleta Regular,serif;
+  font-size: 60px;
+  line-height: 60px;
+  color: #fff;
+  padding: 10px 0 20px 0; }
+
+.banner-description-v2 {
+  padding: 35px 0px; }
+
+.k-button, form.cart button[type='submit'], .k-checkout #payment button#place_order, .woocommerce-account #mag-overwrite-woo .woocommerce-Button {
+  padding: 20px 75px; }
+
+.button-text-below {
+  padding: 30px 0px; }
+
+.button-text-below a {
+  color: #fff;
+  text-decoration: underline; }
 
 .steps-area {
   width: 100%;
@@ -6079,9 +6072,9 @@ li.campaign p {
 .redeem-l {
   width: 50%;
   margin: 20px 0px 0px 0px; }
-
-.redeem-l img {
-  max-width: 400px; }
+  .redeem-l img {
+    max-width: 400px;
+    width: 98%; }
 
 .redeem-r {
   width: 50%; }
@@ -6102,12 +6095,12 @@ li.campaign p {
   max-width: 440px; }
 
 .points-box {
-  width: 200px;
+  width: 46%;
   border: 2px dotted #f4b13d;
   border-radius: 5px;
   padding: 25px 0px 25px 0px;
   display: inline-block;
-  margin: 25px 20px 0px 0px;
+  margin: 25px 4% 0px 0px;
   text-align: center; }
 
 .discount-txt {
@@ -6160,6 +6153,9 @@ li.campaign p {
   .btns-area strong {
     font-weight: normal;
     color: #f4b13e; }
+  .btns-area .k-button, .btns-area form.cart button[type='submit'], form.cart .btns-area button[type='submit'], .btns-area .k-checkout #payment button#place_order, .k-checkout #payment .btns-area button#place_order, .btns-area .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo .btns-area .woocommerce-Button {
+    width: 80%;
+    padding: 20px 0px; }
 
 .white-btn {
   background-color: #fff;
@@ -6247,6 +6243,9 @@ li.campaign p {
 .white-borders {
   border: 15px solid #fff; }
 
+.bullet-selector {
+  display: none; }
+
 .img-tmp-100 {
   width: 98%; }
 
@@ -6256,141 +6255,835 @@ li.campaign p {
 .my-paddings-v2 {
   padding: 100px 0px 100px 0px; }
 
+.resp {
+  display: none; }
+
+.desk {
+  display: block; }
+
 /* SERGIO STYLES */
+/* total width */
+/* background of the scrollbar except button or resizer */
+/* scrollbar itself */
+/* set button(top and bottom of the scrollbar) */
 #banner-refer-friend {
   width: 100%;
   padding: 6% 0% 6%;
   font-size: 20px;
   line-height: 26px;
   color: #fff; }
+  #banner-refer-friend .banner-above-titles-v2 {
+    font-family: Recoleta Regular,serif;
+    font-size: 26px;
+    line-height: 26px;
+    color: #fff;
+    padding: 10px 0 10px 0;
+    text-align: center; }
+  #banner-refer-friend .banner-titles-v2 {
+    font-family: Recoleta Regular,serif;
+    font-size: 60px;
+    line-height: 60px;
+    color: #fff;
+    padding: 10px 0 0px 0;
+    text-align: center; }
+  #banner-refer-friend .banner-description-v2 {
+    padding: 10px 0px 30px;
+    text-align: center;
+    max-width: 390px;
+    margin: 0 auto; }
+  #banner-refer-friend .banner-above-titles-v3 {
+    font-family: Recoleta Regular,serif;
+    font-size: 26px;
+    line-height: 26px;
+    color: #fff;
+    padding: 10px 0 10px 0;
+    text-align: center; }
+  #banner-refer-friend .banner-titles-v3 {
+    font-family: Recoleta Regular,serif;
+    font-size: 60px;
+    line-height: 60px;
+    color: #fff;
+    padding: 10px 0 0px 0;
+    text-align: center; }
+  #banner-refer-friend .banner-description-v3 {
+    padding: 10px 0px 30px;
+    text-align: center;
+    max-width: 390px;
+    margin: 0 auto; }
+  #banner-refer-friend .banner-underline {
+    border-bottom: 1px solid #fff;
+    width: 200px;
+    margin: 0 auto;
+    display: block; }
+  #banner-refer-friend .k-button, #banner-refer-friend form.cart button[type='submit'], form.cart #banner-refer-friend button[type='submit'], #banner-refer-friend .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend button#place_order, #banner-refer-friend .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .woocommerce-Button {
+    padding: 20px 75px;
+    text-align: center;
+    margin: 0 auto; }
+  #banner-refer-friend .button-text-below {
+    padding: 30px 0px 10px;
+    font-size: 16px;
+    text-align: center; }
+  #banner-refer-friend .yotpo-box {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+    padding-bottom: 60px; }
+    #banner-refer-friend .yotpo-box .k-button, #banner-refer-friend .yotpo-box form.cart button[type='submit'], form.cart #banner-refer-friend .yotpo-box button[type='submit'], #banner-refer-friend .yotpo-box .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend .yotpo-box button#place_order, #banner-refer-friend .yotpo-box .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .yotpo-box .woocommerce-Button {
+      margin-top: 10px;
+      margin-bottom: 10px; }
+    #banner-refer-friend .yotpo-box .input-text {
+      height: 60px;
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      margin-bottom: 10px;
+      display: block; }
+      #banner-refer-friend .yotpo-box .input-text::placeholder {
+        color: #000000;
+        font-size: 16px; }
+  #banner-refer-friend .banner-right .check-rewards-title {
+    font-family: Recoleta Regular,serif;
+    font-size: 16px;
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 10px; }
+  #banner-refer-friend .banner-right .check-rewards-subtitle {
+    font-family: Recoleta Regular,serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px; }
+  #banner-refer-friend .banner-right .check-rewards-table {
+    height: 138px;
+    overflow-y: scroll;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 14px;
+    width: 100%; }
+    #banner-refer-friend .banner-right .check-rewards-table table {
+      width: 100%;
+      border-collapse: collapse; }
+      #banner-refer-friend .banner-right .check-rewards-table table tr {
+        border-bottom: 1px solid #ffffff; }
+        #banner-refer-friend .banner-right .check-rewards-table table tr:last-child {
+          border-bottom: none; }
+  #banner-refer-friend .banner-right .banner-underline {
+    border-bottom: 1px solid #fff;
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 30px; }
+  #banner-refer-friend .banner-right .check-rewards-below-table {
+    font-family: Recoleta Regular,serif;
+    font-size: 26px;
+    text-align: center;
+    margin-top: 10px; }
+  #banner-refer-friend .banner-right .check-rewards-below-table-2 {
+    font-family: Recoleta Regular,serif;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px; }
 
-#banner-refer-friend .banner-above-titles-v2 {
-  font-family: Recoleta Regular,serif;
-  font-size: 26px;
+.close-yellow {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 50px;
+  font-widht: 300px;
+  color: #000;
+  cursor: pointer; }
+
+#banner-thank-you {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  padding: 1% 0 0 0 !important;
+  left: 0;
+  width: 100%;
+  font-size: 20px;
   line-height: 26px;
   color: #fff;
-  padding: 10px 0 10px 0;
-  text-align: center; }
+  background-color: rgba(244, 177, 61, 0.9) !important;
+  min-height: 768px; }
+  #banner-thank-you .banner-above-titles-v2 {
+    font-family: Recoleta Regular,serif;
+    font-size: 26px;
+    line-height: 26px;
+    color: #fff;
+    padding: 10px 0 10px 0;
+    text-align: center; }
+  #banner-thank-you .banner-titles-v2 {
+    font-family: Recoleta Regular,serif;
+    font-size: 60px;
+    line-height: 60px;
+    color: #fff;
+    padding: 10px 0 0px 0;
+    text-align: center; }
+  #banner-thank-you .banner-description-v2 {
+    padding: 10px 0px 30px;
+    text-align: center;
+    max-width: 390px;
+    margin: 0 auto; }
+  #banner-thank-you .banner-above-titles-v3 {
+    font-family: Recoleta Regular,serif;
+    font-size: 26px;
+    line-height: 26px;
+    color: #fff;
+    padding: 10px 0 10px 0;
+    text-align: center; }
+  #banner-thank-you .banner-titles-v3 {
+    font-family: Recoleta Regular,serif;
+    font-size: 60px;
+    line-height: 60px;
+    color: #fff;
+    padding: 10px 0 20px 0;
+    text-align: center; }
+  #banner-thank-you .banner-description-v3 {
+    text-align: center;
+    max-width: 390px;
+    margin: 0 auto; }
+  #banner-thank-you .banner-left .banner-underline {
+    border-bottom: 1px solid #fff;
+    width: 200px;
+    margin: 0 auto;
+    display: block; }
+  #banner-thank-you .k-button, #banner-thank-you form.cart button[type='submit'], form.cart #banner-thank-you button[type='submit'], #banner-thank-you .k-checkout #payment button#place_order, .k-checkout #payment #banner-thank-you button#place_order, #banner-thank-you .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-thank-you .woocommerce-Button {
+    padding: 20px 75px;
+    text-align: center;
+    margin: 0 auto; }
+  #banner-thank-you .button-text-below {
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 5px; }
+  #banner-thank-you .yotpo-box {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+    padding-bottom: 60px; }
+    #banner-thank-you .yotpo-box .k-button, #banner-thank-you .yotpo-box form.cart button[type='submit'], form.cart #banner-thank-you .yotpo-box button[type='submit'], #banner-thank-you .yotpo-box .k-checkout #payment button#place_order, .k-checkout #payment #banner-thank-you .yotpo-box button#place_order, #banner-thank-you .yotpo-box .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-thank-you .yotpo-box .woocommerce-Button {
+      margin-top: 10px;
+      margin-bottom: 10px; }
+    #banner-thank-you .yotpo-box .input-text {
+      height: 60px;
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      margin-bottom: 10px;
+      display: block; }
+      #banner-thank-you .yotpo-box .input-text::placeholder {
+        color: #000000;
+        font-size: 16px; }
+  #banner-thank-you .banner-right {
+    background-color: #000000;
+    color: #ffffff;
+    padding-top: 50px; }
+    #banner-thank-you .banner-right .check-rewards-title {
+      font-family: Recoleta Regular,serif;
+      font-size: 16px;
+      text-decoration: underline;
+      text-align: center;
+      margin-bottom: 10px; }
+    #banner-thank-you .banner-right .check-rewards-subtitle {
+      font-family: Recoleta Regular,serif;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 10px; }
+    #banner-thank-you .banner-right .check-rewards-table {
+      height: 138px;
+      overflow-y: scroll;
+      max-width: 400px;
+      margin: 0 auto;
+      font-size: 14px;
+      width: 100%; }
+      #banner-thank-you .banner-right .check-rewards-table table {
+        width: 100%;
+        border-collapse: collapse; }
+        #banner-thank-you .banner-right .check-rewards-table table tr {
+          border-bottom: 1px solid #ffffff; }
+          #banner-thank-you .banner-right .check-rewards-table table tr:last-child {
+            border-bottom: none; }
+    #banner-thank-you .banner-right .banner-underline {
+      border-bottom: 1px solid #fff;
+      width: 400px;
+      margin: 0 auto;
+      display: block;
+      margin-top: 30px;
+      margin-bottom: 30px; }
+    #banner-thank-you .banner-right .check-rewards-below-table {
+      font-family: Recoleta Regular,serif;
+      font-size: 26px;
+      text-align: center;
+      margin-top: 10px; }
+    #banner-thank-you .banner-right .check-rewards-below-table-2 {
+      font-family: Recoleta Regular,serif;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 10px; }
+  #banner-thank-you > p {
+    text-align: center;
+    color: #000000;
+    font-family: Recoleta Regular,serif;
+    font-size: 30px; }
 
-#banner-refer-friend .banner-titles-v2 {
-  font-family: Recoleta Regular,serif;
-  font-size: 60px;
-  line-height: 60px;
-  color: #fff;
-  padding: 10px 0 0px 0;
-  text-align: center; }
-
-#banner-refer-friend .banner-description-v2 {
-  padding: 10px 0px 30px;
-  text-align: center;
-  max-width: 390px;
-  margin: 0 auto; }
-
-#banner-refer-friend .banner-left .banner-underline {
-  border-bottom: 1px solid #fff;
-  width: 200px;
-  margin: 0 auto;
-  display: block; }
-
-#banner-refer-friend .k-button, #banner-refer-friend form.cart button[type='submit'], form.cart #banner-refer-friend button[type='submit'], #banner-refer-friend .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend button#place_order, #banner-refer-friend .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .woocommerce-Button {
-  padding: 20px 75px;
-  text-align: center;
-  margin: 0 auto; }
-
-#banner-refer-friend .button-text-below {
-  padding: 30px 0px 10px;
-  font-size: 16px;
-  text-align: center; }
-
-#banner-refer-friend .yotpo-box {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
-  padding-bottom: 60px; }
-
-#banner-refer-friend .yotpo-box .k-button, #banner-refer-friend .yotpo-box form.cart button[type='submit'], form.cart #banner-refer-friend .yotpo-box button[type='submit'], #banner-refer-friend .yotpo-box .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend .yotpo-box button#place_order, #banner-refer-friend .yotpo-box .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .yotpo-box .woocommerce-Button {
-  margin-top: 10px;
-  margin-bottom: 10px; }
-
-#banner-refer-friend .yotpo-box .input-text {
-  height: 60px;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  margin-bottom: 10px;
-  display: block; }
-
-#banner-refer-friend .yotpo-box .input-text::placeholder {
-  color: #000000;
-  font-size: 16px; }
-
-#banner-refer-friend .banner-right .check-rewards-title {
-  font-family: Recoleta Regular,serif;
-  font-size: 16px;
-  text-decoration: underline;
-  text-align: center;
-  margin-bottom: 10px; }
-
-#banner-refer-friend .banner-right .check-rewards-subtitle {
-  font-family: Recoleta Regular,serif;
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 10px; }
-
-#banner-refer-friend .banner-right .check-rewards-table {
-  height: 138px;
-  overflow-y: scroll;
-  max-width: 400px;
-  margin: 0 auto;
-  font-size: 14px;
-  width: 100%; }
-
-#banner-refer-friend .banner-right .check-rewards-table table {
-  width: 100%;
-  border-collapse: collapse; }
-
-#banner-refer-friend .banner-right .check-rewards-table table tr {
-  border-bottom: 1px solid #ffffff; }
-
-#banner-refer-friend .banner-right .check-rewards-table table tr:last-child {
-  border-bottom: none; }
-
-#banner-refer-friend .banner-right .banner-underline {
-  border-bottom: 1px solid #fff;
-  width: 400px;
-  margin: 0 auto;
-  display: block;
-  margin-top: 30px;
-  margin-bottom: 30px; }
-
-#banner-refer-friend .banner-right .check-rewards-below-table {
-  font-family: Recoleta Regular,serif;
-  font-size: 26px;
-  text-align: center;
-  margin-top: 10px; }
-
-#banner-refer-friend .banner-right .check-rewards-below-table-2 {
-  font-family: Recoleta Regular,serif;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px; }
+div.check-rewards-table::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px; }
+div.check-rewards-table::-webkit-scrollbar-track {
+  background-color: transparent; }
+div.check-rewards-table::-webkit-scrollbar-thumb {
+  background-color: #f4b13d;
+  border-radius: 16px;
+  border: none; }
+div.check-rewards-table::-webkit-scrollbar-button {
+  display: none; }
 
 @media screen and (min-width: 992px) {
+  .img-mobile {
+    display: none; }
+
   #banner-refer-friend .banner-left {
     width: 50%; }
-
   #banner-refer-friend .banner-right {
     width: 50%; }
-
   #banner-refer-friend .banner-row {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5px; } }
+    margin-top: 5px; }
+
+  #banner-thank-you .banner-left {
+    width: 395px;
+    height: 726px; }
+  #banner-thank-you .banner-right {
+    width: 580px;
+    height: 726px; }
+  #banner-thank-you .banner-row {
+    max-width: 992px;
+    height: 726px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto; } }
+@media screen and (max-width: 991px) {
+  .img-desktop {
+    display: none; }
+
+  .img-mobile {
+    width: 100%;
+    display: block; }
+
+  #banner-refer-friend .banner-underline {
+    width: 100%; }
+
+  #banner-thank-you .banner-right .banner-underline {
+    width: 100%; }
+
+  .banner-step-1 {
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto; }
+
+  .banner-step-2 {
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto; }
+
+  .banner-step-3 {
+    max-width: 460px;
+    width: 100%;
+    margin: 0 auto; }
+
+  .yotpo-box {
+    max-width: 460px !important; }
+    .yotpo-box .input-text {
+      width: 100%; } }
 /* SERGIO STYLES */
+@media only screen and (max-width: 920px) {
+  #banner-lp-v2 {
+    width: 100%;
+    padding: 6% 0% 6%;
+    font-size: 18px;
+    line-height: 22px; }
+
+  .banner-titles-v2 {
+    font-size: 50px;
+    line-height: 50px;
+    padding: 10px 0 0px 0; }
+
+  .banner-description-v2 {
+    padding: 15px 0px; }
+
+  .k-button, form.cart button[type='submit'], .k-checkout #payment button#place_order, .woocommerce-account #mag-overwrite-woo .woocommerce-Button {
+    padding: 20px 75px; }
+
+  .button-text-below {
+    padding: 30px 0px; }
+    .button-text-below a {
+      color: #fff;
+      text-decoration: underline; }
+
+  .steps-area {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px; }
+    .steps-area li {
+      list-style: none;
+      border-left: 3px solid #000;
+      margin: 0px 0px 35px 0px;
+      color: #000; }
+    .steps-area .tt-li {
+      font-size: 25px;
+      line-height: 30px;
+      padding: 0px 15px; }
+    .steps-area .dd-li {
+      font-size: 14px;
+      line-height: 14px;
+      padding: 15px 10px 0px 10px; }
+
+  #banner-refer {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 100px 0px; }
+    #banner-refer .k-inner {
+      padding: 150px; }
+    #banner-refer .small_title_banner {
+      font-family: Recoleta Regular,serif;
+      font-size: 30px;
+      line-height: 30px; }
+    #banner-refer .big_title_banner {
+      font-family: Recoleta Regular,serif;
+      font-size: 65px;
+      line-height: 65px;
+      padding: 15px 0px 20px; }
+    #banner-refer .banner_description {
+      font-size: 23px;
+      line-height: 26px;
+      padding-bottom: 35px; }
+    #banner-refer .k-button, #banner-refer form.cart button[type='submit'], form.cart #banner-refer button[type='submit'], #banner-refer .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer button#place_order, #banner-refer .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer .woocommerce-Button {
+      padding: 15px 35px; }
+
+  .btns-area {
+    max-width: 385px;
+    margin: 0 auto; }
+    .btns-area span {
+      font-size: 35px;
+      line-height: 50px;
+      display: block;
+      padding-bottom: 15px; }
+
+  .template-title {
+    font-size: 45px;
+    line-height: 45px;
+    padding: 40px 0px; }
+
+  .content_section_redeem {
+    font-size: 16px;
+    line-height: 22px; }
+
+  .swell-campaign-list-title {
+    font-size: 40px !important;
+    line-height: 40px !important;
+    width: 100% !important;
+    padding: 40px 0px !important; }
+
+  .campaign {
+    width: 32%;
+    margin: 0.5%;
+    min-height: 14rem; }
+
+  .campaign div h5 {
+    width: 100%;
+    text-align: left;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 0px; }
+
+  li.campaign p {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 20px; }
+
+  .area-50-p {
+    width: 48%;
+    padding: 15px 0px;
+    margin: 0px 1%; }
+
+  .area-35-p {
+    width: 35%;
+    padding: 15px 15px; }
+
+  .area-65-p {
+    width: 65%;
+    padding: 15px 0px; }
+
+  .white-borders {
+    border: 15px solid #fff; } }
+@media only screen and (max-width: 767px) {
+  #banner-lp-v2 {
+    min-height: 420px;
+    background-position: right -100px top !important; }
+
+  .resp .banner-titles-v2 {
+    font-size: 80px !important;
+    line-height: 80px !important;
+    color: #000 !important;
+    padding-top: 50px; }
+
+  .resp .banner-description-v2 {
+    font-size: 28px;
+    line-height: 33px;
+    padding-bottom: 40px; }
+
+  .resp .k-button, .resp form.cart button[type='submit'], form.cart .resp button[type='submit'], .resp .k-checkout #payment button#place_order, .k-checkout #payment .resp button#place_order, .resp .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo .resp .woocommerce-Button {
+    font-size: 22px;
+    padding: 12px 0px;
+    width: 40%;
+    margin-right: 2%; }
+
+  .resp .white-btn {
+    background-color: #fff;
+    color: #f4b13e; }
+
+  .resp .white-btn:hover {
+    background-color: #f4b13e; }
+
+  .brefer-v .k-inner {
+    padding: 150px 25px !important; }
+
+  .steps-area {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0px; }
+    .steps-area li {
+      list-style: none;
+      border-left: 3px solid #000;
+      margin: 0px 0px 55px 0px;
+      color: #000; }
+    .steps-area .tt-li {
+      font-size: 30px;
+      line-height: 30px;
+      padding: 0px 15px; }
+    .steps-area .dd-li {
+      font-size: 18px;
+      line-height: 18px;
+      padding: 15px 15px 0px 15px; }
+
+  .campaign {
+    width: 48%;
+    margin: 1%;
+    min-height: 16rem; }
+
+  .campaign div h5 {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    margin: 0px; }
+
+  li.campaign p {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-size: 25px; }
+
+  #redeem .template-title {
+    padding: 0px 0px 15px 0px;
+    font-size: 58px;
+    line-height: 58px; }
+
+  .redeem-l {
+    width: 100%;
+    margin: 20px 0px 0px 0px; }
+    .redeem-l img {
+      max-width: 100%;
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 50px; }
+
+  .redeem-r {
+    width: 100%; }
+
+  .points-range-orange {
+    font-size: 25px;
+    line-height: 25px;
+    margin: 45px 0px 0px 2%;
+    text-transform: uppercase; }
+
+  .content_section_redeem {
+    font-size: 26px;
+    line-height: 30px; }
+
+  .points-area {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%; }
+
+  .points-box {
+    width: 46%;
+    border: 2px dotted #f4b13d;
+    border-radius: 5px;
+    padding: 35px 0px 35px 0px;
+    display: inline-block;
+    margin: 25px 2% 0px 2%;
+    text-align: center; }
+
+  .discount-txt {
+    font-family: Recoleta Regular,serif;
+    font-size: 28px;
+    line-height: 28px; }
+
+  .points-txt {
+    font-size: 22px;
+    line-height: 22px;
+    padding-top: 10px; }
+
+  .area-50-p {
+    width: 98%;
+    padding: 15px 0px;
+    margin: 0px 1%; }
+
+  .area-35-p {
+    width: 98%;
+    padding: 15px 15px; }
+
+  .area-65-p {
+    width: 98%;
+    padding: 15px 0px; }
+
+  .white-borders {
+    border: 15px solid #fff; }
+
+  .btns-area .k-button, .btns-area form.cart button[type='submit'], form.cart .btns-area button[type='submit'], .btns-area .k-checkout #payment button#place_order, .k-checkout #payment .btns-area button#place_order, .btns-area .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo .btns-area .woocommerce-Button {
+    width: 100%;
+    padding: 10px 0px; }
+
+  #vips-earn {
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px; }
+
+  .table-vips-left-55 {
+    width: 50%;
+    min-height: 60px;
+    box-sizing: border-box;
+    padding: 0px 5px; }
+
+  .table-vips-left-15 {
+    width: 50%;
+    min-height: 60px;
+    text-align: center;
+    padding: 0px 5px; }
+
+  .gray-borders {
+    line-height: 70px;
+    padding-top: 10px;
+    padding-bottom: 5px; }
+    .gray-borders strong {
+      font-size: 24px;
+      line-height: 45px; }
+
+  .tl {
+    padding-top: 25px; }
+
+  .ob {
+    font-size: 50px;
+    color: #f4b13d; }
+
+  .opt_a {
+    display: none; }
+
+  .opt_b {
+    display: none; }
+
+  .opt_c {
+    display: none; }
+
+  .removea {
+    display: none; }
+
+  .showmy {
+    display: block !important; }
+
+  .bullet-selector {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    float: right;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: center; }
+    .bullet-selector li {
+      list-style: none; }
+
+  .bull-g {
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    border-radius: 25px;
+    background-color: #808080;
+    margin: 20px 5px; }
+
+  .bull-g:hover {
+    background-color: #000; }
+
+  .activex {
+    background-color: #000; }
+
+  .my-paddings {
+    padding: 50px 0px 0px 0px; }
+
+  .my-paddings-v2 {
+    padding: 50px 0px 100px 0px; }
+
+  .close-yellow {
+    width: 30px;
+    height: 30px;
+    right: 15px;
+    top: 15px;
+    line-height: 30px;
+    font-size: 30px; }
+
+  #banner-thank-you .banner-above-titles-v3 {
+    font-size: 20px;
+    line-height: 20px; }
+  #banner-thank-you .banner-titles-v3 {
+    font-size: 40px;
+    line-height: 40px; }
+  #banner-thank-you .banner-description-v3 {
+    font-size: 16px;
+    line-height: 20px; }
+  #banner-thank-you .banner-underline {
+    padding: 10px 0px 0px 0px; }
+  #banner-thank-you .button-text-below {
+    padding: 10px 0px 0px 0px; }
+  #banner-thank-you .banner-right {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box; }
+  #banner-thank-you .input-text {
+    height: 45px !important; }
+  #banner-thank-you .k-button, #banner-thank-you form.cart button[type='submit'], form.cart #banner-thank-you button[type='submit'], #banner-thank-you .k-checkout #payment button#place_order, .k-checkout #payment #banner-thank-you button#place_order, #banner-thank-you .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-thank-you .woocommerce-Button {
+    padding: 10px 75px !important; }
+  #banner-thank-you .yotpo-box {
+    padding-bottom: 15px; }
+  #banner-thank-you .banner-right {
+    padding-top: 15px; }
+
+  .resp {
+    display: block; }
+
+  .desk {
+    display: none; } }
+@media only screen and (max-width: 630px) {
+  #banner-lp-v2 {
+    min-height: 380px;
+    background-position: right -200px top !important; }
+
+  .resp .banner-titles-v2 {
+    font-size: 45px !important;
+    line-height: 45px !important;
+    padding-top: 40px; }
+
+  .resp .banner-description-v2 {
+    font-size: 20px;
+    line-height: 22px;
+    padding-bottom: 40px; }
+
+  .resp .k-button, .resp form.cart button[type='submit'], form.cart .resp button[type='submit'], .resp .k-checkout #payment button#place_order, .k-checkout #payment .resp button#place_order, .resp .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo .resp .woocommerce-Button {
+    font-size: 18px;
+    padding: 12px 0px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    margin-right: auto;
+    margin-bottom: 10px; }
+
+  .resp .white-btn {
+    background-color: #fff;
+    color: #f4b13e; }
+
+  .resp .white-btn:hover {
+    background-color: #f4b13e; }
+
+  #redeem .template-title {
+    font-size: 45px;
+    line-height: 45px; }
+
+  .redeem-l {
+    width: 100%;
+    margin: 20px 0px 0px 0px; }
+    .redeem-l img {
+      margin-bottom: 30px; }
+
+  .points-range-orange {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 35px 0px 0px 2%;
+    text-transform: uppercase; }
+
+  .content_section_redeem {
+    font-size: 20px;
+    line-height: 22px; }
+
+  .points-box {
+    width: 46%;
+    padding: 25px 0px 25px 0px;
+    margin: 20px 2% 0px 2%; }
+
+  .discount-txt {
+    font-size: 25px;
+    line-height: 25px; }
+
+  .points-txt {
+    font-size: 20px;
+    line-height: 22px; } }
+@media only screen and (max-width: 480px) {
+  .template-title {
+    font-size: 30px;
+    line-height: 30px;
+    padding: 30px 0px; }
+
+  .content_section_redeem {
+    font-size: 16px;
+    line-height: 22px; }
+
+  .swell-campaign-list-title {
+    font-size: 30px !important;
+    line-height: 30px !important;
+    width: 100% !important;
+    padding: 30px 0px !important; }
+
+  .campaign {
+    width: 100%;
+    margin: 1% 0%;
+    min-height: 14rem; }
+
+  .campaign div h5 {
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    margin: 0px; }
+
+  li.campaign p {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0;
+    font-size: 20px; } }
 @media screen and (-ms-high-contrast: none) {
   header.k-header {
     position: fixed;

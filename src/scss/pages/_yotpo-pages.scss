@@ -340,13 +340,30 @@
 		}
 	}
 }
+.close-yellow{
+	width:50px;
+	height:50px;
+	position:absolute;
+	right:15px;
+	top:15px;
+	text-align:center;
+	line-height:50px;
+	font-size:50px;
+	font-widht:300px;
+	color:#000; 
+	cursor:pointer;
+}
 #banner-thank-you {
+	position:fixed;
+	top:0;
+	z-index:9999;
+	padding:1% 0 0 0 !important;
+	left:0;
 	width: 100%;
-	padding: 100px 0% 100px !important;
 	font-size: 20px;
 	line-height: 26px;
 	color: #fff;
-	background-color: #f4b13d;
+	background-color: rgba(244, 177, 61, 0.9) !important;
 	min-height: 768px;
 	.banner-above-titles-v2 {
 		font-family: Recoleta Regular,serif;
@@ -707,6 +724,20 @@ li.campaign p {width: 100%; margin-top:0px; margin-bottom: 0; font-size: 25px;}
 .my-paddings{padding:50px 0px 0px 0px;}
 .my-paddings-v2{padding:50px 0px 100px 0px;}
 
+.close-yellow{width: 30px; height: 30px; right: 15px; top: 15px; line-height: 30px; font-size: 30px;}
+
+#banner-thank-you{
+	.banner-above-titles-v3{font-size:20px; line-height:20px;}
+	.banner-titles-v3{font-size:40px; line-height:40px;}
+	.banner-description-v3{font-size:16px; line-height:20px;}
+	.banner-underline{padding:10px 0px 0px 0px;}
+	.button-text-below{padding:10px 0px 0px 0px;}
+	.banner-right{padding-left: 10px; padding-right: 10px; box-sizing: border-box;}
+	.input-text{height: 45px !important;}
+	.k-button{padding: 10px 75px !important;}
+	.yotpo-box{padding-bottom: 15px;}
+	.banner-right{padding-top: 15px;}
+}
 .resp{display:block;}
 .desk{display:none;}
 }

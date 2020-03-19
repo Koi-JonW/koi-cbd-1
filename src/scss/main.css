@@ -5990,7 +5990,8 @@ li.campaign p {
     list-style: none;
     border-left: 3px solid #000;
     margin: 45px 0px 45px 0px;
-    color: #000; }
+    color: #000;
+    cursor: default; }
   .steps-area li:hover {
     color: #f4b13d;
     border-left: 3px solid #f4b13d; }
@@ -6080,6 +6081,7 @@ li.campaign p {
   width: 50%; }
 
 .points-range-orange {
+  width: 96%;
   font-size: 18px;
   line-height: 18px;
   color: #f4b13d;
@@ -6547,6 +6549,16 @@ div.check-rewards-table::-webkit-scrollbar-thumb {
 div.check-rewards-table::-webkit-scrollbar-button {
   display: none; }
 
+#item_533323 {
+  width: 98% !important; }
+
+@media only screen and (max-width: 1100px) {
+  .btns-area {
+    max-width: 400px;
+    margin: 0 auto; }
+    .btns-area span {
+      font-size: 36px;
+      line-height: 45px; } }
 @media screen and (min-width: 992px) {
   .img-mobile {
     display: none; }
@@ -6607,6 +6619,12 @@ div.check-rewards-table::-webkit-scrollbar-button {
     max-width: 460px !important; }
     .yotpo-box .input-text {
       width: 100%; } }
+@media only screen and (max-width: 480px) {
+  #item_533323 {
+    width: 100% !important; }
+
+  #banner-refer {
+    padding-top: 0px !important; } }
 /* SERGIO STYLES */
 @media only screen and (max-width: 920px) {
   #banner-lp-v2 {
@@ -6821,7 +6839,9 @@ div.check-rewards-table::-webkit-scrollbar-button {
     font-size: 25px;
     line-height: 25px;
     margin: 45px 0px 0px 2%;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    width: 96%;
+    box-sizing: border-box; }
 
   .content_section_redeem {
     font-size: 26px;

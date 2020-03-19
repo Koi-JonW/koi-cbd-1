@@ -97,7 +97,7 @@
 .button-text-below a{color:#fff; text-decoration:underline;}
 
 .steps-area{width:100%; max-width:330px; margin:0 auto; padding:0px;
-	li{list-style:none; border-left:3px solid #000; margin:45px 0px 45px 0px; color:#000;}
+	li{list-style:none; border-left:3px solid #000; margin:45px 0px 45px 0px; color:#000; cursor: default;}
 	li:hover{color:#f4b13d; border-left:3px solid #f4b13d;}
 	.tt-li{font-family: Recoleta Regular,serif; font-size: 30px; line-height: 30px; padding:0px 15px;}
 	.dd-li{font-size:16px; line-height:16px; padding:15px 15px 0px 15px;}
@@ -128,7 +128,7 @@
 	img{max-width:400px; width:98%;}
 }
 .redeem-r{width:50%;}
-.points-range-orange{font-size:18px; line-height:18px; color:#f4b13d; border:2px dotted #f4b13d; border-radius:5px; padding:19px 60px 20px 60px; display:inline-block; margin:25px 0px 0px 0px;}
+.points-range-orange{width:96%; font-size:18px; line-height:18px; color:#f4b13d; border:2px dotted #f4b13d; border-radius:5px; padding:19px 60px 20px 60px; display:inline-block; margin:25px 0px 0px 0px;}
 
 .points-area{display:flex; flex-wrap:wrap; max-width:440px;}
 .points-box{width:46%; border:2px dotted #f4b13d; border-radius:5px; padding:25px 0px 25px 0px; display:inline-block; margin:25px 4% 0px 0px; text-align:center;}
@@ -531,6 +531,15 @@ div.check-rewards-table {
 		display: none;
 	}
 }
+
+#item_533323{width:98% !important;}
+
+@media only screen and (max-width:1100px){
+.btns-area{max-width:400px; margin:0 auto;
+	span{ font-size:36px; line-height:45px;}
+}
+}
+
 @media screen and (min-width: 992px) {
 	.img-mobile {
 		display: none;
@@ -611,6 +620,11 @@ div.check-rewards-table {
 	}
 }
 
+@media only screen and (max-width:480px){
+#item_533323{width:100% !important;}
+#banner-refer{padding-top:0px !important;}
+}
+
 /* SERGIO STYLES */
 
 @media only screen and (max-width:920px){
@@ -683,7 +697,7 @@ li.campaign p {width: 100%; margin-top:0px; margin-bottom: 0; font-size: 25px;}
 	img{max-width:100%; margin:0 auto; display:block; margin-bottom:50px;}
 }
 .redeem-r{width:100%;}
-.points-range-orange{font-size:25px; line-height:25px; margin:45px 0px 0px 2%; text-transform:uppercase;}
+.points-range-orange{font-size:25px; line-height:25px; margin:45px 0px 0px 2%; text-transform:uppercase; width: 96%; box-sizing: border-box;}
 
 .content_section_redeem{font-size:26px; line-height:30px;}
 

@@ -18,7 +18,7 @@ get_header();
 			<?php if ( is_user_logged_in() ) {
 			} else { ?>
 			<a href='<?php echo esc_url( home_url( '/' ) ); ?>account?reg=1' class='k-button k-button--primary'>Join Now</a>
-			<div class='button-text-below'>Already have an account? <a href='<?php echo esc_url( home_url( '/' ) ); ?>account/#0'>Log In.</a></div>
+			<div class='button-text-below'>Already have an account? <a href='<?php echo esc_url( home_url( '/' ) ); ?>account/#0'>Log In</a></div>
 			<?php } ?>
 
 		</div><!--end banner-r-->
@@ -36,11 +36,15 @@ get_header();
 
 <section id='how-it-works' class='my-paddings'>
 	<div class='k-inner k-inner--md flex-features'>
-		<div class='template-title desk' style='text-align:<?php the_field('title_section_hiw_align'); ?>'><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+		<?php if(get_field('title_section_hiw')){ ?>
+			<div class='template-title desk' style='text-align:<?php the_field('title_section_hiw_align'); ?>'><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+		<?php } ?>
 <?php if ( is_user_logged_in() ) { ?>
 	<div class='area-50-p'>
 		<img src='<?php the_field('how_it_works_image_lu'); ?>' alt='<?php the_field('title_section_hiw'); ?>' class='img-tmp-100'/>
+		<?php if(get_field('title_section_hiw')){ ?>
 		<div class='template-title resp' style='text-align:<?php the_field('title_section_hiw_align'); ?>'><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+		<?php } ?>
 	</div><!--end area-50-p-->
 	<div class='area-50-p'>
 		<div class='btns-area'>
@@ -112,10 +116,10 @@ get_header();
 		<div class='redeem-r'>
 			<div class='template-title'><?php the_field('title_section_redeem'); ?></div><!--end template-title-->
 			<div class='content_section_redeem'><?php the_field('content_section_redeem'); ?></div><!--end content_section_redeem-->
-			<div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
 		<?php
 		if( have_rows('points') ): ?>
 			<div class='points-area'>
+			<div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
 			<?php while ( have_rows('points') ) : the_row(); ?>
 				<div class='points-box'>
      				<div class='discount-txt'><?php the_sub_field('discount'); ?></div>
@@ -174,6 +178,7 @@ get_header();
 				).addClass('campaign swell-campaign-link').attr({
 					'data-campaign-id': campaign.id,
 					'data-display-mode': 'modal',
+					'id': 'item_' + campaign.id,
 					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
 				})
 			);

@@ -41,38 +41,6 @@ get_header();
                         <td>EMAIL</td>
                         <td>STATUS</td>
                     <tr>
-                    <tr>
-                        <td>friend1@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend2@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend3@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend4@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend1@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend2@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend3@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend4@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
                 </table>
             </div>
             <div class="banner-underline"></div>
@@ -201,6 +169,29 @@ get_header();
         step_3.hide();
 
     });
+
+    // --
+
+	function setSwellCustomerReferrals(referrals){
+		referrals.forEach(function(referral){
+			$('.check-rewards-table tbody').append(
+				$('<tr>').append(
+					$('<td>').text(referral.email),
+					$('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
+                )
+			);
+		});
+	}
+
+	var checkSwellCustomerReferrals = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellCustomerDetails = swellAPI.getCustomerDetails();
+			if (swellCustomerDetails && swellCustomerDetails.referrals.length){
+            	clearInterval(checkSwellCustomerReferrals);
+            	setSwellCustomerReferrals(swellCustomerDetails.referrals);
+			}
+        }
+    }, 100);
 
 </script>
 

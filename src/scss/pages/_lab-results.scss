@@ -195,6 +195,11 @@
   .k-recentresults {
     &__category-button {
       flex-basis: 23.5%;
+
+      &:last-of-type {
+        margin-right: auto;
+        margin-left: 2%;
+      }
     }
   }
 }

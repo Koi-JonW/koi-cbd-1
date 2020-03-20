@@ -139,6 +139,31 @@ function setDefaultResults() {
       unit: '100mg bath bomb',
       labResults: [],
     },
+    {
+      categoryName: 'hempShots',
+      sku: ['Not available', 'Not available', 'Not available'],
+      button: $('[data-category="hempShots'),
+      unit: ['N/A'],
+      alias: {
+        name: ['Watermelon (25 mg)', 'Peach (25 mg)', 'Raspberry (25 mg)'],
+      },
+      labResults: [],
+    },
+    {
+      categoryName: 'skincare',
+      sku: ['Not available', 'Not available', 'Not available', 'Not available'],
+      button: $('[data-category="skincare"]'),
+      unit: ['N/A'],
+      alias: {
+        name: [
+          'Facial Cleanser (500 mg)',
+          'Tightening Toner (500 mg)',
+          'Facial Serum (500 mg)',
+          'Moisturizer Cream (500 mg)',
+        ],
+      },
+      labResults: [],
+    },
   ];
 
   window.__defaults.forEach(category => {
@@ -149,12 +174,22 @@ function setDefaultResults() {
           test => test.productsku === sku
         )[0];
 
-        if (newestMatch) {
-          newestMatch.unit = category.unit;
-          category.labResults.push(new Test(newestMatch));
+        if (globalMatch) {
+          globalMatch.unit = category.unit;
+          globalMatch.defaultIndex = index;
+
+          if (category.alias) {
+            globalMatch.alias = {
+              name: category.alias.name[index],
+              variant: category.alias.variant[index],
+            };
+          }
+
+          // category.labResults.push(new Test(globalMatch));
         } else {
           console.log(newestMatch);
         }
+        category.labResults.push(new Test(globalMatch));
       }
     });
 
@@ -234,15 +269,28 @@ function displayTermPrompt() {
 }
 
 function getTabMarkup(test, category, index) {
-  const tab = /*html*/ `
-    <div class="k-latestbatch--tabs__tab" data-product-sku="${
-      test.productsku
-    }" data-category="${category.categoryName}" data-category-index="${index}">
-      <span class="k-latestbatch__variant-name">
-        ${test.strength ? test.strength : test.ordername}
-      </span>
-    </div>
-  `;
+  let tab = '';
+  if (test) {
+    tab = /*html*/ `
+      <div class="k-latestbatch--tabs__tab" data-product-sku="${
+        test.productsku
+      }" data-category="${
+      category.categoryName
+    }" data-category-index="${index}">
+        <span class="k-latestbatch__variant-name">
+          ${test.strength ? test.strength : test.ordername}
+        </span>
+      </div>
+    `;
+  } else {
+    tab = /*html*/ `
+      <div class="k-latestbatch--tabs__tab" data-product-sku="${category.sku[index]}" data-category="${category.categoryName}" data-category-index="${index}">
+        <span class="k-latestbatch__variant-name">
+          ${category.alias.name[index]}
+        </span>
+      </div>
+    `;
+  }
 
   return tab;
 }
@@ -340,8 +388,12 @@ function evaluateVariantAlias(test) {
   return alias;
 }
 
-function appendMarkup(test, $appendTarget, category, event = false) {
+function appendMarkup(signature) {
+  const { $appendTarget, category, context } = signature;
+
   try {
+    const { results: Test } = signature.match;
+
     let index = false;
 
     if (event) {
@@ -375,6 +427,7 @@ function appendMarkup(test, $appendTarget, category, event = false) {
   } catch (error) {
     console.error(Error(error));
     $tabAppendTarget.html(``);
+    appendVariantTabs(category);
     $appendTarget.append(/*html*/ `
       <div class="k-latestbatch__results k-result-error">
         <div class="k-latestbatch__error">

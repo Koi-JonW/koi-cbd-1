@@ -25,12 +25,12 @@ $url = site_url();
 
     </div>
   </div>
-  <div class="k-header--top k-promobanner">
+  <div class="k-header--top k-promobanner k-header__newsletter-trigger k-header__newsletter-trigger--mobile">
     <div class="k-inner k-inner--xl">
       <div class="k-promobanner--item">
         <span class="k-upcase">Free shipping on all US orders over $35</span>
       </div>
-      <div class="k-promobanner--item k-header__newsletter-trigger k-header__newsletter-trigger--mobile">
+      <div class="k-promobanner--item">
       <?php $newsletter_field = get_field('header_newsletter_copy', 'options'); ?>
         <span class="k-upcase k-header__newsletter-trigger k-header__newsletter-trigger--desktop"><?php echo $newsletter_field; ?></span>
       </div>
@@ -50,16 +50,22 @@ $url = site_url();
               </div>
             </ul>
           </li>
-          <li class="k-has-dropdown">
+          <li>
+            <a href="/store-finder" class="k-upcase">STORE FINDER</a>
+          </li>
+          <li>
+            <a href="/blog" class="k-upcase">KOI BLOG</a>
+          </li>
+<!--          <li class="k-has-dropdown">
             <a class="k-upcase"><span>&#9660;</span> Resources</a>
             <ul class="k-dropdown">
               <div class="k-dropdown--liner">
 
-                <?php wp_nav_menu( array( 'theme_location' => 'resources-menu')) ?>
+                <?php // wp_nav_menu( array( 'theme_location' => 'resources-menu')) ?>
 
               </div>
             </ul>
-          </li>
+          </li> -->
           <li>
             <a class="k-upcase" href="<?php echo $url . '/lab-results' ?>">Lab Results</a>
           </li>

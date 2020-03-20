@@ -3,6 +3,15 @@ import Fuse from 'fuse.js';
 import Test from '../helpers/Test';
 import { $body } from '../global/selectors';
 
+/**
+ * // TODO
+ * This whole process should be re-evaluated if given time.
+ * The original solution was to have GSL push to the test-results-api
+ * and use that data on the frontend. Now, there is the concept of
+ * default results (essentially another dataset) making the "source of truth"
+ * difficult to identify.
+ */
+
 let sampleTests = undefined;
 
 if ($body.hasClass('page-template-lab-results')) {
@@ -55,56 +64,56 @@ function setDefaultResults() {
         // 'NATNAT3000' - exists but isnt listed on PDP
       ],
       button: $('[data-category="tincture"]'),
-      unit: '30mL Bottle',
+      unit: ['30mL Bottle'],
       labResults: [],
     },
     {
       categoryName: 'gummies',
       sku: ['REGGUM20', 'SRGUM20'],
       button: $('[data-category="gummies"]'),
-      unit: '20 Gummies',
+      unit: ['20 Gummies'],
       labResults: [],
     },
     {
       categoryName: 'sprays',
       sku: ['NATNAT1500', 'NATNAT3000'],
       button: $('[data-category="sprays"]'),
-      unit: '60mL Bottle',
+      unit: ['60mL Bottle'],
       labResults: [],
     },
     {
       categoryName: 'vape',
       sku: ['WHTKOI100', 'WHTKOI250', 'WHTKOI500', 'WHTKOI1000'],
       button: $('[data-category="vape"]'),
-      unit: '30mL bottle',
+      unit: ['30mL bottle'],
       labResults: [],
     },
     {
       categoryName: 'balms',
       sku: ['KPB150MG', 'KHB500', 'KHB1000'],
       button: $('[data-category="balms"]'),
-      unit: '45g Container',
+      unit: ['45g Container'],
       labResults: [],
     },
     {
       categoryName: 'lotion',
       sku: ['LTNCTBRST', 'LTNLAV', 'LTNPNKGRP'],
       button: $('[data-category="lotion"]'),
-      unit: '4.25oz Bottle',
+      unit: ['4.25oz Bottle'],
       labResults: [],
     },
     {
       categoryName: 'petChew',
       sku: ['KPTSCHEWS'],
       button: $('[data-category="petChew"]'),
-      unit: '25 Chews',
+      unit: ['25 Chews'],
       labResults: [],
     },
     {
       categoryName: 'petSpray',
       sku: ['PETSPRY'],
       button: $('[data-category="petSpray"]'),
-      unit: '60mL Spray Bottle',
+      unit: ['60mL Spray Bottle'],
       labResults: [],
     },
     {
@@ -122,21 +131,21 @@ function setDefaultResults() {
       categoryName: 'inhalers',
       sku: ['INH-MOJ-002-1000', 'INH-DRM-002-1000'],
       button: $('[data-category="inhalers"]'),
-      unit: '2 mL inhaler',
+      unit: ['2 mL inhaler'],
       labResults: [],
     },
     {
       categoryName: 'softgels',
       sku: ['CAP-NAT-030-0750', 'CAP-MLT-030-0750'],
       button: $('[data-category="softgels"]'),
-      unit: '30-capsule bottle',
+      unit: ['30-capsule bottle'],
       labResults: [],
     },
     {
       categoryName: 'bathBombs',
       sku: ['BATHBOMBORANGE', 'BATHBOMBBLUE', 'BATHBOMBGREEN'],
       button: $('[data-category="bathBombs"]'),
-      unit: '100mg bath bomb',
+      unit: ['100mg bath bomb'],
       labResults: [],
     },
     {
@@ -166,11 +175,12 @@ function setDefaultResults() {
     },
   ];
 
+  // sync massaged data to global sampleTests
   window.__defaults.forEach(category => {
-    category.sku.forEach(sku => {
+    category.sku.forEach((sku, index) => {
       // for each sku inside each category
       if (sku != undefined) {
-        let newestMatch = sampleTests.filter(
+        let globalMatch = sampleTests.filter(
           test => test.productsku === sku
         )[0];
 
@@ -187,14 +197,18 @@ function setDefaultResults() {
 
           // category.labResults.push(new Test(globalMatch));
         } else {
-          console.log(newestMatch);
+          console.log(globalMatch);
         }
         category.labResults.push(new Test(globalMatch));
       }
     });
 
     category.button.click(function(event) {
-      showRecentTest(category.labResults[0], category, event);
+      showRecentTest({
+        match: category.labResults[0],
+        category,
+        context: 'category',
+      });
       $body.animate(
         {
           scrollTop: $spacer.offset().top - 100,
@@ -205,9 +219,14 @@ function setDefaultResults() {
   });
 }
 
-function showRecentTest(match, category, event) {
+function showRecentTest({ match, category, context }) {
   $recentTestTarget.html(``);
-  appendMarkup(match, $recentTestTarget, category, event);
+  appendMarkup({
+    match,
+    category,
+    $appendTarget: $recentTestTarget,
+    context,
+  });
 }
 
 function getResults() {
@@ -249,7 +268,11 @@ function displayResults(e) {
   if (results.length > 0) {
     results.forEach(test => {
       test = new Test(test.item, test.score);
-      appendMarkup(test, $insertTarget);
+      appendMarkup({
+        match: test,
+        $appendTarget: $insertTarget,
+        context: 'search',
+      });
     });
   } else {
     displayTermPrompt();
@@ -347,13 +370,21 @@ function evaluateCategoryUnits(index, category) {
 
   if (Array.isArray(category.unit)) {
     index = getUnitIndex();
-
     switch (true) {
-      case index !== false: {
+      case index !== false && index < category.unit.length: {
+        // ideal scenario
         visibleUnit = category.unit[index];
         break;
       }
+      case index !== false && index >= category.unit.length: {
+        // will occur if there are more SKUs than units declared in
+        // the __defaults.
+        visibleUnit = category.unit[category.unit.length - 1];
+        break;
+      }
       case !index: {
+        // something happened to the index, but we know the unit is an array.
+        // fallback to something that we know exists.
         visibleUnit = category.unit[0];
         break;
       }
@@ -372,12 +403,12 @@ function evaluateVariantAlias(test) {
   let alias;
 
   switch (true) {
-    case typeof test.results.variantAlias === 'string': {
-      alias = test.results.variantAlias;
+    case typeof test.variantAlias === 'string': {
+      alias = test.variantAlias;
       break;
     }
-    case test.results.strength !== false: {
-      alias = test.results.strength;
+    case test.strength !== false: {
+      alias = test.strength;
       break;
     }
     default: {
@@ -395,31 +426,98 @@ function appendMarkup(signature) {
     const { results: Test } = signature.match;
 
     let index = false;
+    let visibleUnit;
+    let variantAlias;
 
-    if (event) {
-      appendVariantTabs(category);
+    switch (true) {
+      case context === 'category': {
+        appendVariantTabs(category);
+        visibleUnit = evaluateCategoryUnits(index, category);
+        variantAlias = evaluateVariantAlias(Test);
+        break;
+      }
+
+      case context === 'recent-tab': {
+        visibleUnit = evaluateCategoryUnits(index, category);
+        variantAlias = evaluateVariantAlias(Test);
+        break;
+      }
+
+      case context === 'search': {
+        // evaluate the variantAlias
+        switch (true) {
+          case typeof Test.alias === 'object': {
+            if (typeof Test.alias.name === 'string') {
+              variantAlias = Test.alias.name;
+            }
+            break;
+          }
+          case typeof Test.strength === 'string': {
+            variantAlias = Test.strength;
+            break;
+          }
+          default: {
+            variantAlias = 'N/A';
+          }
+        }
+
+        // evaluate the visibleUnit
+        switch (true) {
+          case Array.isArray(Test.unit): {
+            if (Test.defaultIndex < Test.unit.length) {
+              visibleUnit = Test.unit[Test.defaultIndex];
+            } else {
+              visibleUnit = Test.unit[Test.unit.length - 1];
+            }
+            break;
+          }
+
+          case category: {
+            if (Array.isArray(category.unit)) {
+              visibleUnit = category.unit[Test.defaultIndex];
+            } else {
+              visibleUnit = category.unit;
+            }
+
+            break;
+          }
+
+          default: {
+            visibleUnit = 'N/A';
+          }
+        }
+
+        break;
+      }
+
+      default: {
+        return false;
+      }
     }
-
-    const visibleUnit = evaluateCategoryUnits(index, category);
-    const variantAlias = evaluateVariantAlias(test);
 
     $appendTarget.append(/*html*/ `
     <div class="k-latestbatch__results">
       <div class="k-latestbatch__results-liner">
         <div class="k-latestbatch__results-column">
           <div>
-            <p class="k-headline k-headline--sm">${test.results.ordername}</p>
+            <p class="k-headline k-headline--sm">${Test.ordername}</p>
           </div>
         </div>
         <div class="k-latestbatch__results-column">
           <div>
             <p class="k-latestbatch--strength">Variant: ${variantAlias}</p>
-            <p class="k-latestbatch--size">Size: ${visibleUnit}</p>
-            <p class="k-latestbatch--batch">Batch #: ${test.results.batchid}</p>
+            ${
+              visibleUnit
+                ? `<p class="k-latestbatch--size">Size: ${visibleUnit}</p>`
+                : ''
+            }
+            <p class="k-latestbatch--batch">Batch #: ${Test.batchid}</p>
           </div>
         </div>
         <div class="k-latestbatch__results-column">
-          <a id="k-coaurl" class="k-button" href="${test.results.coaurl}" target="_blank">View this product's Certificate of Analysis (COA)</a>
+          <a id="k-coaurl" class="k-button" href="${
+            Test.coaurl
+          }" target="_blank">View this product's Certificate of Analysis (COA)</a>
         </div>
       </div>
     </div>
@@ -473,7 +571,6 @@ function assignTabListeners() {
 
   $tabs.click(function() {
     const $t = $(this);
-
     $tabs.removeClass('active');
     $t.addClass('active');
 
@@ -486,6 +583,11 @@ function assignTabListeners() {
     )[0];
 
     $recentTestTarget.html(``);
-    appendMarkup(matchingTest, $recentTestTarget, category);
+    appendMarkup({
+      match: matchingTest,
+      $appendTarget: $recentTestTarget,
+      category,
+      context: 'recent-tab',
+    });
   });
 }

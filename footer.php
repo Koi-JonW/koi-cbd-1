@@ -124,7 +124,7 @@ $root = get_template_directory_uri();
 
   <?php wp_footer(); ?>
 
-  <script type="text/javascript" src="<?php echo $root.'/dist/js/magnetic.bundle.js?v=1.12.2'; ?>"></script>
+  <script type="text/javascript" src="<?php echo $root.'/dist/js/magnetic.bundle.js?v=1.12.5'; ?>"></script>
   <script type="text/javascript">
     (function() {
       var backdrop = document.querySelector('#k-backdrop');

@@ -6549,9 +6549,6 @@ div.check-rewards-table::-webkit-scrollbar-thumb {
 div.check-rewards-table::-webkit-scrollbar-button {
   display: none; }
 
-#item_533323 {
-  width: 98% !important; }
-
 @media only screen and (max-width: 1100px) {
   .btns-area {
     max-width: 400px;
@@ -6751,6 +6748,12 @@ div.check-rewards-table::-webkit-scrollbar-button {
   .white-borders {
     border: 15px solid #fff; } }
 @media only screen and (max-width: 767px) {
+  #item_533323 {
+    width: 98% !important; }
+
+  .btns-area {
+    text-align: center; }
+
   #banner-lp-v2 {
     min-height: 420px;
     background-position: right -100px top !important; }
@@ -7072,6 +7075,12 @@ div.check-rewards-table::-webkit-scrollbar-button {
   .points-txt {
     font-size: 20px;
     line-height: 22px; } }
+@media only screen and (max-width: 579px) {
+  #banner-refer-friend .k-button, #banner-refer-friend form.cart button[type='submit'], form.cart #banner-refer-friend button[type='submit'], #banner-refer-friend .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend button#place_order, #banner-refer-friend .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .woocommerce-Button {
+    display: inline-block !important; }
+  #banner-refer-friend .banner-row {
+    margin: 86%;
+    margin: 7%; } }
 @media only screen and (max-width: 480px) {
   .template-title {
     font-size: 30px;

@@ -23,6 +23,7 @@ if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 
   ));
 ?>
 <div class="k-productform--item k-productform__flavorselect" style="display:none;">
+
   <p>FLAVOR</p>
   <div class="k-productform__flavorselect__main k-productform__select-container">
     <select>

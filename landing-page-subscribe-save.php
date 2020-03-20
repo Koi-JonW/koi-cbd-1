@@ -17,9 +17,11 @@ get_header();
 			<div class="banner-description" style="margin-bottom:0px;"><?php the_field('description_banner_lp'); ?></div><!--end banner-description-->
 		</div><!--end banner-r-->
 <div class="k-hero--action" style="text-align:center; width:100%; margin-top:40px;">
-            <a href="/cbd-gummies/" class="k-button k-button--primary">
-          Shop Softgels &nbsp; &#8594;
-        </a>
+<?php if(get_field('show_button_banner')){ ?>
+          <a href="<?php the_field('button_url_banner'); ?>" class="k-button k-button--primary">
+          	<?php the_field('button_title_banner'); ?> &nbsp; &#8594;
+        	</a>
+<?php } ?>
         </div>
 	</div><!--end k-inner k-inner--md-->
 </section><!--end banner-lp-->
@@ -59,10 +61,10 @@ get_header();
 </section><!--end banner-section-lp-->
 <?php } ?>
 
-<section id="sign-up-area" style="padding-top:5%;">
+<section id="sign-up-area" style="padding-top:2% !important;">
 	<div class="content-sign-up-area">
 		<h3 class="title-sign-up-section" style="text-align:center; margin:0px;">
-			<?php the_field('title_qa_section'); ?>
+			<?php the_field('text_boxes_area'); ?>
 		</h3><!--end title-sign-up-section-->
 		<div class="content-sign-up-section" style="display:flex; flex-wrap:wrap;">
 		<?php
@@ -77,10 +79,10 @@ get_header();
 	</div>
 </section><!--end boxes-section-->
 
-<section id="sign-up-area">
+<section id="sign-up-area" style="padding-top:2% !important;">
 	<div class="content-sign-up-area">
 		<div class="title-sign-up-section" style="text-align:center;">
-			General
+			<?php the_field('title_qa_section'); ?>
 		</div><!--end title-sign-up-section-->
 		<div class="content-sign-up-section">
 		<?php
@@ -106,7 +108,7 @@ get_header();
 			<div class="box-qa">
 				<div class="title-qa">
 				<?php echo get_sub_field('question'); ?>
-				</div>
+				</div><!--end title-qa-->
 				<div id="close_<?php echo $id; ?>" class="simbol-qa-pos" onclick="qa<?php echo $id; ?>();" style="display:block;">+</div>
 				<div id="open_<?php echo $id; ?>" class="simbol-qa-neg" onclick="qaclose<?php echo $id; ?>();" style="display:none;">-</div>
 			</div>

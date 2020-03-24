@@ -293,6 +293,44 @@ $username = $current_user->display_name;
         }
     }, 100);
 
+	// --
+
+	function setSwellRewards(vipTiers, customerDetails){
+
+        vipTiers.forEach(function(tier){
+
+            var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
+            var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
+
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+
+        });
+
+        var currentTier = customerDetails.vipTier.name.toLocaleLowerCase();
+
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+    }
+
+    var checkSwellRewards = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+            var swellVipTiers = swellAPI.getVipTiers();
+            var swellCustomerDetails = swellAPI.getCustomerDetails();
+            if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
+                clearInterval(checkSwellRewards);
+                setSwellRewards(swellVipTiers, swellCustomerDetails);
+            }
+        }
+    }, 100);
+
     // --
 
     $('#referred-customers-send-btn').on('click', function(e) {

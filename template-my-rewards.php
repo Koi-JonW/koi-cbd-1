@@ -238,40 +238,6 @@ $username = $current_user->display_name;
 </script>
 <script>
 
-	function setSwellActiveCampaigns(campaigns){
-		campaigns.forEach(function(campaign){
-
-			$('.swell-campaign-list').append(
-				$('<li>').append(
-					$('<div>').append(
-						$('<i>').addClass('fa ' + campaign.icon),
-						$('<p>').text(campaign.rewardText),
-						$('<h5>').text(campaign.title)
-					).addClass('content-bx').attr({
-						'id': 'campaign-' + campaign.id
-					})
-				).addClass('campaign swell-campaign-link').attr({
-					'data-campaign-id': campaign.id,
-					'data-display-mode': 'modal',
-					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
-				})
-			);
-
-		});
-	}
-
-	var checkSwellActiveCampaigns = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCampaigns = swellAPI.getActiveCampaigns();
-			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSwellActiveCampaigns);
-            	setSwellActiveCampaigns(swellCampaigns);
-			}
-        }
-    }, 100);
-
-    // --
-
 	function setSwellCustomerReferrals(referrals){
 		referrals.forEach(function(referral){
 			$('.check-rewards-table tbody').append(
@@ -324,9 +290,13 @@ $username = $current_user->display_name;
         if (typeof swellAPI == 'object' && swellAPI !== null){
             var swellVipTiers = swellAPI.getVipTiers();
             var swellCustomerDetails = swellAPI.getCustomerDetails();
-            if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
-                clearInterval(checkSwellRewards);
-                setSwellRewards(swellVipTiers, swellCustomerDetails);
+            try {
+                if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
+                    clearInterval(checkSwellRewards);
+                    setSwellRewards(swellVipTiers, swellCustomerDetails);
+                }
+            } catch(err) {
+                // --
             }
         }
     }, 100);

@@ -231,9 +231,13 @@ get_header();
         if (typeof swellAPI == 'object' && swellAPI !== null){
 			var swellVipTiers = swellAPI.getVipTiers();
 			var swellCustomerDetails = swellAPI.getCustomerDetails();
-			if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
-            	clearInterval(checkSwellRewards);
-            	setSwellRewards(swellVipTiers, swellCustomerDetails);
+			try {
+				if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
+					clearInterval(checkSwellRewards);
+					setSwellRewards(swellVipTiers, swellCustomerDetails);
+				}
+			} catch(err) {
+				// --
 			}
         }
     }, 100);

@@ -168,6 +168,8 @@ $root = get_template_directory_uri();
       security: '<?php echo(wp_create_nonce("apply-coupon")); ?>'
     };
 
+    console.log('-- Applying Coupon');
+
     $.post('/?wc-ajax=apply_coupon', postData).done(function(data) {
       window.location.href = '/checkout';
     });

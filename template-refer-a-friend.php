@@ -22,6 +22,13 @@ get_header();
                 <div class="yotpo-box">
                     <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
                     <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
+				<div class="banner-links-sections">
+			 	You can also share your link with the buttons below.<br/>
+			 	<a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
+			 	<a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
+			 	<a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
+			 	<a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+				</div><!--end banner-links-sections-->
                 </div>
             </div>
             <div class="banner-step-3" style="display: none;">
@@ -47,7 +54,7 @@ get_header();
             <div class="check-rewards-below-table"><?php the_field('text_below_table_i'); ?></div>
             <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii'); ?></div>
             <div class="yotpo-box">
-                <a href="" class="k-button k-button--primary">Shop Now</a>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>cbd-tinctures/" class="k-button k-button--primary">Shop Now</a>
             </div>
         </div>
     </div>
@@ -65,7 +72,8 @@ get_header();
         <div class="yotpo-box">
             <input id="customers-input" type="text" class="input-text" placeholder="Your email">
             <a href="#" id="customers-send-btn" class="k-button k-button--primary">Next</a>
-        </div>
+
+        </div><!--end yotpo-box-->
     </div>
     <div class="banner-step-2" style="display: none;">
         <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
@@ -76,6 +84,14 @@ get_header();
         <div class="yotpo-box">
             <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
             <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
+			<div class="banner-links-sections">
+			 You can also share your link with the buttons below.<br/>
+			 <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
+			 <a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
+			 <a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
+			 <a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+			</div><!--end banner-links-sections-->
+
         </div>
     </div>
     <div class="banner-step-3" style="display: none;">
@@ -111,7 +127,7 @@ get_header();
         }
 
         var onError = function(err, log=true) {
-            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            alert('Please enter a valid email address');
             if(log){
                 console.log('-- identifyReferrer Error');
                 console.log(err);
@@ -141,7 +157,7 @@ get_header();
         }
 
         var onError = function(err, log=true) {
-            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            alert('Please enter a valid email address');
             if(log){
                 console.log('-- sendReferralEmails Error');
                 console.log(err);

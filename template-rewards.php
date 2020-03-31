@@ -131,7 +131,11 @@ get_header();
 		</div><!--end redeem-r-->
 	</div><!--end k-inner-->
 </section><!--end redeem-->
-
+<style>
+	.table-vips-cell-benefits {
+		text-transform: capitalize;
+	}
+</style>
 <script>
 	var $ = jQuery.noConflict();
 </script>
@@ -192,6 +196,48 @@ get_header();
 			if (swellCampaigns && swellCampaigns.length){
             	clearInterval(checkSwellActiveCampaigns);
             	setSwellActiveCampaigns(swellCampaigns);
+			}
+        }
+    }, 100);
+
+	// --
+
+	function setSwellRewards(vipTiers, customerDetails){
+
+		vipTiers.forEach(function(tier){
+
+			var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
+			var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
+
+			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
+			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
+			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
+			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+
+		});
+
+		var currentTier = customerDetails.vipTier.name.toLocaleLowerCase();
+
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+		$('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+	}
+
+	var checkSwellRewards = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+			var swellVipTiers = swellAPI.getVipTiers();
+			var swellCustomerDetails = swellAPI.getCustomerDetails();
+			try {
+				if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
+					clearInterval(checkSwellRewards);
+					setSwellRewards(swellVipTiers, swellCustomerDetails);
+				}
+			} catch(err) {
+				// --
 			}
         }
     }, 100);

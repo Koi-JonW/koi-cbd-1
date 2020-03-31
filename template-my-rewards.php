@@ -238,40 +238,6 @@ $username = $current_user->display_name;
 </script>
 <script>
 
-	function setSwellActiveCampaigns(campaigns){
-		campaigns.forEach(function(campaign){
-
-			$('.swell-campaign-list').append(
-				$('<li>').append(
-					$('<div>').append(
-						$('<i>').addClass('fa ' + campaign.icon),
-						$('<p>').text(campaign.rewardText),
-						$('<h5>').text(campaign.title)
-					).addClass('content-bx').attr({
-						'id': 'campaign-' + campaign.id
-					})
-				).addClass('campaign swell-campaign-link').attr({
-					'data-campaign-id': campaign.id,
-					'data-display-mode': 'modal',
-					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
-				})
-			);
-
-		});
-	}
-
-	var checkSwellActiveCampaigns = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCampaigns = swellAPI.getActiveCampaigns();
-			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSwellActiveCampaigns);
-            	setSwellActiveCampaigns(swellCampaigns);
-			}
-        }
-    }, 100);
-
-    // --
-
 	function setSwellCustomerReferrals(referrals){
 		referrals.forEach(function(referral){
 			$('.check-rewards-table tbody').append(
@@ -290,6 +256,48 @@ $username = $current_user->display_name;
             	clearInterval(checkSwellCustomerReferrals);
             	setSwellCustomerReferrals(swellCustomerDetails.referrals);
 			}
+        }
+    }, 100);
+
+	// --
+
+	function setSwellRewards(vipTiers, customerDetails){
+
+        vipTiers.forEach(function(tier){
+
+            var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
+            var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
+
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
+            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+
+        });
+
+        var currentTier = customerDetails.vipTier.name.toLocaleLowerCase();
+
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+    }
+
+    var checkSwellRewards = setInterval(function(){
+        if (typeof swellAPI == 'object' && swellAPI !== null){
+            var swellVipTiers = swellAPI.getVipTiers();
+            var swellCustomerDetails = swellAPI.getCustomerDetails();
+            try {
+                if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
+                    clearInterval(checkSwellRewards);
+                    setSwellRewards(swellVipTiers, swellCustomerDetails);
+                }
+            } catch(err) {
+                // --
+            }
         }
     }, 100);
 

@@ -581,3 +581,49 @@ add_action( 'woocommerce_single_product_summary', 'do_flavor_dropdown', 20);
 function do_flavor_dropdown() {
   wc_get_template('single-product/flavor-dropdown.php');
 }
+
+// -- woocommerce_order_status_completed
+
+function yotpo_create_order($order_id){
+
+  $order = new WC_Order($order_id);
+  $order_id = $order->get_id();
+  $order_ip = $order->get_customer_ip_address();
+  $order_user_agent = $order->get_customer_user_agent();
+  $order_currency = $order->get_currency();
+  
+  $order_total = float($order->get_total());
+  $order_total = strpos($order_total, '.') ? (int)$order_total : ((float)$order_total * 100);
+  
+  $order_user = $order->get_user();
+  $order_user_data = get_userdata($order_user->id);
+  $order_user_email = $order_user_data->user_email;
+
+  $swell_options = get_option('swell_options');
+  $swell_url = 'https://app.swellrewards.com/api/v2/orders';
+  $swell_data = array(
+    "ip_address" => $order_ip,
+    "user_agent" => $order_user_agent,
+    "order_id" => $order_id,
+    "customer_email" => $order_user_email,
+    "total_amount_cents" => $order_total,
+    "currency_code" => $order_currency
+  );
+
+  $ch = curl_init();
+  
+  curl_setopt($ch, CURLOPT_URL, $swell_url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($swell_data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'content-type: application/json', 
+    'x-api-key: ' . $swell_options['api_key'],
+    'x-guid: ' . $swell_options['guid']
+  ));
+
+  curl_exec($ch);
+
+}
+
+add_action('woocommerce_order_status_completed', 'yotpo_create_order');

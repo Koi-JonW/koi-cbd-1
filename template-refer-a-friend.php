@@ -4,7 +4,6 @@ defined('ABSPATH') || exit;
 
 $root = get_template_directory_uri();
 $site_content = get_fields('option');
-
 get_header();
 ?>
 

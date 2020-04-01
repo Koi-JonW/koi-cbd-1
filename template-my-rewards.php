@@ -147,10 +147,11 @@ $username = $current_user->display_name;
 		<div class="redeem-r">
 			<div class="template-title"><?php the_field('title_section_redeem'); ?></div><!--end template-title-->
 			<div class="content_section_redeem"><?php the_field('content_section_redeem'); ?></div><!--end content_section_redeem-->
-			<div class="points-range-orange"><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
+		
 		<?php
 		if( have_rows('points') ): ?>
 			<div class="points-area">
+			<div class="points-range-orange"><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
 			<?php while ( have_rows('points') ) : the_row(); ?>
 				<div class="points-box">
      				<div class="discount-txt"><?php the_sub_field('discount'); ?></div>
@@ -163,8 +164,8 @@ $username = $current_user->display_name;
 	</div><!--end k-inner-->
 </section><!--end redeem-->
 
-<section id="banner-refer-friend" style="background:url('<?php the_field('background_image','658196'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
-    <div class="banner-row" style="max-width:94%; margin:0 auto;">
+<section id="banner-refer-friend" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
+    <div class="banner-row max-width-banner-refer" style="max-width:94%; margin:0 auto;">
         <div class="banner-left">
             <div class="banner-above-titles-v2"><?php the_field('banner_above_title','658196'); ?></div>
             <div class="banner-titles-v2"><?php the_field('banner_title','658196'); ?></div>

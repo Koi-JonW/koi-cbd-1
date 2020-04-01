@@ -7074,7 +7074,10 @@ div.check-rewards-table::-webkit-scrollbar-button {
 
   .points-txt {
     font-size: 20px;
-    line-height: 22px; } }
+    line-height: 22px; }
+
+  .max-width-banner-refer {
+    max-width: 320px !important; } }
 @media only screen and (max-width: 579px) {
   #banner-refer-friend .k-button, #banner-refer-friend form.cart button[type='submit'], form.cart #banner-refer-friend button[type='submit'], #banner-refer-friend .k-checkout #payment button#place_order, .k-checkout #payment #banner-refer-friend button#place_order, #banner-refer-friend .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo #banner-refer-friend .woocommerce-Button {
     display: inline-block !important; }

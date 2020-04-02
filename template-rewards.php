@@ -49,7 +49,7 @@ get_header();
 	<div class='area-50-p'>
 		<div class='btns-area'>
 			<span>Hi, <span class='swell-user' style='display: inline-block;'><?php $current_user = wp_get_current_user(); echo($current_user->user_firstname ? $current_user->user_firstname : $current_user->user_login);?></span><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
-			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
+			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?><br/><?php the_field('track_referals_button'); ?>
 		</div><!--end btns-area-->
 	</div><!--end area-50-p-->
 <?php } else { ?>
@@ -119,11 +119,11 @@ get_header();
 		<?php
 		if( have_rows('points') ): ?>
 			<div class='points-area'>
-			<div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
+			<?php if(get_field('points_orange')){ ?><div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange--><?php } ?>
 			<?php while ( have_rows('points') ) : the_row(); ?>
 				<div class='points-box'>
-     				<div class='discount-txt'><?php the_sub_field('discount'); ?></div>
-					<div class='points-txt'><?php the_sub_field('points'); ?></div>
+					<div class='points-txt'><?php the_sub_field('discount'); ?></div>
+					<div class='discount-txt'><?php the_sub_field('points'); ?></div>
 				</div>
 			<?php endwhile; ?>
 			</div><!--end points-area-->
@@ -164,84 +164,6 @@ get_header();
 		$('.opta').removeClass('activex');
 		$('.optb').removeClass('activex');
 	});
-</script>
-<script>
-
-	function setSwellActiveCampaigns(campaigns){
-		campaigns.forEach(function(campaign){
-
-			$('.swell-campaign-list').append(
-				$('<li>').append(
-					$('<div>').append(
-						$('<i>').addClass('fa ' + campaign.icon),
-						$('<p>').text(campaign.rewardText),
-						$('<h5>').text(campaign.title)
-					).addClass('content-bx').attr({
-						'id': 'campaign-' + campaign.id
-					})
-				).addClass('campaign swell-campaign-link').attr({
-					'data-campaign-id': campaign.id,
-					'data-display-mode': 'modal',
-					'id': 'item_' + campaign.id,
-					'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
-				})
-			);
-
-		});
-	}
-
-	var checkSwellActiveCampaigns = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCampaigns = swellAPI.getActiveCampaigns();
-			if (swellCampaigns && swellCampaigns.length){
-            	clearInterval(checkSwellActiveCampaigns);
-            	setSwellActiveCampaigns(swellCampaigns);
-			}
-        }
-    }, 100);
-
-	// --
-
-	function setSwellRewards(vipTiers, customerDetails){
-
-		vipTiers.forEach(function(tier){
-
-			var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
-			var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
-
-			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
-			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
-			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
-			$('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
-
-		});
-
-		var currentTier = customerDetails.vipTier.name.toLocaleLowerCase();
-
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
-		$('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
-
-	}
-
-	var checkSwellRewards = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellVipTiers = swellAPI.getVipTiers();
-			var swellCustomerDetails = swellAPI.getCustomerDetails();
-			try {
-				if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
-					clearInterval(checkSwellRewards);
-					setSwellRewards(swellVipTiers, swellCustomerDetails);
-				}
-			} catch(err) {
-				// --
-			}
-        }
-    }, 100);
-
 </script>
 
 <?php get_footer(lp); ?>

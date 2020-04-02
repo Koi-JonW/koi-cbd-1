@@ -6144,9 +6144,9 @@ li.campaign p {
   .btns-area span {
     font-family: Recoleta Regular,serif;
     font-size: 45px;
-    line-height: 65px;
+    line-height: 45px;
     display: block;
-    padding-bottom: 25px; }
+    padding-bottom: 15px; }
   .btns-area a {
     display: block-inline;
     margin-bottom: 20px; }
@@ -6157,7 +6157,7 @@ li.campaign p {
     color: #f4b13e; }
   .btns-area .k-button, .btns-area form.cart button[type='submit'], form.cart .btns-area button[type='submit'], .btns-area .k-checkout #payment button#place_order, .k-checkout #payment .btns-area button#place_order, .btns-area .woocommerce-account #mag-overwrite-woo .woocommerce-Button, .woocommerce-account #mag-overwrite-woo .btns-area .woocommerce-Button {
     width: 80%;
-    padding: 20px 0px; }
+    padding: 15px 0px !important; }
 
 .white-btn {
   background-color: #fff;

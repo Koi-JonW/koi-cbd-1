@@ -151,11 +151,11 @@ $username = $current_user->display_name;
 		<?php
 		if( have_rows('points') ): ?>
 			<div class="points-area">
-			<div class="points-range-orange"><?php the_field('points_orange'); ?></div><!--end points-range-orange-->
+			<?php if(get_field('points_orange')){ ?><div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange--><?php } ?>
 			<?php while ( have_rows('points') ) : the_row(); ?>
 				<div class="points-box">
-     				<div class="discount-txt"><?php the_sub_field('discount'); ?></div>
-					<div class="points-txt"><?php the_sub_field('points'); ?></div>
+					<div class='points-txt'><?php the_sub_field('discount'); ?></div>
+					<div class='discount-txt'><?php the_sub_field('points'); ?></div>
 				</div>
 			<?php endwhile; ?>
 			</div><!--end points-area-->

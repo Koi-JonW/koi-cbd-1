@@ -22,6 +22,7 @@ if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 
     'exclude' => array( $product->id )
   ));
 ?>
+<?php if(get_field('show_flavor_dropdown')){ ?>
 <div class="k-productform--item k-productform__flavorselect">
   <p>FLAVOR</p>
   <div class="k-productform__flavorselect__main k-productform__select-container">
@@ -41,11 +42,20 @@ if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 
           $show_tincture = false;
         }
         if ($show_tincture) : ?>
-          <option value="<?php echo $tincture->get_permalink(); ?>" label="<?php echo $tincture->get_name(); ?>"></option>
+		<?php if(get_field('show_flavor_dropdown', $tincture->get_id())){ ?>
+          <option value="<?php echo $tincture->get_permalink(); ?>" label="<?php echo $tincture->get_name(); ?>" id="<?php echo get_field('show_flavor_dropdown', $tincture->get_id()); ?>">
+			<?php echo $tincture->get_name(); ?>
+		</option>
+		<?php } ?>
         <?php 
         endif;
       endforeach; ?>
       </select>
   </div>
 </div>
+<?php 
+}else{
+echo '<br/>';
+}
+ ?>
 <?php endif; ?>

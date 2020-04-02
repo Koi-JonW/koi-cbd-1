@@ -125,20 +125,16 @@ get_header();
             step_3.hide();
         }
 
-        var onError = function(err, log=true) {
+        var onError = function(err) {
             alert('Please enter a valid email address');
-            if(log){
-                console.log('-- identifyReferrer Error');
-                console.log(err);
-            }
+            console.log('-- identifyReferrer Error\n', err);
         }
 
         try {
             swellAPI.identifyReferrer($('#customers-input').val(), onSuccess, onError);
         } catch(err) {
-            console.log('-- identifyReferrer Exception');
-            console.log(err);
-            onError(err, false);
+            console.log('-- identifyReferrer Exception\n', err);
+            onError(err);
         }
 
     });
@@ -184,29 +180,6 @@ get_header();
         step_3.hide();
 
     });
-
-    // --
-
-	function setSwellCustomerReferrals(referrals){
-		referrals.forEach(function(referral){
-			$('.check-rewards-table tbody').append(
-				$('<tr>').append(
-					$('<td>').text(referral.email),
-					$('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
-                )
-			);
-		});
-	}
-
-	var checkSwellCustomerReferrals = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCustomerDetails = swellAPI.getCustomerDetails();
-			if (swellCustomerDetails && swellCustomerDetails.referrals.length){
-            	clearInterval(checkSwellCustomerReferrals);
-            	setSwellCustomerReferrals(swellCustomerDetails.referrals);
-			}
-        }
-    }, 100);
 
 </script>
 

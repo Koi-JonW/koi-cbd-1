@@ -131,5 +131,168 @@ $root = get_template_directory_uri();
       backdrop.classList.remove('active');
     })();
   </script>
+
+  <!-- Swell Integration -->
+  <script>
+	  var $ = jQuery.noConflict();
+  </script>
+  <script>
+
+    var swellCustomerDetails = null;
+    var swellActiveCampaigns = null;
+    var swellActiveRedemptionOptions = null;
+    var swellVipTiers = null;
+
+    // -- Swell secondary functions
+
+    var prepareRedemptionForm = function(){
+
+      if($('.swell-redemption-dropdown').length){
+
+        console.log('-- prepareRedemptionForm');
+
+        $('.swell-redemption-dropdown').html('');
+        $('.swell-redemption-dropdown').append(
+          $('<option>').prop('selected', true).prop('disabled', true).text('Choose your rewards')
+        )
+
+        swellActiveRedemptionOptions.forEach(function(option){
+          if(swellCustomerDetails.pointsBalance >= option.costInPoints){
+            $('.swell-redemption-dropdown').append(
+              $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
+            )
+          }
+        });
+
+      }
+
+    }
+
+    var setSwellActiveCampaigns = function(){
+
+      if($('.swell-campaign-list').length){
+
+        console.log('-- setSwellActiveCampaigns');
+
+        swellActiveCampaigns.forEach(function(campaign){
+
+          $('.swell-campaign-list').append(
+            $('<li>').append(
+              $('<div>').append(
+                $('<i>').addClass('fa ' + campaign.icon),
+                $('<p>').text(campaign.rewardText),
+                $('<h5>').text(campaign.title)
+              ).addClass('content-bx').attr({
+                'id': 'campaign-' + campaign.id
+              })
+            ).addClass('campaign swell-campaign-link').attr({
+              'data-campaign-id': campaign.id,
+              'data-display-mode': 'modal',
+              'id': 'item_' + campaign.id,
+              'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
+            })
+          );
+
+        });
+
+		  }
+	  }
+
+	  var setSwellRewards = function(){
+
+      if($('[class^="table-vips-cell"]').length){
+
+        console.log('-- setSwellRewards');
+
+        swellVipTiers.forEach(function(tier){
+
+          var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
+          var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
+
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+
+        });
+
+        var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+      }
+
+    }
+
+    var setSwellCustomerReferrals = function(){
+
+      if($('.check-rewards-table').length){
+
+        console.log('-- setSwellCustomerReferrals');
+
+        swellCustomerDetails.referrals.forEach(function(referral){
+			
+    			$('.check-rewards-table tbody').append(
+		    		$('<tr>').append(
+				    	$('<td>').text(referral.email),
+					    $('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
+            )
+			    );
+
+        });
+
+      }
+
+    }
+
+    // -- Swell main functions
+
+    var swellCore = function(){
+
+      console.log('-- swellCore');
+
+      prepareRedemptionForm();
+      setSwellActiveCampaigns();
+      setSwellRewards();
+      setSwellCustomerReferrals();
+
+    };
+
+    // -- Swell variables
+
+    var setSwellVariables = setInterval(function(){
+      if (typeof swellAPI == 'object' && swellAPI !== null){
+
+        swellCustomerDetails = swellAPI.getCustomerDetails();
+
+        if(swellCustomerDetails.created_at){
+
+          clearInterval(setSwellVariables);
+
+          console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
+
+          swellActiveCampaigns = swellAPI.getActiveCampaigns();
+          console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
+
+          swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
+          console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
+
+          swellVipTiers = swellAPI.getVipTiers();
+          console.log('-- swellVipTiers:\n', swellVipTiers);
+
+          swellCore();
+
+        }
+
+      }
+    }, 100);
+
+  </script>
+
 </body>
 </html>

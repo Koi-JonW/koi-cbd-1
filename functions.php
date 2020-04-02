@@ -592,8 +592,10 @@ function yotpo_create_order($order_id){
   $order_user_agent = $order->get_customer_user_agent();
   $order_currency = $order->get_currency();
   
-  $order_total = float($order->get_total());
-  $order_total = strpos($order_total, '.') ? (int)$order_total : ((float)$order_total * 100);
+  $order_total = (float)$order->get_total();
+  $order_total = number_format($order_total, 2, '-', '-');
+  $order_total = str_replace('-', '', $order_total);
+  $order_total = (int)str_replace('-', '', $order_total);
   
   $order_user = $order->get_user();
   $order_user_data = get_userdata($order_user->id);
@@ -622,7 +624,22 @@ function yotpo_create_order($order_id){
     'x-guid: ' . $swell_options['guid']
   ));
 
-  curl_exec($ch);
+  $swell_result = curl_exec($ch);
+
+  // --
+
+  $swell_log  = '-- [' . date('y-m-d H:i:s') . '] yotpo_create_order' . PHP_EOL;
+  $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
+  $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
+  $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
+  $swell_log .= "- customer_email: {$order_user_email}" . PHP_EOL;
+  $swell_log .= "- total_amount_cents: {$order_total}" . PHP_EOL;
+  $swell_log .= "- currency_code: {$order_currency}" . PHP_EOL;
+  $swell_log .= "- result:" . PHP_EOL;
+  $swell_log .= $swell_result . PHP_EOL;
+  $swell_log .= "--" . PHP_EOL;
+
+  file_put_contents('yotpo-api.log', $swell_log, FILE_APPEND);
 
 }
 

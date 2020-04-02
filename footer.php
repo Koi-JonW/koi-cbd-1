@@ -132,77 +132,167 @@ $root = get_template_directory_uri();
     })();
   </script>
 
-  <!-- Swell Redemption -->
+  <!-- Swell Integration -->
   <script>
 	  var $ = jQuery.noConflict();
   </script>
   <script>
 
-  var prepareRedemptionForm = function(){
+    var swellCustomerDetails = null;
+    var swellActiveCampaigns = null;
+    var swellActiveRedemptionOptions = null;
+    var swellVipTiers = null;
 
-    var customerDetails = swellAPI.getCustomerDetails();
+    // -- Swell secondary functions
 
-    $('.swell-redemption-dropdown').html('');
-    $('.swell-redemption-dropdown').append(
-      $('<option>').prop('selected', true).prop('disabled', true).text('Choose your rewards')
-    )
+    var prepareRedemptionForm = function(){
 
-    swellAPI.getActiveRedemptionOptions().forEach(function(option){
-      if(customerDetails.pointsBalance >= option.costInPoints){
+      if($('.swell-redemption-dropdown').length){
+
+        console.log('-- prepareRedemptionForm');
+
+        $('.swell-redemption-dropdown').html('');
         $('.swell-redemption-dropdown').append(
-          $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
+          $('<option>').prop('selected', true).prop('disabled', true).text('Choose your rewards')
         )
+
+        swellActiveRedemptionOptions.forEach(function(option){
+          if(swellCustomerDetails.pointsBalance >= option.costInPoints){
+            $('.swell-redemption-dropdown').append(
+              $('<option>').val(option.id).text(option.name + ' = ' + option.costText)
+            )
+          }
+        });
+
       }
-    });
 
-  }
+    }
 
-  var onSuccess = function(redemption) {
+    var setSwellActiveCampaigns = function(){
 
-    alert('Your coupon code is: ' + redemption.couponCode);
+      if($('.swell-campaign-list').length){
 
-    prepareRedemptionForm();
+        console.log('-- setSwellActiveCampaigns');
 
-    var postData = {
-      coupon_code: redemption.couponCode, 
-      security: '<?php echo(wp_create_nonce("apply-coupon")); ?>'
+        swellActiveCampaigns.forEach(function(campaign){
+
+          $('.swell-campaign-list').append(
+            $('<li>').append(
+              $('<div>').append(
+                $('<i>').addClass('fa ' + campaign.icon),
+                $('<p>').text(campaign.rewardText),
+                $('<h5>').text(campaign.title)
+              ).addClass('content-bx').attr({
+                'id': 'campaign-' + campaign.id
+              })
+            ).addClass('campaign swell-campaign-link').attr({
+              'data-campaign-id': campaign.id,
+              'data-display-mode': 'modal',
+              'id': 'item_' + campaign.id,
+              'style': 'background: url(' + campaign.backgroundImageUrl  + ') center center no-repeat; background-size: cover;'
+            })
+          );
+
+        });
+
+		  }
+	  }
+
+	  var setSwellRewards = function(){
+
+      if($('[class^="table-vips-cell"]').length){
+
+        console.log('-- setSwellRewards');
+
+        swellVipTiers.forEach(function(tier){
+
+          var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
+          var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
+
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
+          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+
+        });
+
+        var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+      }
+
+    }
+
+    var setSwellCustomerReferrals = function(){
+
+      if($('.check-rewards-table').length){
+
+        console.log('-- setSwellCustomerReferrals');
+
+        swellCustomerDetails.referrals.forEach(function(referral){
+			
+    			$('.check-rewards-table tbody').append(
+		    		$('<tr>').append(
+				    	$('<td>').text(referral.email),
+					    $('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
+            )
+			    );
+
+        });
+
+      }
+
+    }
+
+    // -- Swell main functions
+
+    var swellCore = function(){
+
+      console.log('-- swellCore');
+
+      prepareRedemptionForm();
+      setSwellActiveCampaigns();
+      setSwellRewards();
+      setSwellCustomerReferrals();
+
     };
 
-    console.log('-- Applying Coupon');
+    // -- Swell variables
 
-    $.post('/?wc-ajax=apply_coupon', postData).done(function(data) {
-      window.location.href = '/checkout';
-    });
+    var setSwellVariables = setInterval(function(){
+      if (typeof swellAPI == 'object' && swellAPI !== null){
 
-  };
+        swellCustomerDetails = swellAPI.getCustomerDetails();
 
-  var onError = function(err, log=true) {
-    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-    if(log){
-      console.log('-- makeRedemption Error');
-      console.log(err);
-    }
-  }
+        if(swellCustomerDetails.created_at){
 
-  $(document).on('swell:setup', () => {
+          clearInterval(setSwellVariables);
 
-    prepareRedemptionForm();
+          console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
 
-    $('.swell-redemption-button').on('click', function(e){
-      e.preventDefault();
-      var redemptionOption = $(this).parent().find('.swell-redemption-dropdown option:selected').val();
-      if(redemptionOption){
-        swellAPI.makeRedemption({
-          redemptionOptionId: redemptionOption
-        }, onSuccess, onError);
-      } else {
-        alert('Please select a redemption option');
+          swellActiveCampaigns = swellAPI.getActiveCampaigns();
+          console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
+
+          swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
+          console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
+
+          swellVipTiers = swellAPI.getVipTiers();
+          console.log('-- swellVipTiers:\n', swellVipTiers);
+
+          swellCore();
+
+        }
+
       }
-    })
+    }, 100);
 
-  });
   </script>
-
 
 </body>
 </html>

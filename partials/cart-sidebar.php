@@ -54,3 +54,38 @@
   }
 }
 </style>
+<script>
+  var $ = jQuery.noConflict();
+</script>
+<script>
+
+  var onRedemptionSuccess = function(redemption) {
+    alert('Your coupon code is: ' + redemption.couponCode);
+    prepareRedemptionForm();
+    var postData = {
+      coupon_code: redemption.couponCode, 
+      security: '<?php echo(wp_create_nonce("apply-coupon")); ?>'
+    };
+    $.post('/?wc-ajax=apply_coupon', postData).done(function(data) {
+      window.location.href = '/checkout';
+    });
+  };
+
+  var onRedemptionError = function(err) {
+    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+    console.log('-- makeRedemption Error:\n', err);
+  }
+
+  $('.swell-redemption-button').on('click', function(e){
+    e.preventDefault();
+    var redemptionOption = $(this).parent().find('.swell-redemption-dropdown option:selected').val();
+    if(redemptionOption){
+      swellAPI.makeRedemption({
+        redemptionOptionId: redemptionOption
+      }, onRedemptionSuccess, onRedemptionError);
+    } else {
+      alert('Please select a redemption option');
+    }
+  })
+
+</script>

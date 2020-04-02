@@ -239,71 +239,6 @@ $username = $current_user->display_name;
 </script>
 <script>
 
-	function setSwellCustomerReferrals(referrals){
-		referrals.forEach(function(referral){
-			$('.check-rewards-table tbody').append(
-				$('<tr>').append(
-					$('<td>').text(referral.email),
-					$('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
-                )
-			);
-		});
-	}
-
-	var checkSwellCustomerReferrals = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-			var swellCustomerDetails = swellAPI.getCustomerDetails();
-			if (swellCustomerDetails && swellCustomerDetails.referrals.length){
-            	clearInterval(checkSwellCustomerReferrals);
-            	setSwellCustomerReferrals(swellCustomerDetails.referrals);
-			}
-        }
-    }, 100);
-
-	// --
-
-	function setSwellRewards(vipTiers, customerDetails){
-
-        vipTiers.forEach(function(tier){
-
-            var multiplier = (parseFloat(tier.pointsMultiplier) % 1) ? (parseFloat(tier.pointsMultiplier) + 'x') : (parseInt(tier.pointsMultiplier) + 'x');
-            var bonus = parseFloat(tier.pointsMultiplier) + ' Points';
-
-            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
-            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
-            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
-            $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
-
-        });
-
-        var currentTier = customerDetails.vipTier.name.toLocaleLowerCase();
-
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
-
-    }
-
-    var checkSwellRewards = setInterval(function(){
-        if (typeof swellAPI == 'object' && swellAPI !== null){
-            var swellVipTiers = swellAPI.getVipTiers();
-            var swellCustomerDetails = swellAPI.getCustomerDetails();
-            try {
-                if (swellVipTiers.length && swellCustomerDetails.vipTier.name){
-                    clearInterval(checkSwellRewards);
-                    setSwellRewards(swellVipTiers, swellCustomerDetails);
-                }
-            } catch(err) {
-                // --
-            }
-        }
-    }, 100);
-
-    // --
-
     $('#referred-customers-send-btn').on('click', function(e) {
 
         e.preventDefault();
@@ -314,12 +249,9 @@ $username = $current_user->display_name;
             step_3.show();
         }
 
-        var onError = function(err, log=true) {
+        var onError = function(err) {
             alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            if(log){
-                console.log('-- sendReferralEmails Error');
-                console.log(err);
-            }
+            console.log('-- sendReferralEmails Error\n', err);
         }
 
         var emails = $('#referred-customers-input').val().split(',');
@@ -327,9 +259,7 @@ $username = $current_user->display_name;
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
-            console.log('-- sendReferralEmails Exception');
-            console.log(err);
-            onError(err, false);
+            onError(err);
         }
 
         // --

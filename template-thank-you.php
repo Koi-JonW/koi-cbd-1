@@ -61,12 +61,9 @@ $username = $current_user->display_name;
             step_3.show();
         }
 
-        var onError = function(err, log=true) {
+        var onError = function(err) {
             alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            if(log){
-                console.log('-- sendReferralEmails Error');
-                console.log(err);
-            }
+            console.log('-- sendReferralEmails Error:\n', err);
         }
 
         var emails = $('#referred-customers-input').val().split(',');
@@ -74,9 +71,7 @@ $username = $current_user->display_name;
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
-            console.log('-- sendReferralEmails Exception');
-            console.log(err);
-            onError(err, false);
+            onError(err);
         }
 
         });

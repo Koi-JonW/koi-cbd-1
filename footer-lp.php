@@ -122,9 +122,7 @@ $root = get_template_directory_uri();
   <script type="text/javascript" src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script type="text/javascript" src="https://cdn.plyr.io/3.5.6/plyr.polyfilled.js"></script>
 
-  <?php wp_footer(); ?>
-
-  <script type="text/javascript" src="<?php echo $root.'/dist/js/magnetic.bundle.js?v=1.12.1'; ?>"></script>
+  <script type="text/javascript" src="<?php echo $root.'/dist/js/magnetic.bundle.js?v=1.12.4'; ?>"></script>
   <script type="text/javascript">
     (function() {
       var backdrop = document.querySelector('#k-backdrop');
@@ -132,7 +130,9 @@ $root = get_template_directory_uri();
     })();
   </script>
 
-  <!-- Swell Integration -->
+  <?php wp_footer(); ?>
+
+  <!-- Swell Integration :: BEGIN -->
   <script>
 	  var $ = jQuery.noConflict();
   </script>
@@ -145,7 +145,7 @@ $root = get_template_directory_uri();
 
     // -- Swell secondary functions
 
-    var prepareRedemptionForm = function(){
+    function prepareRedemptionForm(){
 
       if($('.swell-redemption-dropdown').length){
 
@@ -168,7 +168,7 @@ $root = get_template_directory_uri();
 
     }
 
-    var setSwellActiveCampaigns = function(){
+    function setSwellActiveCampaigns(){
 
       if($('.swell-campaign-list').length){
 
@@ -198,7 +198,7 @@ $root = get_template_directory_uri();
 		  }
 	  }
 
-	  var setSwellRewards = function(){
+	  function setSwellRewards(){
 
       if($('[class^="table-vips-cell"]').length){
 
@@ -233,7 +233,7 @@ $root = get_template_directory_uri();
 
     }
 
-    var setSwellCustomerReferrals = function(){
+    function setSwellCustomerReferrals(){
 
       if($('.check-rewards-table').length){
 
@@ -256,47 +256,47 @@ $root = get_template_directory_uri();
 
     // -- Swell main functions
 
-    var swellCore = function(){
+    function swellCustom(){
 
-      console.log('-- swellCore');
+      console.log('-- swellCustom :: footer-lp');
 
       prepareRedemptionForm();
-      setSwellActiveCampaigns();
+      // setSwellActiveCampaigns();
       setSwellRewards();
       setSwellCustomerReferrals();
 
     };
 
-    // -- Swell variables
-
-    var setSwellVariables = setInterval(function(){
-      if (typeof swellAPI == 'object' && swellAPI !== null){
-
-        swellCustomerDetails = swellAPI.getCustomerDetails();
-
-        if(swellCustomerDetails.created_at){
-
-          clearInterval(setSwellVariables);
-
-          console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
-
-          swellActiveCampaigns = swellAPI.getActiveCampaigns();
-          console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
-
-          swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
-          console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
-
-          swellVipTiers = swellAPI.getVipTiers();
-          console.log('-- swellVipTiers:\n', swellVipTiers);
-
-          swellCore();
-
-        }
-
-      }
-    }, 100);
-
   </script>
+  <script>
+    $(document).on("swell:initialized", function(){
+
+      console.log('-- swell:initialized');
+
+      swellActiveCampaigns = swellAPI.getActiveCampaigns();
+      console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
+
+      swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
+      console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
+
+      swellVipTiers = swellAPI.getVipTiers();
+      console.log('-- swellVipTiers:\n', swellVipTiers);
+
+    });
+  </script>
+  <script>
+    $(document).on("swell:setup", function(){
+
+      console.log('-- swell:setup');
+
+      swellCustomerDetails = swellAPI.getCustomerDetails();
+      console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
+
+      swellCustom();
+
+    });
+  </script>
+  <!-- Swell Integration :: END -->
 
 </body>
 </html>

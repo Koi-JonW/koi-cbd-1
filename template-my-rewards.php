@@ -239,6 +239,12 @@ $username = $current_user->display_name;
 </script>
 <script>
 
+    var step_1 = $('.banner-step-1');
+    var step_2 = $('.banner-step-2');
+    var step_3 = $('.banner-step-3');
+
+    // --
+
     $('#referred-customers-send-btn').on('click', function(e) {
 
         e.preventDefault();

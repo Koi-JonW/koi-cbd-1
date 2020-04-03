@@ -132,7 +132,8 @@ $root = get_template_directory_uri();
     })();
   </script>
 
-  <!-- Swell Integration -->
+
+  <!-- Swell Integration :: BEGIN -->
   <script>
 	  var $ = jQuery.noConflict();
   </script>
@@ -145,7 +146,7 @@ $root = get_template_directory_uri();
 
     // -- Swell secondary functions
 
-    var prepareRedemptionForm = function(){
+    function prepareRedemptionForm(){
 
       if($('.swell-redemption-dropdown').length){
 
@@ -168,7 +169,7 @@ $root = get_template_directory_uri();
 
     }
 
-    var setSwellActiveCampaigns = function(){
+    function setSwellActiveCampaigns(){
 
       if($('.swell-campaign-list').length){
 
@@ -198,7 +199,7 @@ $root = get_template_directory_uri();
 		  }
 	  }
 
-	  var setSwellRewards = function(){
+	  function setSwellRewards(){
 
       if($('[class^="table-vips-cell"]').length){
 
@@ -216,20 +217,24 @@ $root = get_template_directory_uri();
 
         });
 
-        var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+        if(swellCustomerDetails.vipTier){
 
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+          var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+        }
 
       }
 
     }
 
-    var setSwellCustomerReferrals = function(){
+    function setSwellCustomerReferrals(){
 
       if($('.check-rewards-table').length){
 
@@ -252,47 +257,47 @@ $root = get_template_directory_uri();
 
     // -- Swell main functions
 
-    var swellCore = function(){
+    function swellCustom(){
 
-      console.log('-- swellCore');
+      console.log('-- swellCustom :: footer-lp');
 
       prepareRedemptionForm();
-      setSwellActiveCampaigns();
+      // setSwellActiveCampaigns();
       setSwellRewards();
       setSwellCustomerReferrals();
 
     };
 
-    // -- Swell variables
-
-    var setSwellVariables = setInterval(function(){
-      if (typeof swellAPI == 'object' && swellAPI !== null){
-
-        swellCustomerDetails = swellAPI.getCustomerDetails();
-
-        if(swellCustomerDetails.created_at){
-
-          clearInterval(setSwellVariables);
-
-          console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
-
-          swellActiveCampaigns = swellAPI.getActiveCampaigns();
-          console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
-
-          swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
-          console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
-
-          swellVipTiers = swellAPI.getVipTiers();
-          console.log('-- swellVipTiers:\n', swellVipTiers);
-
-          swellCore();
-
-        }
-
-      }
-    }, 100);
-
   </script>
+  <script>
+    $(document).on("swell:initialized", function(){
+
+      console.log('-- swell:initialized');
+
+      swellActiveCampaigns = swellAPI.getActiveCampaigns();
+      console.log('-- swellActiveCampaigns:\n', swellActiveCampaigns);
+
+      swellActiveRedemptionOptions = swellAPI.getActiveRedemptionOptions();
+      console.log('-- swellActiveRedemptionOptions:\n', swellActiveRedemptionOptions);
+
+      swellVipTiers = swellAPI.getVipTiers();
+      console.log('-- swellVipTiers:\n', swellVipTiers);
+
+    });
+  </script>
+  <script>
+    $(document).on("swell:setup", function(){
+
+      console.log('-- swell:setup');
+
+      swellCustomerDetails = swellAPI.getCustomerDetails();
+      console.log('-- swellCustomerDetails:\n', swellCustomerDetails);
+
+      swellCustom();
+
+    });
+  </script>
+  <!-- Swell Integration :: END -->
 
 </body>
 </html>

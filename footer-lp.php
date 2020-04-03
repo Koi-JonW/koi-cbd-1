@@ -216,14 +216,18 @@ $root = get_template_directory_uri();
 
         });
 
-        var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+        if(swellCustomerDetails.vipTier){
 
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
-        $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+          var currentTier = swellCustomerDetails.vipTier.name.toLocaleLowerCase();
+
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-title').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-benefits').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-multiplier').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-bonus').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-offer').addClass('bg-orange');
+          $('.table-vips-cell-' + currentTier + '.table-vips-cell-coupons').addClass('bg-orange');
+
+        }
 
       }
 

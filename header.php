@@ -65,8 +65,21 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
   .select_options_area, .select_options_text{width:100%; float:none;}
   .select_options_text{font-size:15px !important;}
   }
+  @media only screen and (max-width:767px){
+  .k-header.is-open{position:absolute !important;}
+  #k-backdrop{position:relative !important;}
+  }
   </style>
-
+<script>
+var $ = jQuery.noConflict();
+$(document).ready(function(){
+    $("#k-nav-trigger").click(function() {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+        return false;
+    });
+});
+  </script>
+  
 </head>
 <body <?php body_class(); ?>>
   <script>

@@ -79,6 +79,7 @@ $(document).ready(function(){
     });
 });
   </script>
+  
 </head>
 <body <?php body_class(); ?>>
   <script>

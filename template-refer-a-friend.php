@@ -127,13 +127,13 @@ get_header();
 
         var onError = function(err) {
             alert('Please enter a valid email address');
-            console.log('-- identifyReferrer Error\n', err);
+            console.log('-- identifyReferrer Error:\n', err);
         }
 
         try {
             swellAPI.identifyReferrer($('#customers-input').val(), onSuccess, onError);
         } catch(err) {
-            console.log('-- identifyReferrer Exception\n', err);
+            console.log('-- identifyReferrer Exception:\n', err);
             onError(err);
         }
 
@@ -151,12 +151,9 @@ get_header();
             step_3.show();
         }
 
-        var onError = function(err, log=true) {
+        var onError = function(err) {
             alert('Please enter a valid email address');
-            if(log){
-                console.log('-- sendReferralEmails Error');
-                console.log(err);
-            }
+            console.log('-- sendReferralEmails Error:\n', err);
         }
 
         var emails = $('#referred-customers-input').val().split(',');
@@ -164,9 +161,8 @@ get_header();
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
-            console.log('-- sendReferralEmails Exception');
-            console.log(err);
-            onError(err, false);
+            console.log('-- sendReferralEmails Exception:\n', err);
+            onError(err);
         }
 
     });

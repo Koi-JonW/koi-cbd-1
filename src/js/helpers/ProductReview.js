@@ -99,6 +99,7 @@ export default class ProductReview {
 
       If possible, it may be better to set this on a WP user level.
     */
+    console.log('--- BEFORE')
     if (window.localStorage.getItem(`yotpo_vote-${this.reviewId}`)) {
       // the user has already voted on this item.
       this.alreadyVoted = true;
@@ -106,6 +107,7 @@ export default class ProductReview {
       element.removeClass('k-arrow--voted');
       return;
     }
+    console.log('--- AFTER')
 
     if (element === this.$upvote) {
       this.postVote('up');

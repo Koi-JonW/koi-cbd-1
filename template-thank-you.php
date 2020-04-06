@@ -71,6 +71,7 @@ $username = $current_user->display_name;
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
+            console.log('-- sendReferralEmails Exception:\n', err);
             onError(err);
         }
 

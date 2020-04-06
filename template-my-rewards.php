@@ -101,9 +101,10 @@ if($show_popup){ ?>
 		<div class="btns-area">
 <?php
 $current_user = wp_get_current_user();
-$username = $current_user->display_name;
+$user_name = $current_user->display_name;
+$user_email = $current_user->user_email;
 ?>
-			<span style="padding-bottom:5px;">Hi, <?php echo $username; ?></span>
+			<span style="padding-bottom:5px;">Hi, <?php echo $user_name; ?></span>
 <strong>MANAGE ACCOUNT</strong><br/>
 <a href="<?php echo esc_url( home_url( '/account' ) ); ?>" style="color:#000;">Dashboard</a><br/>
 <strong>My Rewards</strong><br/>
@@ -117,7 +118,7 @@ $username = $current_user->display_name;
 	</div><!--end area-35-p-->
 	<div class="area-65-p">
 		<div class="btns-area" style="max-width:90% !important;">
-			<span>Hi, <?php echo $username; ?><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
+			<span>Hi, <?php echo $user_name; ?><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
 			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
 		</div><!--end btns-area-->
 	</div><!--end area-65-p-->
@@ -243,29 +244,48 @@ $username = $current_user->display_name;
     var step_2 = $('.banner-step-2');
     var step_3 = $('.banner-step-3');
 
+    var user_email = '<?php echo($user_email); ?>';
+
     // --
 
     $('#referred-customers-send-btn').on('click', function(e) {
 
         e.preventDefault();
 
-        var onSuccess = function() {
-            step_1.hide();
-            step_2.hide();
-            step_3.show();
-        }
-
-        var onError = function(err) {
-            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            console.log('-- sendReferralEmails Error\n', err);
-        }
-
-        var emails = $('#referred-customers-input').val().split(',');
+        // --
 
         try {
-            swellAPI.sendReferralEmails(emails, onSuccess, onError);
+            swellAPI.identifyReferrer(
+                user_email, 
+                function(){
+
+                    console.log('Referrer identified: ' + user_email);
+
+                    try {
+                        swellAPI.sendReferralEmails(
+                            $('#referred-customers-input').val().split(','), 
+                            function(){
+                                step_1.hide();
+                                step_2.hide();
+                                step_3.show();
+                            }, 
+                            function(err){
+                                alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+                                console.log('-- sendReferralEmails Error:\n', err);
+                            }
+                        );
+                    } catch(err) {
+                        onError(err);
+                    }
+
+
+                }, 
+                function(err){
+                    console.log('-- identifyReferrer Error:\n', err);
+                }
+            );
         } catch(err) {
-            onError(err);
+            console.log('-- Exception:\n', err);
         }
 
         // --

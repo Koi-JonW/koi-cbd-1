@@ -65,6 +65,7 @@ $unflavored_products = array(205502, 30207);
         'visibility' => 'visible',
         'post_type' => 'product',
         'category' => array($product_category_slug),
+	   'orderby' => 'menu_order',
       );
 
       $products = wc_get_products($args);
@@ -127,7 +128,8 @@ $unflavored_products = array(205502, 30207);
        * Sort array of objects by value of key
        * https://stackoverflow.com/questions/4282413/sort-array-of-objects-by-object-fields
        */
-      usort($products, "sortByRating");
+      // usort($products, "sortByRating");
+	 usort($products);
 
       foreach ($products as $idx => $product) {
         $product_is_hidden = $product->get_status() === 'draft' || $product->get_catalog_visibility() === 'hidden';
@@ -161,6 +163,7 @@ $unflavored_products = array(205502, 30207);
           'product_rating' => $product->visible_rating,
           'product_total_reviews' => $product->total_reviews,
           'is_archive' => true,
+
         );
 
         echo k_product_card($card_fields);

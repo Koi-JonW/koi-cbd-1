@@ -85,10 +85,10 @@ get_header();
             <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
 			<div class="banner-links-sections">
 			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
 			</div><!--end banner-links-sections-->
 
         </div>

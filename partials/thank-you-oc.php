@@ -12,16 +12,16 @@ function close_yp(){
     <p>Thanks! <?php echo $username; ?></p>
     <div class="banner-row responsive-area-yp">
         <div class="banner-left">
-            <img src="<?php the_field('left_image','658329'); ?>" alt="" class="img-desktop">
-            <!--<img src="<?php the_field('left_image_mobile','658329'); ?>" alt="" class="img-mobile">-->
+            <img src="<?php the_field('left_image','options'); ?>" alt="" class="img-desktop">
+            <!--<img src="<?php the_field('left_image_mobile','options'); ?>" alt="" class="img-mobile">-->
         </div>
         <div class="banner-right">
             <div class="banner-step-2">
-                <div class="banner-above-titles-v3"><?php the_field('banner_above_title','658329'); ?></div>
-                <div class="banner-titles-v3"><?php the_field('banner_title','658329'); ?></div>
-                <div class="banner-description-v3"><?php the_field('banner_content','658329'); ?></div>
+                <div class="banner-above-titles-v3"><?php the_field('banner_above_title','options'); ?></div>
+                <div class="banner-titles-v3"><?php the_field('banner_title','options'); ?></div>
+                <div class="banner-description-v3"><?php the_field('banner_content','options'); ?></div>
                 <div class="banner-underline"></div>
-                <div class="button-text-below"><?php the_field('text_below_line','658329'); ?></div>
+                <div class="button-text-below"><?php the_field('text_below_line','options'); ?></div>
                 <div class="yotpo-box">
                     <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
                     <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>

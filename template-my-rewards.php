@@ -15,29 +15,29 @@ if($show_popup){ ?>
 <div id="popup-yellow">
 	<div class="popup-yellow-area" style="background: <?php the_field('yellow_popup_background_color'); ?> url(<?php the_field('yellow_popup_image'); ?>) no-repeat left top;">
 
-<section id="banner-refer-friend" style="background:url('<?php the_field('background_image','658196'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
+<section id="banner-refer-friend" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row">
         <div class="banner-left">
-            <div class="banner-above-titles-v2"><?php the_field('banner_above_title','658196'); ?></div>
-            <div class="banner-titles-v2"><?php the_field('banner_title','658196'); ?></div>
-            <div class="banner-description-v2"><?php the_field('banner_content','658196'); ?></div>
+            <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
+            <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
+            <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
             <div class="banner-underline"></div>
-            <div class="button-text-below"><?php the_field('text_below_line','658196'); ?></div>
+            <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
             <div class="yotpo-box">
                 <input type="text" class="input-text" placeholder="Your friends' emails (separated by commas)">
                 <a href="" class="k-button k-button--primary">Send</a>
 			<div class="banner-links-sections">
 			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
 			</div><!--end banner-links-sections-->
             </div>
         </div>
         <div class="banner-right">
-            <div class="check-rewards-title"><?php the_field('check_rewards_title','658196'); ?></div>
-            <div class="check-rewards-subtitle"><?php the_field('check_rewards_subtitle','658196'); ?></div>
+            <div class="check-rewards-title"><?php the_field('check_rewards_title'); ?></div>
+            <div class="check-rewards-subtitle"><?php the_field('check_rewards_subtitle'); ?></div>
             <div class="check-rewards-table">
                 <table>
                     <tr>
@@ -79,8 +79,8 @@ if($show_popup){ ?>
                 </table>
             </div>
             <div class="banner-underline"></div>
-            <div class="check-rewards-below-table"><?php the_field('text_below_table_i','658196'); ?></div>
-            <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii','658196'); ?></div>
+            <div class="check-rewards-below-table"><?php the_field('text_below_table_i'); ?></div>
+            <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii'); ?></div>
             <div class="yotpo-box">
                 <a href="" class="k-button k-button--primary">Shop Now</a>
             </div>
@@ -168,26 +168,26 @@ $user_email = $current_user->user_email;
 <section id="banner-refer-friend" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row max-width-banner-refer" style="max-width:94%; margin:0 auto;">
         <div class="banner-left">
-            <div class="banner-above-titles-v2"><?php the_field('banner_above_title','658196'); ?></div>
-            <div class="banner-titles-v2"><?php the_field('banner_title','658196'); ?></div>
-            <div class="banner-description-v2"><?php the_field('banner_content','658196'); ?></div>
+            <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
+            <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
+            <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
             <div class="banner-underline"></div>
-            <div class="button-text-below"><?php the_field('text_below_line','658196'); ?></div>
+            <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
             <div class="yotpo-box">
                 <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
                 <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
 			<div class="banner-links-sections">
 			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
 			</div><!--end banner-links-sections-->
             </div>
         </div>
         <div class="banner-right">
-            <div class="check-rewards-title"><?php the_field('check_rewards_title','658196'); ?></div>
-            <div class="check-rewards-subtitle"><?php the_field('check_rewards_subtitle','658196'); ?></div>
+            <div class="check-rewards-title"><?php the_field('check_rewards_title'); ?></div>
+            <div class="check-rewards-subtitle"><?php the_field('check_rewards_subtitle'); ?></div>
             <div class="check-rewards-table">
                 <table>
                     <tr>
@@ -197,8 +197,8 @@ $user_email = $current_user->user_email;
                 </table>
             </div>
             <div class="banner-underline"></div>
-            <div class="check-rewards-below-table"><?php the_field('text_below_table_i','658196'); ?></div>
-            <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii','658196'); ?></div>
+            <div class="check-rewards-below-table"><?php the_field('text_below_table_i'); ?></div>
+            <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii'); ?></div>
             <div class="yotpo-box">
                 <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="k-button k-button--primary">Shop Now</a>
             </div>

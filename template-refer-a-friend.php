@@ -175,6 +175,8 @@ get_header();
 
     $('#thank-you-back').on('click', function(e){
 
+        e.preventDefault();
+
         step_1.show();
         step_2.hide();
         step_3.hide();

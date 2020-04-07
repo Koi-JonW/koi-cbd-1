@@ -261,6 +261,8 @@ $user_email = $current_user->user_email;
 
         $('#thank-you-back').on('click', function(e){
 
+            e.preventDefault();
+
             step_2.show();
             step_3.hide();
 

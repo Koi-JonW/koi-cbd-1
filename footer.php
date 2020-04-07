@@ -135,7 +135,7 @@ $root = get_template_directory_uri();
 
   <!-- Swell Integration :: BEGIN -->
   <script>
-	  var $ = jQuery.noConflict();
+    var $ = jQuery.noConflict();
   </script>
   <script>
 
@@ -196,10 +196,10 @@ $root = get_template_directory_uri();
 
         });
 
-		  }
-	  }
+      }
+    }
 
-	  function setSwellRewards(){
+    function setSwellRewards(){
 
       if($('[class^="table-vips-cell"]').length){
 
@@ -241,13 +241,13 @@ $root = get_template_directory_uri();
         console.log('-- setSwellCustomerReferrals');
 
         swellCustomerDetails.referrals.forEach(function(referral){
-			
-    			$('.check-rewards-table tbody').append(
-		    		$('<tr>').append(
-				    	$('<td>').text(referral.email),
-					    $('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
+      
+          $('.check-rewards-table tbody').append(
+            $('<tr>').append(
+              $('<td>').text(referral.email),
+              $('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
             )
-			    );
+          );
 
         });
 
@@ -259,7 +259,7 @@ $root = get_template_directory_uri();
 
     function swellCustom(){
 
-      console.log('-- swellCustom :: footer-lp');
+      console.log('-- swellCustom :: footer');
 
       prepareRedemptionForm();
       // setSwellActiveCampaigns();

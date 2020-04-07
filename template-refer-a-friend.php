@@ -120,9 +120,11 @@ get_header();
         e.preventDefault();
 
         var onSuccess = function() {
+            console.log('Customer identified: ', $('#customers-input').val());
             step_1.hide();
             step_2.show();
             step_3.hide();
+            $('#customers-input').val('');
         }
 
         var onError = function(err) {
@@ -146,9 +148,11 @@ get_header();
         e.preventDefault();
 
         var onSuccess = function() {
+            console.log('Email(s) sent to: ', $('#referred-customers-input').val());
             step_1.hide();
             step_2.hide();
             step_3.show();
+            $('#referred-customers-input').val('');
         }
 
         var onError = function(err) {

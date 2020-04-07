@@ -18,21 +18,30 @@ if($show_popup){ ?>
 <section id="banner-refer-friend" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row">
         <div class="banner-left">
-            <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
-            <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
-            <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
-            <div class="banner-underline"></div>
-            <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
-            <div class="yotpo-box">
-                <input type="text" class="input-text" placeholder="Your friends' emails (separated by commas)">
-                <a href="" class="k-button k-button--primary">Send</a>
-			<div class="banner-links-sections">
-			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
-			</div><!--end banner-links-sections-->
+            <div class="banner-step-2">
+                <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
+                <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
+                <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
+                <div class="banner-underline"></div>
+                <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
+                <div class="yotpo-box">
+                    <input type="text" class="input-text" placeholder="Your friends' emails (separated by commas)">
+                    <a href="" class="k-button k-button--primary">Send</a>
+                    <div class="banner-links-sections">
+                        You can also share your link with the buttons below.<br/>
+                        <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+                        <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+                        <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+                        <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
+                    </div><!--end banner-links-sections-->
+                </div>
+            </div>
+            <div class="banner-step-3" style="display: none;">
+                <div class="banner-titles-v3">Thanks for referring</div>
+                <div class="banner-above-titles-v3">Remind your friends to check their emails</div>
+                <div class="yotpo-box">
+                    <a href="#" id="thank-you-back" class="k-button k-button--primary">Refer More Friends</a>
+                </div>
             </div>
         </div>
         <div class="banner-right">
@@ -44,38 +53,6 @@ if($show_popup){ ?>
                         <td>EMAIL</td>
                         <td>STATUS</td>
                     <tr>
-                    <tr>
-                        <td>friend1@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend2@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend3@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend4@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend1@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend2@gmail.com</td>
-                        <td>invited</td>
-                    </tr>
-                    <tr>
-                        <td>friend3@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
-                    <tr>
-                        <td>friend4@gmail.com</td>
-                        <td>purchased ($15 earned)</td>
-                    </tr>
                 </table>
             </div>
             <div class="banner-underline"></div>
@@ -168,21 +145,30 @@ $user_email = $current_user->user_email;
 <section id="banner-refer-friend" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row max-width-banner-refer" style="max-width:94%; margin:0 auto;">
         <div class="banner-left">
-            <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
-            <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
-            <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
-            <div class="banner-underline"></div>
-            <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
-            <div class="yotpo-box">
-                <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
-                <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
-			<div class="banner-links-sections">
-			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
-			</div><!--end banner-links-sections-->
+            <div class="banner-step-2">
+                <div class="banner-above-titles-v2"><?php the_field('banner_above_title'); ?></div>
+                <div class="banner-titles-v2"><?php the_field('banner_title'); ?></div>
+                <div class="banner-description-v2"><?php the_field('banner_content'); ?></div>
+                <div class="banner-underline"></div>
+                <div class="button-text-below"><?php the_field('text_below_line'); ?></div>
+                <div class="yotpo-box">
+                    <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
+                    <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
+                    <div class="banner-links-sections">
+                        You can also share your link with the buttons below.<br/>
+                        <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+                        <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+                        <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+                        <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-step-3" style="display: none;">
+                <div class="banner-titles-v3">Thanks for referring</div>
+                <div class="banner-above-titles-v3">Remind your friends to check their emails</div>
+                <div class="yotpo-box">
+                    <a href="#" id="thank-you-back" class="k-button k-button--primary">Refer More Friends</a>
+                </div>
             </div>
         </div>
         <div class="banner-right">
@@ -240,7 +226,6 @@ $user_email = $current_user->user_email;
 </script>
 <script>
 
-    var step_1 = $('.banner-step-1');
     var step_2 = $('.banner-step-2');
     var step_3 = $('.banner-step-3');
 
@@ -254,7 +239,6 @@ $user_email = $current_user->user_email;
 
         var onSuccess = function() {
             console.log('Email(s) sent to: ', $('#referred-customers-input').val());
-            step_1.hide();
             step_2.hide();
             step_3.show();
             $('#referred-customers-input').val('');
@@ -277,8 +261,7 @@ $user_email = $current_user->user_email;
 
         $('#thank-you-back').on('click', function(e){
 
-            step_1.show();
-            step_2.hide();
+            step_2.show();
             step_3.hide();
 
         });

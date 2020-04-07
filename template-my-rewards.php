@@ -252,40 +252,23 @@ $user_email = $current_user->user_email;
 
         e.preventDefault();
 
-        // --
+        var onSuccess = function() {
+            step_1.hide();
+            step_2.hide();
+            step_3.show();
+        }
+
+        var onError = function(err) {
+            alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
+            console.log('-- sendReferralEmails Error:\n', err);
+        }
+
+        var emails = $('#referred-customers-input').val().split(',');
 
         try {
-            swellAPI.identifyReferrer(
-                user_email, 
-                function(){
-
-                    console.log('Referrer identified: ' + user_email);
-
-                    try {
-                        swellAPI.sendReferralEmails(
-                            $('#referred-customers-input').val().split(','), 
-                            function(){
-                                step_1.hide();
-                                step_2.hide();
-                                step_3.show();
-                            }, 
-                            function(err){
-                                alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-                                console.log('-- sendReferralEmails Error:\n', err);
-                            }
-                        );
-                    } catch(err) {
-                        onError(err);
-                    }
-
-
-                }, 
-                function(err){
-                    console.log('-- identifyReferrer Error:\n', err);
-                }
-            );
+            swellAPI.sendReferralEmails(emails, onSuccess, onError);
         } catch(err) {
-            console.log('-- Exception:\n', err);
+            onError(err);
         }
 
         // --

@@ -66,6 +66,7 @@ $unflavored_products = array(205502, 30207);
         'post_type' => 'product',
         'category' => array($product_category_slug),
 	   'orderby' => 'menu_order',
+	   'order' => 'ASC'
       );
 
       $products = wc_get_products($args);

@@ -2,9 +2,34 @@
   class="k-productreviews k-block k-block--md"
   id="product-reviews"
   data-product-sku="<?php echo $product->get_sku(); ?>"
-  data-product-title="<?php echo the_title(); ?>"  
+  style="padding: 30px 10% 50px 10%; background: #fafafa; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;"
 >
-  <div class="k-inner k-inner--md">
+  
+  <div class="k-reviews">
+
+    <div class="k-reviews--title" style="text-align: center;">
+      <?php if (get_field('product_reviews_headline')) : ?>
+      <h2 class="k-review--headline"><?php the_field('product_reviews_headline'); ?></h2>
+      <?php else : ?>
+      <h2 class="k-review--headline"><?php echo $product->get_name(); ?> Reviews</h2>
+      <?php endif; ?>
+    </div>
+
+    <div class="yotpo yotpo-reviews-carousel"
+      data-background-color="transparent"
+      data-mode="top_rated"
+      data-type="per_product"
+      data-count="9"
+      data-show-bottomline="1"
+      data-autoplay-enabled="1"
+      data-autoplay-speed="3000"
+      data-show-navigation="1"
+      data-product-id="<?php global $product; echo $product->get_id(); ?>">&nbsp;</div>
+    </div>
+
+  </div>
+
+  <div class="k-inner k-inner--md" style="display:none;">
 
     <div class="k-productreviews--title">
       <?php if (get_field('product_reviews_headline')) : ?>

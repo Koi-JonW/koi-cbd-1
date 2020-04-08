@@ -78,7 +78,7 @@ $(document).ready(function(){
         return false;
     });
 });
-  </script>
+</script>
 </head>
 <body <?php body_class(); ?>>
   <script>

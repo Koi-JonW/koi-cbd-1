@@ -39,7 +39,7 @@ do_action('woocommerce_before_account_navigation');
 					<?php if(esc_html($label) == "Dashboard"){ ?> 
 					</li>
 					<li>
-						<a href="<?php echo esc_url( home_url( '/005-koi-cbd-account-web' ) ); ?>">My Rewards</a>
+						<a href="<?php echo esc_url( home_url( '/myrewards' ) ); ?>">My Rewards</a>
 					<?php } ?>
 				</li>
 			<?php endforeach; ?>

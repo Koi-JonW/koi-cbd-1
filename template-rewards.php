@@ -82,6 +82,7 @@ get_header();
             <ul class='swell-campaign-list'>
             </ul>
         </div><!--end k-inner-->
+    <?php the_field('html_embedded'); ?>
 </section>
 
 <section id='banner-refer' class='brefer-v'>

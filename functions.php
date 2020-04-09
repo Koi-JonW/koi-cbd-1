@@ -609,7 +609,8 @@ function yotpo_create_order($order_id){
     "order_id" => $order_id,
     "customer_email" => $order_user_email,
     "total_amount_cents" => $order_total,
-    "currency_code" => $order_currency
+    "currency_code" => $order_currency,
+    "status" => "Completed"
   );
 
   $ch = curl_init();
@@ -635,6 +636,7 @@ function yotpo_create_order($order_id){
   $swell_log .= "- customer_email: {$order_user_email}" . PHP_EOL;
   $swell_log .= "- total_amount_cents: {$order_total}" . PHP_EOL;
   $swell_log .= "- currency_code: {$order_currency}" . PHP_EOL;
+  $swell_log .= "- status: Completed" . PHP_EOL;
   $swell_log .= "- result:" . PHP_EOL;
   $swell_log .= $swell_result . PHP_EOL;
   $swell_log .= "--" . PHP_EOL;

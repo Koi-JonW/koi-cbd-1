@@ -21,13 +21,13 @@ get_header();
                 <div class="yotpo-box">
                     <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
                     <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
-				<div class="banner-links-sections">
-			 	You can also share your link with the buttons below.<br/>
-			 	<a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
-			 	<a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
-			 	<a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
-			 	<a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
-				</div><!--end banner-links-sections-->
+                <div class="banner-links-sections">
+                    You can also share your link with the buttons below.<br/>
+                    <a href="#" class="icon-sharev"><?php the_field('share',658196); ?></a>
+                    <a href="#" class="icon-tweet"><?php the_field('tweet',658196); ?></a>
+                    <a href="#" class="icon-message"><?php the_field('message',658196); ?></a>
+                    <a href="#" class="icon-copy-link"><?php the_field('copy_link',658196); ?></a>
+                </div><!--end banner-links-sections-->
                 </div>
             </div>
             <div class="banner-step-3" style="display: none;">
@@ -53,7 +53,7 @@ get_header();
             <div class="check-rewards-below-table"><?php the_field('text_below_table_i'); ?></div>
             <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii'); ?></div>
             <div class="yotpo-box">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>cbd-tinctures/" class="k-button k-button--primary">Shop Now</a>
+                <a href="<?php echo esc_url(home_url('/shop')); ?>" class="k-button k-button--primary">Shop Now</a>
             </div>
         </div>
     </div>
@@ -83,13 +83,13 @@ get_header();
         <div class="yotpo-box">
             <input type="text" id="referred-customers-input" class="input-text" placeholder="Your friends' emails (separated by commas)">
             <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
-			<div class="banner-links-sections">
-			 You can also share your link with the buttons below.<br/>
-			 <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
-			 <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
-			 <a href="#" class="icon-message"><?php the_field('message'); ?></a>
-			 <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
-			</div><!--end banner-links-sections-->
+            <div class="banner-links-sections">
+             You can also share your link with the buttons below.<br/>
+             <a href="#" class="icon-sharev"><?php the_field('share'); ?></a>
+             <a href="#" class="icon-tweet"><?php the_field('tweet'); ?></a>
+             <a href="#" class="icon-message"><?php the_field('message'); ?></a>
+             <a href="#" class="icon-copy-link"><?php the_field('copy_link'); ?></a>
+            </div><!--end banner-links-sections-->
 
         </div>
     </div>

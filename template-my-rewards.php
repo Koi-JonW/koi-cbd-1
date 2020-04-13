@@ -13,7 +13,7 @@ get_header();
 $show_popup = $_GET['show'];
 if($show_popup){ ?>
 <div id="popup-yellow">
-	<div class="popup-yellow-area" style="background: <?php the_field('yellow_popup_background_color'); ?> url(<?php the_field('yellow_popup_image'); ?>) no-repeat left top;">
+    <div class="popup-yellow-area" style="background: <?php the_field('yellow_popup_background_color'); ?> url(<?php the_field('yellow_popup_image'); ?>) no-repeat left top;">
 
 <section id="banner-refer-friend" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row">
@@ -65,23 +65,23 @@ if($show_popup){ ?>
     </div>
 </section>
 
-		
-	</div><!--end popup-yellow-area-->
+        
+    </div><!--end popup-yellow-area-->
 </div><!--end popup-yellow-->
 <?php } ?>
 <section id="how-it-works" class="my-paddings-v2" style="background-color:#F2F2F2;">
-	<div class="k-inner k-inner--md flex-features">
-		<?php if(get_field('title_section_hiw')){ ?>
-		<div class="template-title" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
-		<?php } ?>
-	<div class="area-35-p white-borders">
-		<div class="btns-area">
+    <div class="k-inner k-inner--md flex-features">
+        <?php if(get_field('title_section_hiw')){ ?>
+        <div class="template-title" style="text-align:<?php the_field('title_section_hiw_align'); ?>"><?php the_field('title_section_hiw'); ?></div><!--end template-title-->
+        <?php } ?>
+    <div class="area-35-p white-borders">
+        <div class="btns-area">
 <?php
 $current_user = wp_get_current_user();
 $user_name = $current_user->display_name;
 $user_email = $current_user->user_email;
 ?>
-			<span style="padding-bottom:5px;">Hi, <?php echo $user_name; ?></span>
+            <span style="padding-bottom:5px;">Hi, <?php echo $user_name; ?></span>
 <strong>MANAGE ACCOUNT</strong><br/>
 <a href="<?php echo esc_url( home_url( '/account' ) ); ?>" style="color:#000;">Dashboard</a><br/>
 <strong>My Rewards</strong><br/>
@@ -91,55 +91,55 @@ $user_email = $current_user->user_email;
 <a href="<?php echo esc_url( home_url( '/account/edit-address' ) ); ?>" style="color:#000;">Addresses</a><br/>
 <a href="<?php echo esc_url( home_url( '/account/edit-account' ) ); ?>" style="color:#000;">Account details</a><br/>
 <strong><a href="<?php echo wp_logout_url(); ?>">Logout</a></strong><br/>
-		</div>
-	</div><!--end area-35-p-->
-	<div class="area-65-p">
-		<div class="btns-area" style="max-width:90% !important;">
-			<span>Hi, <?php echo $user_name; ?><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
-			<?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
-		</div><!--end btns-area-->
-	</div><!--end area-65-p-->
-	</div><!--end k-inner-->
+        </div>
+    </div><!--end area-35-p-->
+    <div class="area-65-p">
+        <div class="btns-area" style="max-width:90% !important;">
+            <span>Hi, <?php echo $user_name; ?><br/>You Have <span class='swell-point-balance' style='display: inline-block;'>X</span> Points.</span>
+            <?php the_field('yellow_button_hiw'); ?><br/><?php the_field('white_button_hiw'); ?>
+        </div><!--end btns-area-->
+    </div><!--end area-65-p-->
+    </div><!--end k-inner-->
 </section><!--end how-it-works-->
 
 <section id="vips-earn" class="my-paddings">
-	<div class="k-inner k-inner--md">
-		<div class="template-title" style="text-align:<?php the_field('title_section_vip_align'); ?>"><?php the_field('title_section_vip'); ?></div><!--end template-title-->
-		<ul class="bullet-selector">
-		<li class="bull-g opta activex"></li>
-		<li class="bull-g optb"></li>
-		<li class="bull-g optc"></li>
-		</ul>
-		<div style="width:100%; clear:both;"></div>
-		<div class="flex-features" style="margin-top:50px;">
-			<?php the_field('table_code'); ?>
-		</div><!--end flex-features-->
-	</div><!--end k-inner-->
+    <div class="k-inner k-inner--md">
+        <div class="template-title" style="text-align:<?php the_field('title_section_vip_align'); ?>"><?php the_field('title_section_vip'); ?></div><!--end template-title-->
+        <ul class="bullet-selector">
+        <li class="bull-g opta activex"></li>
+        <li class="bull-g optb"></li>
+        <li class="bull-g optc"></li>
+        </ul>
+        <div style="width:100%; clear:both;"></div>
+        <div class="flex-features" style="margin-top:50px;">
+            <?php the_field('table_code'); ?>
+        </div><!--end flex-features-->
+    </div><!--end k-inner-->
 </section><!--end vips-earn-->
 
 <section id="redeem" class="my-paddings">
-	<div class="k-inner k-inner--md flex-features">
-		<div class="redeem-l">
-			<img src="<?php the_field('image_redeem'); ?>" alt="redeem"/>
-		</div><!--end redeem-l-->
-		<div class="redeem-r">
-			<div class="template-title"><?php the_field('title_section_redeem'); ?></div><!--end template-title-->
-			<div class="content_section_redeem"><?php the_field('content_section_redeem'); ?></div><!--end content_section_redeem-->
-		
-		<?php
-		if( have_rows('points') ): ?>
-			<div class="points-area">
-			<?php if(get_field('points_orange')){ ?><div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange--><?php } ?>
-			<?php while ( have_rows('points') ) : the_row(); ?>
-				<div class="points-box">
-					<div class='points-txt'><?php the_sub_field('discount'); ?></div>
-					<div class='discount-txt'><?php the_sub_field('points'); ?></div>
-				</div>
-			<?php endwhile; ?>
-			</div><!--end points-area-->
-		<?php endif;?>
-		</div><!--end redeem-r-->
-	</div><!--end k-inner-->
+    <div class="k-inner k-inner--md flex-features">
+        <div class="redeem-l">
+            <img src="<?php the_field('image_redeem'); ?>" alt="redeem"/>
+        </div><!--end redeem-l-->
+        <div class="redeem-r">
+            <div class="template-title"><?php the_field('title_section_redeem'); ?></div><!--end template-title-->
+            <div class="content_section_redeem"><?php the_field('content_section_redeem'); ?></div><!--end content_section_redeem-->
+        
+        <?php
+        if( have_rows('points') ): ?>
+            <div class="points-area">
+            <?php if(get_field('points_orange')){ ?><div class='points-range-orange'><?php the_field('points_orange'); ?></div><!--end points-range-orange--><?php } ?>
+            <?php while ( have_rows('points') ) : the_row(); ?>
+                <div class="points-box">
+                    <div class='points-txt'><?php the_sub_field('discount'); ?></div>
+                    <div class='discount-txt'><?php the_sub_field('points'); ?></div>
+                </div>
+            <?php endwhile; ?>
+            </div><!--end points-area-->
+        <?php endif;?>
+        </div><!--end redeem-r-->
+    </div><!--end k-inner-->
 </section><!--end redeem-->
 
 <section id="banner-refer-friend" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
@@ -186,17 +186,17 @@ $user_email = $current_user->user_email;
             <div class="check-rewards-below-table"><?php the_field('text_below_table_i'); ?></div>
             <div class="check-rewards-below-table-2"><?php the_field('text_below_table_ii'); ?></div>
             <div class="yotpo-box">
-                <a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="k-button k-button--primary">Shop Now</a>
+                <a href="<?php echo esc_url(home_url('/shop')); ?>" class="k-button k-button--primary">Shop Now</a>
             </div>
         </div>
     </div>
 </section>
 <?php }else{ 
-	header("Location: /login");
-	die();
+    header("Location: /login");
+    die();
 } ?>
 <script>
-	var $ = jQuery.noConflict();
+    var $ = jQuery.noConflict();
 </script>
 <script>
     $(document).on('click','.opta',function(){

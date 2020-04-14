@@ -237,6 +237,17 @@ $user_email = $current_user->user_email;
 
         e.preventDefault();
 
+        var emails = $('#referred-customers-input').val().toLowerCase().split(',');
+
+        // --
+
+        if($.inArray(user_email.toLowerCase(), emails) !== -1){
+            alert('You may not refer your own email address');
+            return false;
+        }
+
+        // --
+
         var onSuccess = function() {
             console.log('Email(s) sent to: ', $('#referred-customers-input').val());
             step_2.hide();

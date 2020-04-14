@@ -60,7 +60,6 @@
 <script>
 
   var onRedemptionSuccess = function(redemption) {
-    alert('Your coupon code is: ' + redemption.couponCode);
     prepareRedemptionForm();
     var postData = {
       coupon_code: redemption.couponCode, 

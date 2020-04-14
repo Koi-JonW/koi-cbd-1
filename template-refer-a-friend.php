@@ -5,6 +5,10 @@ defined('ABSPATH') || exit;
 $root = get_template_directory_uri();
 $site_content = get_fields('option');
 get_header();
+// --
+$current_user = wp_get_current_user();
+$user_name = $current_user->display_name;
+$user_email = $current_user->user_email;
 ?>
 
 <?php if(is_user_logged_in()){ ?>
@@ -113,6 +117,8 @@ get_header();
     var step_2 = $('.banner-step-2');
     var step_3 = $('.banner-step-3');
 
+    var user_email = '<?php echo($user_email); ?>';
+
     // --
 
     $('#customers-send-btn').on('click', function(e) {
@@ -147,6 +153,17 @@ get_header();
 
         e.preventDefault();
 
+        var emails = $('#referred-customers-input').val().toLowerCase().split(',');
+
+        // --
+
+        if($.inArray(user_email.toLowerCase(), emails) !== -1){
+            alert('You may not refer your own email address');
+            return false;
+        }
+
+        // --
+
         var onSuccess = function() {
             console.log('Email(s) sent to: ', $('#referred-customers-input').val());
             step_1.hide();
@@ -159,8 +176,6 @@ get_header();
             alert('Please enter a valid email address');
             console.log('-- sendReferralEmails Error:\n', err);
         }
-
-        var emails = $('#referred-customers-input').val().split(',');
 
         try {
             swellAPI.sendReferralEmails(emails, onSuccess, onError);

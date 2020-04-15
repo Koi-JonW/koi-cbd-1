@@ -38,7 +38,7 @@ $user_email = $current_user->user_email;
                 <div class="banner-titles-v3">Thanks for referring</div>
                 <div class="banner-above-titles-v3">Remind your friends to check their emails</div>
                 <div class="yotpo-box">
-                    <a id="step-1" href="#" class="k-button k-button--primary">Refer More Friends</a>
+                    <a id="thank-you-back" href="#" class="k-button k-button--primary">Refer More Friends</a>
                 </div>
             </div>
         </div>
@@ -192,8 +192,13 @@ $user_email = $current_user->user_email;
 
         e.preventDefault();
 
-        step_1.show();
-        step_2.hide();
+        if(step_1.length){
+            step_1.show();
+            step_2.hide();
+        } else {
+            step_2.show();
+        }
+        
         step_3.hide();
 
     });

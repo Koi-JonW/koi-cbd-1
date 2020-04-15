@@ -82,6 +82,7 @@ $url = site_url();
               </div>
             </ul>
           </li>
+		  <li><a class="k-upcase" href="<?php echo $url . '/rewards' ?>">Rewards</a></li>
           <li>
             <a class="k-upcase" href="<?php echo $url; ?>/account/">
               <?php if (is_user_logged_in()): ?>

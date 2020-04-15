@@ -200,5 +200,44 @@ get_header();
     }, 100);
 </script>
 
+<section id="sign-up-area" style="padding-top:7% !important;">
+	<div class="content-sign-up-area">
+		<div class="title-sign-up-section" style="text-align:center;">
+			<?php the_field('title_qa_section'); ?>
+		</div><!--end title-sign-up-section-->
+		<div class="content-sign-up-section">
+		<?php
+		$id_a = "1";
+		if( have_rows('questions_and_answers') ):
+		while ( have_rows('questions_and_answers') ) : the_row(); 
+		$id = $id_a++;
+		?>
+		<script>
+		function qa<?php echo $id; ?>(){
+		document.getElementById("answer_<?php echo $id; ?>").style.display = "block";
+		document.getElementById("close_<?php echo $id; ?>").style.display = "none";
+		document.getElementById("open_<?php echo $id; ?>").style.display = "block";
+		}
+		function qaclose<?php echo $id; ?>(){
+		document.getElementById("answer_<?php echo $id; ?>").style.display = "none";
+		document.getElementById("close_<?php echo $id; ?>").style.display = "block";
+		document.getElementById("open_<?php echo $id; ?>").style.display = "none";
+		}
+		</script>
+		
+		<div class="content-box-qa">
+			<div class="box-qa">
+				<div class="title-qa">
+				<?php echo get_sub_field('question'); ?>
+				</div><!--end title-qa-->
+				<div id="close_<?php echo $id; ?>" class="simbol-qa-pos" onclick="qa<?php echo $id; ?>();" style="display:block;">+</div>
+				<div id="open_<?php echo $id; ?>" class="simbol-qa-neg" onclick="qaclose<?php echo $id; ?>();" style="display:none;">-</div>
+			</div>
+			<div id="answer_<?php echo $id; ?>" class="box-content-qa" style="display:none;"><?php echo get_sub_field('answer'); ?></div>
+		</div><!--end content-box-qa-->
+		<?php endwhile; endif; ?>
+		</div><!--end content-sign-up-section-->
+	</div><!--end content-sign-up-area-->
+</section><!--end sign-up-area-->
 
 <?php get_footer(lp); ?>

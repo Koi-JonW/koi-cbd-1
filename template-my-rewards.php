@@ -14,7 +14,6 @@ $show_popup = $_GET['show'];
 if($show_popup){ ?>
 <div id="popup-yellow">
     <div class="popup-yellow-area" style="background: <?php the_field('yellow_popup_background_color'); ?> url(<?php the_field('yellow_popup_image'); ?>) no-repeat left top;">
-
 <section id="banner-refer-friend" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row">
         <div class="banner-left">
@@ -142,6 +141,7 @@ $user_email = $current_user->user_email;
     </div><!--end k-inner-->
 </section><!--end redeem-->
 
+<div id="section-refer-friend">&nbsp;</div>
 <section id="banner-refer-friend" style="background:url('<?php the_field('banner_background_refer'); ?>') no-repeat; background-size:cover; border-radius:10px; width:80%; max-width:1225px; margin:0 auto; margin-top:7%;">
     <div class="banner-row max-width-banner-refer" style="max-width:94%; margin:0 auto;">
         <div class="banner-left">

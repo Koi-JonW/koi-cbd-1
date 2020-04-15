@@ -12,7 +12,6 @@ $user_email = $current_user->user_email;
 ?>
 
 <?php if(is_user_logged_in()){ ?>
-
 <section id="banner-refer-friend" style="background:url('<?php the_field('background_image'); ?>') no-repeat; background-size:cover;">
     <div class="banner-row">
         <div class="banner-left">

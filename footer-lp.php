@@ -254,6 +254,18 @@ $root = get_template_directory_uri();
 
     }
 
+    function setSwellCustomerShare(){
+      if($('.swell-referral-link-copy').length){
+
+        $('.swell-referral-link-copy').on('click', function(e){
+          e.preventDefault();
+          navigator.clipboard.writeText(swellCustomerDetails.referralLink);
+          alert('Referral link copied: ' + swellCustomerDetails.referralLink);
+        });
+
+      }
+    }
+
     // -- Swell main functions
 
     function swellCustom(){
@@ -264,6 +276,7 @@ $root = get_template_directory_uri();
       // setSwellActiveCampaigns();
       setSwellRewards();
       setSwellCustomerReferrals();
+      setSwellCustomerShare();
 
     };
 

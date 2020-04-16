@@ -1,12 +1,12 @@
 <?php
   $root = get_template_directory_uri();
 ?>
-<section class="k-hero k-hero--default k-hero--center k-hero--on-dark">
+<section class="k-hero k-hero--default k-hero--center k-hero--on-dark" >
   <div class="hero-media">
-    <div class="hero-media-img">
+    <div class="hero-media-img-top" id="scroll_banner">
       <img
           src="<?php echo $hero_fields['bgImg']['url']; ?>"
-          alt="<?php echo $hero_fields['headline']; ?>" />
+          alt="<?php echo $hero_fields['headline']; ?>" style="width:100%;" />
     </div>
     <?php if (get_field('hero_background_video', 'option')): ?>
       <div class="hero-media-video">
@@ -36,3 +36,17 @@
     </div>
   </div>
 </section>
+
+<script>
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 20){  
+        $('#scroll_banner').addClass("sticky_banner");
+
+    }
+    else{
+        $('#scroll_banner').removeClass("sticky_banner");	
+    }
+});
+
+
+</script>

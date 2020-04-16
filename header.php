@@ -61,15 +61,32 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 
   <link rel="stylesheet" href="<?php echo $root.'/dist/css/main.css?v=1.12.4' ?>" />
   <style type="text/css">
+  .hero-media-img-top{margin-top:165px;}
+  .sticky_banner{margin-top:110px;}
+
   @media only screen and (max-width:1200px){
   .select_options_area, .select_options_text{width:100%; float:none;}
   .select_options_text{font-size:15px !important;}
   }
+  @media only screen and (max-width:992px){
+  .hero-media-img-top{margin-top:135px;}
+  .sticky_banner{margin-top:85px;}
+  }
   @media only screen and (max-width:767px){
+  .hero-media-img-top{margin-top:18%;}
+  .hero-media-img-top img{width:1000px !important; margin-left:-10%;}
+  .sticky_banner{margin-top:8%;}
+
   .k-header.is-open{position:absolute !important;}
   #k-backdrop{position:relative !important;}
   }
+  @media only screen and (max-width:480px){
+  .hero-media-img-top{margin-top:30%;}
+  .sticky_banner{margin-top:15%;}
+  }
+
   </style>
+
 <script>
 var $ = jQuery.noConflict();
 $(document).ready(function(){

@@ -74,7 +74,7 @@ function close_yp(){
 }
 </script>
 
-<section id="banner-thank-you" style="display:block; position:relative !important; padding:50px 0px !important; z-index:0;">
+<section id="banner-thank-you" style="display:block; position:relative !important; padding:50px 0px !important; z-index:0; background-color:#f5f5f5 !important;">
 	<!-- <div class="close-yellow" onclick="close_yp();">X</div>--><!--end close-yellow-->
     <!--<p>Thanks! <?php echo $username; ?></p>-->
     <div class="banner-row responsive-area-yp">

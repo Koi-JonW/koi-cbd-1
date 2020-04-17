@@ -250,7 +250,7 @@ $user_email = $current_user->user_email;
         // --
 
         if($.inArray(user_email.toLowerCase(), emails) !== -1){
-            alert('You may not refer your own email address');
+            alert('Please enter a different email address.\nThis may not be a valid email address, or this person may already be signed up for Koi CBD Rewards.');
             return false;
         }
 
@@ -264,15 +264,7 @@ $user_email = $current_user->user_email;
         }
 
         var onError = function(err) {
-            if(err.message){
-                if(err.message == 'EMAILS_ALREADY_PURCHASED'){
-                    alert('Please enter a different email address.\nThis may not be a valid email address, or this person may already be signed up for Koi CBD Rewards.');
-                } else {
-                    alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-                }
-            } else {
-                alert('Oops! It looks like we\'re having trouble finding what you\'re looking for. Please try again later.');
-            }
+            alert('Please enter a different email address.\nThis may not be a valid email address, or this person may already be signed up for Koi CBD Rewards.');
             console.log('-- sendReferralEmails Error:\n', err);
         }
 

@@ -88,9 +88,13 @@ $user_email = $current_user->user_email;
             <a href="#" id="referred-customers-send-btn" class="k-button k-button--primary">Send</a>
             <div class="banner-links-sections">
              You can also share your link with the buttons below.<br/>
+                <!--
                 <a class="swell-share-referral-facebook icon-sharev" href="javascript:void(0)">Facebook</a>
+                -->
                 <a class="swell-share-referral-twitter icon-tweet" href="javascript:void(0)">Twitter</a>
+                <!--
                 <a class="swell-share-referral-messenger icon-message" href="javascript:void(0)">Messenger</a>
+                -->
                 <a class="swell-referral-link-copy icon-copy-link" href="javascript:void(0)">Copy Link</a>
             </div><!--end banner-links-sections-->
 

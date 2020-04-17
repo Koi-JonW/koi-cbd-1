@@ -213,7 +213,7 @@ $root = get_template_directory_uri();
           $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-title').html(tier.description.replace('\n', '<br />'));
           $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-benefits strong').text(tier.name);
           $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-multiplier').text(multiplier);
-          $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
+          // $('.table-vips-cell-' + tier.name.toLocaleLowerCase() + '.table-vips-cell-bonus').text(bonus);
 
         });
 

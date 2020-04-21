@@ -244,7 +244,7 @@ $root = get_template_directory_uri();
           $('.check-rewards-table tbody').append(
             $('<tr>').append(
               $('<td>').text(referral.email),
-              $('<td>').text(referral.completedAt ? 'Purchased ($5 Earned)' : 'Invited')
+              $('<td>').text(referral.completedAt ? 'Purchased ($15 Earned)' : 'Invited')
             )
           );
 

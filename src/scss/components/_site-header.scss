@@ -14,9 +14,14 @@
   }
 }
 
+.k-header--cart {
+  cursor: pointer;
+}
+
 #k-carttoggle {
   margin: 0 1em 0.25em auto;
   position: relative;
+  pointer-events: none;
 
   i {
     font-size: 200%;

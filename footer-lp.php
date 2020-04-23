@@ -313,14 +313,18 @@ $root = get_template_directory_uri();
     $(document).ready(function(){
 
       $(document).on('click', '.write-question-review-button-text', function(){
+
         var reviewForm = $(this).parents('.write-review-wrapper.write-form');
+
         $('.write-review-wrapper.write-form.visible br').remove();
-        if(!reviewForm.find('custom-description').length){
+
+        if(!reviewForm.find('.custom-description').length){
           $('.write-review-wrapper.write-form.visible h2').parent().append(
             $('<div>').addClass('custom-description').html('Thank you for writing a review! To be sure to see your review published, please refrain from mentioning any medical benefits or specific conditions, as per the FDA we are not allowed to publish reviews with these references. You can of course refer to the quality of our products and a general increase in wellness.<br/><br/>We moderate all reviews, so you may not see your review appear right away.')
           );
         }
-        if(!reviewForm.find('form-input-close').length){
+
+        if(!reviewForm.find('.form-input-close').length){
           $('.form-element.submit-button').append(
             $('<span>').addClass('form-input-close').text('Close').on('click', function(e){
               e.preventDefault();
@@ -328,6 +332,7 @@ $root = get_template_directory_uri();
             })
           );
         }
+
       });
 
     });

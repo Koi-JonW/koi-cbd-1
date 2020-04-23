@@ -276,6 +276,10 @@
 
 .k-productreviews {
 
+  .promoted-products-box {
+    display: none !important;
+  }
+
   .write-review-wrapper.write-form.visible{ 
 
     .write-review.yotpo-regular-box {
@@ -306,7 +310,7 @@
         border: 1px solid #e0e0e0;
         cursor: pointer;
       }
-      
+     
     }
 
   }

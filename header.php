@@ -84,7 +84,6 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
   .hero-media-img-top{margin-top:30%;}
   .sticky_banner{margin-top:15%;}
   }
-
   </style>
 
 <script>

@@ -96,7 +96,7 @@
 </div><!--end content-sign-up-area-->
 </section><!--end sign-up-area-->
 
-<section id="boxes-section">
+<section id="boxes-section" style="padding:0px 0px 50px 0px !important; margin-top:-40px;">
 	<div class="content-area">
 		<?php
 		if( have_rows('boxes') ):

@@ -38,7 +38,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 						<label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label>
 					</div>
 					<div class="value">
-						<div class="k-productform__select-container">
+						<div class="k-productform__select-container k-variation__sort">
 							<?php
 								wc_dropdown_variation_attribute_options( array(
 									'options'   => $options,
@@ -47,6 +47,16 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 								));
 							?>
 						</div>
+						<script>
+							var $ = jQuery.noConflict();
+							var selected_value = $('.k-variation__sort select').val();
+							$('.k-variation__sort select').html($('.k-variation__sort select option').sort(function (a, b) {
+								var _a = a.value ? parseInt(a.value.match(/\d+/)[0]) : 0;
+								var _b = b.value ? parseInt(b.value.match(/\d+/)[0]) : 0;
+								return _a == _b ? 0 : _a < _b ? -1 : 1;
+							}));
+							$('.k-variation__sort select').val(selected_value);
+						</script>
 						<?php 
 							echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
 						?>

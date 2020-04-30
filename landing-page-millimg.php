@@ -103,7 +103,7 @@
 		while ( have_rows('boxes') ) : the_row(); ?>
 		<div class="box-area" style="text-align:center;">
 			<div class="icon-box-area">
-				<img src="<?php the_sub_field('icon_box_section'); ?>" alt="box-icon"/>
+				<img src="<?php echo get_template_directory_uri(); ?>/icons/bg-icon-million-milligram.png" style="width:132px; height:132px; background:url('<?php the_sub_field('icon_box_section'); ?>') no-repeat center; background-size:contain; " alt="box-icon"/>
 			</div><!--end icon-box-area-->
 			<div class="title-box-area-v2"><?php the_sub_field('title_box_section'); ?></div><!--end title-box-area-v2-->
 			<div class="description-box-area"><?php the_sub_field('description_box_section'); ?></div><!--end description-box-area-->
@@ -112,11 +112,17 @@
 	</div><!--end k-inner k-inner--md-->
 </section><!--end boxes-section-->
 
+<?php if(get_field('banner_type_mm') == "banner"){ ?>
 <section id="sign-up-area" style="background:url(<?php the_field('background_image_opt'); ?>) no-repeat center; padding:<?php the_field('padding_top_opt'); ?> 0px <?php the_field('padding_bottom_opt'); ?> 0px !important; color:<?php the_field('text_color_opt'); ?>;">
 	<div class="content-sign-up-area">
 		<?php the_field('content_banner_opt'); ?>
 	</div><!--end content-sign-up-area-->
 </section><!--end sign-up-area-->
+<?php }elseif(get_field('banner_type_mm') == "video"){?>
+<video autoplay muted loop class="myVideo" style="width:100%;">
+<source src="<?php the_field('background_video_sequence'); ?>" type="video/mp4">
+</video>
+<?php } ?>
 
 <section id="sign-up-area">
 <div class="content-sign-up-area">

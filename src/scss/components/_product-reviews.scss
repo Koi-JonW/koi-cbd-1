@@ -170,7 +170,7 @@
     .k-inner {
       display: flex;
       justify-content: space-between;
-      flex-flow: row wrap;
+      flex-direction: row;
     }
 
     .k-review {
@@ -184,11 +184,12 @@
     }
 
     &--title {
-      flex-basis: 25%;
+      flex: 0 0 25%;
     }
 
     &--main {
-      flex-basis: 62.5%;
+      flex: 0 0 62.5%;
+      overflow: hidden;
     }
 
     &__controls {
@@ -196,5 +197,69 @@
       margin-top: 1em;
       margin-left: auto;
     }
+
   }
+}
+
+/* -- Overrides */
+
+.k-productreviews {
+
+  .promoted-products-box {
+    display: none !important;
+  }
+
+  li.yotpo-nav-tab[data-type="questions"] {
+    display: none !important;
+  }
+
+  .write-question-review-button.write-button.write-question-button {
+    display: none !important;
+  }
+
+  .write-review-wrapper.write-form {
+    display: none !important;
+    &.visible {
+      display: block !important;
+    }
+  }
+
+  .write-review-wrapper.write-form.visible { 
+
+    .write-review.yotpo-regular-box {
+
+      h2 {
+        font-weight: bold;
+        margin: 0;
+        padding: 0 0 10px 0 !important;
+      }
+  
+      .custom-description {
+        background: #fafafa;
+        padding: 10px 20px;
+        margin: 10px -20px;
+        font-size: 13px;
+      }
+
+      .connect-wrapper {
+        padding-left: 0 !important;
+      }
+
+      .form-input-close {
+        display: inline-block;
+        background: #f0f0f0;
+        margin: 15px 10px 5px 0;
+        padding: 7px 15px;
+        border: 1px solid #e0e0e0;
+        cursor: pointer;
+      }
+
+    }
+
+  }
+
+}
+
+.yotpo.testimonials{
+  display: none;
 }

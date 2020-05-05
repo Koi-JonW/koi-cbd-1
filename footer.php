@@ -310,6 +310,31 @@ $root = get_template_directory_uri();
 
     });
   </script>
+  <script>
+    $(document).on('click', '.write-question-review-button.write-review-button', function(){
+
+      $('.write-review-wrapper.write-form br').remove();
+
+      $('.write-review-wrapper.write-form label[for="yotpo_input_review_username"]').html('Your Name: <span class="form-input-error yotpo-hidden"></span>');
+      $('.write-review-wrapper.write-form label[for="yotpo_input_review_email"]').html('Email (email will be kept private): <span class="form-input-error yotpo-hidden"></span>');
+
+      if(!$('.write-review-wrapper.write-form .custom-description').length){
+        $('.write-review-wrapper.write-form h2').parent().append(
+          $('<div>').addClass('custom-description').html('Thank you for writing a review! To be sure to see your review published, please refrain from mentioning any medical benefits or specific conditions, as per the FDA we are not allowed to publish reviews with these references. You can of course refer to the quality of our products and a general increase in wellness.<br/><br/>We moderate all reviews, so you may not see your review appear right away.')
+        );
+      }
+
+      if(!$('.write-review-wrapper.write-form .form-input-close').length){
+        $('.form-element.submit-button').append(
+          $('<span>').addClass('form-input-close').text('Close').on('click', function(e){
+            e.preventDefault();
+            $('.write-review-wrapper.write-form').removeClass('visible');
+          })
+        );
+      }
+
+    });
+  </script>
   <!-- Swell Integration :: END -->
 
 </body>

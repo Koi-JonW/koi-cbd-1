@@ -6,8 +6,6 @@ const sass = require('gulp-sass');
 const smaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 const webpack = require('webpack');
-const postcss = require('gulp-postcss');
-const cssnano = require('cssnano');
 
 const PATHS = {
   css: {
@@ -46,42 +44,21 @@ function html(done) {
 }
 
 function scss(done) {
-  const plugins = [cssnano()];
+  gulp
+    .src(PATHS.css.input)
+    .pipe(plumber())
+    .pipe(smaps.init())
+    .pipe(sass({ outputStyle: 'expanded' }))
+    .on('error', sass.logError)
+    .pipe(
+      prefix({
+        cascade: false,
+      })
+    )
+    .pipe(smaps.write())
+    .pipe(gulp.dest(PATHS.css.output))
+    .pipe(browserSync.stream());
 
-  if (process.env.NODE_ENV === 'production') {
-    console.log('No css sourcemaps generated for production.');
-    gulp
-      .src(PATHS.css.input)
-      .pipe(plumber())
-      .pipe(sass({ outputStyle: 'expanded' }))
-      .pipe(postcss(plugins))
-      .on('error', sass.logError)
-      .pipe(
-        prefix({
-          cascade: false,
-        })
-      )
-      .pipe(gulp.dest(PATHS.css.output))
-      .pipe(browserSync.stream());
-  } else if (process.env.NODE_ENV === 'development') {
-    console.log('css sourcemaps generated for development.');
-    gulp
-      .src(PATHS.css.input)
-      .pipe(plumber())
-      .pipe(smaps.init())
-      .pipe(sass({ outputStyle: 'expanded' }))
-      .on('error', sass.logError)
-      .pipe(
-        prefix({
-          cascade: false,
-        })
-      )
-      .pipe(smaps.write())
-      .pipe(gulp.dest(PATHS.css.output))
-      .pipe(browserSync.stream());
-  } else {
-    console.log('No process env set. Use production or development.');
-  }
   done();
 }
 

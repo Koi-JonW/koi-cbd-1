@@ -69,6 +69,9 @@ $url = site_url();
           <li>
             <a class="k-upcase" href="<?php echo $url . '/lab-results' ?>">Lab Results</a>
           </li>
+          <li>
+            <a class="k-upcase" href="<?php echo $url . '/reviews-yotpo' ?>">Reviews</a>
+          </li>
         </ul>
         <ul>
           <li><a class="k-upcase" href="https://wholesale.koicbd.com/">Wholesale</a></li>
@@ -93,9 +96,9 @@ $url = site_url();
             </a>
           </li>
 
-          <li class="k-header--cart">
+          <li class="k-header--cart" id="lorenzo">
             <a id="k-carttoggle" tabindex="0" aria-label="cart">
-              <i class="icon-bag"></i>
+              <i id="show thi" class="icon-bag"></i>
               <span id="k-cartnum" class="">0</span>
             </a>
           </li>

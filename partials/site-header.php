@@ -69,6 +69,9 @@ $url = site_url();
           <li>
             <a class="k-upcase" href="<?php echo $url . '/lab-results' ?>">Lab Results</a>
           </li>
+		  <li>
+            <a class="k-upcase" href="<?php echo $url . '/reviews-yotpo' ?>">Reviews</a>
+          </li>
         </ul>
         <ul>
           <li><a class="k-upcase" href="https://wholesale.koicbd.com/">Wholesale</a></li>

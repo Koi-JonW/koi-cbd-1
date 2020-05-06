@@ -61,15 +61,40 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 
   <link rel="stylesheet" href="<?php echo $root.'/dist/css/main.css?v=1.12.3' ?>" />
   <style type="text/css">
-  @media only screen and (max-width:1200px){
-  .select_options_area, .select_options_text{width:100%; float:none;}
-  .select_options_text{font-size:15px !important;}
-  }
-  @media only screen and (max-width:767px){
-  .k-header.is-open{position:absolute !important;}
-  #k-backdrop{position:relative !important;}
-  }
-  </style>
+.hero-media-img-top{margin-top:165px;}
+.sticky_banner{margin-top:110px;}
+
+@media only screen and (max-width:1260px){
+.k-header--nav a{font-size: 15px !important;}
+.k-header--nav li{margin-right: 8px !important;}
+.k-header--nav{width:98% !important;left:1% !important;}
+}
+@media only screen and (max-width:1200px){
+.select_options_area, .select_options_text{width:100%; float:none;}
+.select_options_text{font-size:15px !important;}
+}
+@media only screen and (max-width:992px){
+.hero-media-img-top{margin-top:135px;}
+.sticky_banner{margin-top:85px;}
+.k-header--nav a{font-size: 13px !important;}
+.k-header--nav li{margin-right: 5px !important;}
+}
+@media only screen and (max-width:840px){
+.k-header--nav a{letter-spacing:-0.8px;}
+}
+@media only screen and (max-width:767px){
+.k-header--nav a{font-size: 18px !important; letter-spacing:0px;}
+.hero-media-img-top{margin-top:18%;}
+.hero-media-img-top img{width:1000px !important; margin-left:-10%;}
+.sticky_banner{margin-top:8%;}
+.k-header.is-open{position:absolute !important;}
+#k-backdrop{position:relative !important;}
+}
+@media only screen and (max-width:480px){
+.hero-media-img-top{margin-top:30%;}
+.sticky_banner{margin-top:15%;}
+}
+</style>
 <script>
 var $ = jQuery.noConflict();
 $(document).ready(function(){

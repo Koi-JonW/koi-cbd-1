@@ -119,10 +119,10 @@ $regadd = $_GET['reg'];
 						<?php do_action( 'woocommerce_register_form' ); ?>
 
 							
-							<p class="form-row k-login__rememberme">
+							<!-- <p class="form-row k-login__rememberme">
 							<input class="" name="marketing-opt-in" type="checkbox" id="subscribe" value="yes" />
-							<label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme" for="subscribe"><?php esc_html_e('I\'d like to receive marketing emails', 'woocommerce'); ?></label>
-													</p>
+							<label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme" for="subscribe"><?php //esc_html_e('I\'d like to receive marketing emails', 'woocommerce'); ?></label>
+													</p>-->
 					
 
 						<p class="woocommerce-FormRow form-row">

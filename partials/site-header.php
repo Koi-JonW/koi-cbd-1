@@ -97,10 +97,12 @@ $url = site_url();
           </li>
 
           <li class="k-header--cart" id="lorenzo">
+            <span id="k-carttoggle-wrapper">
             <a id="k-carttoggle" tabindex="0" aria-label="cart">
               <i id="show thi" class="icon-bag"></i>
               <span id="k-cartnum" class="">0</span>
             </a>
+            </span>
           </li>
 
           <li class="k-searchparent" aria-label="search">

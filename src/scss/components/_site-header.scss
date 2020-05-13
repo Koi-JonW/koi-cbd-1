@@ -1,5 +1,6 @@
 .page-template-page-checkout {
   .k-header {
+    #k-carttoggle-wrapper,
     #k-carttoggle,
     #k-searchicon,
     .k-header--navtoggle {
@@ -14,12 +15,20 @@
   }
 }
 
-#k-carttoggle {
+.k-header--cart {
+  cursor: pointer;
+}
+
+#k-carttoggle-wrapper {
   margin: 0 1em 0.25em auto;
   position: relative;
-
-  i {
-    font-size: 200%;
+  display: inline-block;
+  cursor: pointer;
+  #k-carttoggle {
+    pointer-events: none;
+    i {
+      font-size: 200%;
+    }
   }
 }
 
@@ -263,11 +272,14 @@
 }
 
 @media (min-width: $bp-md) {
-  #k-carttoggle {
-    margin: auto;
-
-    i {
-      font-size: 100%;
+  #k-carttoggle-wrapper {
+    margin: 0 auto 0.25em auto;
+    cursor: pointer;
+    #k-carttoggle {
+      margin: auto;
+      i {
+        font-size: 110%;
+      }
     }
   }
 

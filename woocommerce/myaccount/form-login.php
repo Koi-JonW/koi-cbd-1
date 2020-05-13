@@ -86,7 +86,7 @@ $regadd = $_GET['reg'];
 			<div class="k-login__form k-login__form--register is-visible <?php if($regadd == "1"){ echo 'is-visible'; }else{ } ?>">
 				<div class="k-login__form__liner">
 					<h2><?php esc_html_e('Register A New Account', 'woocommerce'); ?></h2>
-					<div style="color:#666; font-weight:lighter; line-height:22px;">Experience faster checkout and earn rewards on purchases when you create an account.</div>
+					<div style="color:#666; font-weight:lighter; line-height:22px;">Experience faster checkout and earn rewards on all purchases when you create an account.</div>
 
 					<form method="post" class="woocommerce-form woocommerce-form-register register" <?php do_action( 'woocommerce_register_form_tag' ); ?> >
 

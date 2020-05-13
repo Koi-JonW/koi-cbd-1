@@ -203,11 +203,12 @@ $logoutTrigger.click(function(e) {
 });
 
 $myOpenCart.click(function() {
-  $myNews.removeClass('k-header__newsletter-signup--open');
-  $myNews.css('display', 'none');
-  $searchModal.removeClass('k-modal--open');
-  $backdrop.removeClass('active');
-  $myDrop.removeClass('k-dropdown--open');
+  // $myNews.removeClass('k-header__newsletter-signup--open');
+  // $myNews.css('display', 'none');
+  // $searchModal.removeClass('k-modal--open');
+  // $backdrop.removeClass('active');
+  // $myDrop.removeClass('k-dropdown--open');
+  window.location.href = "/cart";
 });
 
 $myOpenSearch.click(function() {

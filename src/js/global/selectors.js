@@ -13,7 +13,8 @@ export const $reviewModal = $('.k-modal--review');
 //Adding Newsletter and Menu Dropdown
 export const $myNews = $('.k-header__newsletter-signup');
 export const $myDrop = $('.k-dropdown');
-export const $myOpenCart = $('.k-header--cart');
+// export const $myOpenCart = $('.k-header--cart');
+export const $myOpenCart = $('#k-carttoggle-wrapper');
 export const $myOpenSearch = $('.k-searchtrigger');
 export const $myOpenMenu = $('.k-has-dropdown');
 export const $myOpenNews = $('.k-promobanner--item');

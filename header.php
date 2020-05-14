@@ -73,6 +73,17 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 .k-login__rememberme{margin:0px !important;}
 .woocommerce form.register, .woocommerce-form-login{margin:0.5em 0 !important;}
 
+.hubwoo_checkout_marketing_optin{padding:0px !important;}
+#hubwoo_checkout_marketing_optin{display:inline !important; opacity:1 !important; position:relative !important; z-index:999; 
+appearance:checkbox !important;
+-webkit-appearance:checkbox !important;
+-moz-appearance:checkbox !important; min-width:0px !important; margin-top:-7px; margin-right:5px;}
+
+#hubwoo_registeration_marketing_optin{display:inline !important; opacity:1 !important; position:relative !important; z-index:999; 
+appearance:checkbox !important;
+-webkit-appearance:checkbox !important;
+-moz-appearance:checkbox !important; min-width:0px !important; margin-top:-7px; margin-right:5px;}
+
 
 @media only screen and (max-width:1260px){
 .k-header--nav a{font-size: 15px !important;}

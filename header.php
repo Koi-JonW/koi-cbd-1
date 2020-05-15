@@ -64,6 +64,27 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 .hero-media-img-top{margin-top:165px;}
 .sticky_banner{margin-top:110px;}
 
+.k-login__form{position:relative !important;}
+.k-login__form h2{margin:10px 0px;}
+.k-liner{width:100% !important; max-width:1200px !important; display:flex; flex-wrap:wrap; overflow:hidden;}
+.k-login__form--default{width:46% !important; margin:2%; }
+.k-login__form--register{width:46% !important; margin:2%;}
+.k-login__form button[type="submit"]{margin:10px 0px 0px 0px !important;}
+.k-login__rememberme{margin:0px !important;}
+.woocommerce form.register, .woocommerce-form-login{margin:0.5em 0 !important;}
+
+.hubwoo_checkout_marketing_optin{padding:0px !important;}
+#hubwoo_checkout_marketing_optin{display:inline !important; opacity:1 !important; position:relative !important; z-index:999; 
+appearance:checkbox !important;
+-webkit-appearance:checkbox !important;
+-moz-appearance:checkbox !important; min-width:0px !important; margin-top:-7px; margin-right:5px;}
+
+#hubwoo_registeration_marketing_optin{display:inline !important; opacity:1 !important; position:relative !important; z-index:999; 
+appearance:checkbox !important;
+-webkit-appearance:checkbox !important;
+-moz-appearance:checkbox !important; min-width:0px !important; margin-top:-7px; margin-right:5px;}
+
+
 @media only screen and (max-width:1260px){
 .k-header--nav a{font-size: 15px !important;}
 .k-header--nav li{margin-right: 8px !important;}
@@ -89,6 +110,8 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 .sticky_banner{margin-top:8%;}
 .k-header.is-open{position:absolute !important;}
 #k-backdrop{position:relative !important;}
+.k-login__form--default{width:96% !important; margin:2%; }
+.k-login__form--register{width:96% !important; margin:2%;}
 }
 @media only screen and (max-width:480px){
 .hero-media-img-top{margin-top:30%;}

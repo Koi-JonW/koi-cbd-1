@@ -1,4 +1,10 @@
+# Base
 .DS_Store
 node_modules/
 .env
 .idea
+# Dist
+dist/css/main.css
+dist/js/magnetic.bundle.js
+# NPM
+package-lock.json

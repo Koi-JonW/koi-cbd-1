@@ -334,6 +334,23 @@ $root = get_template_directory_uri();
       }
 
     });
+
+$(document).ready(function() {
+$(document).on('select2:select', '.k-checkout #billing_state', function() {
+$('<div>')
+.css('position', 'fixed')
+.css('left', '0')
+.css('right', '0')
+.css('top', '0')
+.css('bottom', '0')
+.css('z-index', '999999999')
+.css('background', 'rgba(0, 0, 0, 0.5) url(<?php echo $root.'/loading.gif' ?>) center center no-repeat')
+.appendTo($('body'));
+setTimeout(function(){
+window.location.reload(true);
+}, 2000);
+});
+});
   </script>
   <!-- Swell Integration :: END -->
 

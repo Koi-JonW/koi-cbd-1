@@ -6,3 +6,5 @@ node_modules/
 # Dist
 dist/css/main.css
 dist/js/magnetic.bundle.js
+# NPM
+package-lock.json

@@ -1,12 +1,12 @@
 
 <?php
-add_filter('the_title', 'ignore_default_title');
+/*add_filter('the_title', 'ignore_default_title');
 
 function ignore_default_title() {
   $s = get_search_query();
 
   return 'Koi Search: ' . $s;
-}
+}*/
 
 get_header();
 
@@ -20,7 +20,7 @@ do_action('k_before_first_section');
   </div>
   <div style="display:none">
 <?php 
-var_dump(get_title());
+var_dump(the_title("Koi Search"));
 var_dump(get_search_query());
 ?>
 </div>

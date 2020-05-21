@@ -9,12 +9,6 @@ do_action('k_before_first_section');
     <?php get_search_form(); ?>
   </div>
 </section>
-<div style="display:none">
-<?php 
-var_dump(get_title());
-var_dump(get_search_query());
-?>
-</div>
 <?php
 get_footer();
 ?>

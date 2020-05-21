@@ -7,6 +7,15 @@ function ignore_default_title() {
 
   return 'Koi Search: ' . $s;
 }*/
+add_filter( 'document_title_parts', 'custom_title' );
+
+function custom_title($title_parts) {
+  $s = get_search_query();
+  $title_parts['title'] = 'Koi Search: ' . $s;
+
+  return $title_parts;
+}
+
 
 get_header();
 
@@ -18,12 +27,6 @@ do_action('k_before_first_section');
     <p class="k-preheading k-upcase">Search Koi CBD</p>
     <h1 class="k-headline k-headline--md">Search Results</h1>
   </div>
-  <div style="display:none">
-<?php 
-var_dump(the_title("Koi Search"));
-var_dump(get_search_query());
-?>
-</div>
 </section>
 
 <section class="k-searchresults k-block k-block--md k-no-padding--top">

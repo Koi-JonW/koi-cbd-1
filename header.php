@@ -31,17 +31,7 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-<?php
-var_dump($pagetitle); 
-var_dump(the_title()); 
-  if(isset($pagetitle)){
-    echo '<title>'.$pagetitle.'</title>';
-  }else {
-    echo '<title>'.the_title().'</title>';
-  }
-?>
-    
+  <title><?php echo $pagetitle?$pagetitle:the_title("","",false); ?></title>    
 
   <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $root . '/dist/apple-icon-57x57.png'; ?>">
   <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $root . '/dist/apple-icon-60x60.png'; ?>">

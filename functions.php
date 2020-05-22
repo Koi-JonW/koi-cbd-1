@@ -657,5 +657,5 @@ function our_function_for_filter ( $title = NULL, $sep = NULL, $seplocation = NU
      return $title;
 
 }
-add_filter( 'pre_get_document_title', 'our_function_for_filter', 10, 1 );
-add_filter( 'wp_title', 'our_function_for_filter', 10, 3 );
+add_action( 'pre_get_document_title', 'our_function_for_filter', 10, 1 );
+add_action( 'wp_title', 'our_function_for_filter', 10, 3 );

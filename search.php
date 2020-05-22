@@ -1,22 +1,16 @@
 
 <?php
-/*add_filter('the_title', 'ignore_default_title');
+add_filter('the_title', 'ignore_default_title');
 
 function ignore_default_title() {
   $s = get_search_query();
 
   return 'Koi Search: ' . $s;
-}*/
-
-add_filter( 'pre_get_document_title', 'k_change_page_title' );
-function k_change_page_title () {
-
-  $s = get_search_query();
-  return  'Koi Search: ' . $s;
-
 }
 
 get_header();
+
+remove_filter('the_title', 'ignore_default_title');
 
 do_action('k_before_first_section');
 ?>

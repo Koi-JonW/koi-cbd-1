@@ -7,8 +7,11 @@ function ignore_default_title() {
 
   return 'Koi Search: ' . $s;
 }*/
+global $title, $pagetitle;
+
 $s = get_search_query();
-$pagetitle = 'Koi Search: ' . $s;
+$title = 'Koi Search: ' . $s;
+$pagetitle = 'P-Koi Search: ' . $s;
 
 get_header();
 

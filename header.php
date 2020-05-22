@@ -24,7 +24,7 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
     var SITE_GLOBALS = {
       root: '<?php echo site_url(); ?>',
     };
-    console.log('<?php echo $pagetitle; ?>');
+    console.log('<?php echo $title; ?>');
   </script>
   <!-- Remember to add the live chat script here!! -->
 <!--  <script type="text/javascript" async src="https://cdn.livechatinc.com/tracking.js"></script>-->

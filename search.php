@@ -6,22 +6,13 @@ function ignore_default_title() {
   $s = get_search_query();
 
   return 'Koi Search: ' . $s;
-}
-add_filter( 'document_title_parts', 'custom_title' );
-
-function custom_title($title_parts) {
-  $s = get_search_query();
-  $title_parts['title'] = 'Koi Search: ' . $s;
-
-  return $title_parts;
 }*/
 
+global $title;
+
+$title = 'Koi Search: ';
 
 get_header();
-
-$header = ob_get_clean();
-$header = preg_replace('#<title>(.*?)<\/title>#', '<title>TEST</title>', $header);
-echo $header;
 
 do_action('k_before_first_section');
 ?>

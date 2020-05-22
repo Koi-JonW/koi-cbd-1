@@ -1,16 +1,23 @@
 <?php
-add_filter('the_title', 'ignore_default_title');
+/*add_filter('the_title', 'ignore_default_title');
 
-function ignore_default_title() {
+function ignore_default_title( $title, $post_id = null ) {
+  $s = get_search_query();
 
-  if( is_admin() || !in_the_loop() ){
+  return 'Koi Search: ' . $s;
+}*/
+
+function change_title($title) {
+  if( in_the_loop() && !is_archive() ) { 
     $s = get_search_query();
 
-    return 'Koi Search: ' . $s;
+    return 'Koi Search: ' . $s;             
   }
 
   return $title;
+
 }
+add_filter('the_title', array($this, 'change_title'), 10, 2); 
 
 get_header();
 

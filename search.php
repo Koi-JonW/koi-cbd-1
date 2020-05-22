@@ -7,11 +7,14 @@ function ignore_default_title() {
 
   return 'Koi Search: ' . $s;
 }*/
-global $title, $pagetitle;
 
-$s = get_search_query();
-$title = 'Koi Search: ' . $s;
-$pagetitle = 'P-Koi Search: ' . $s;
+add_filter( 'pre_get_document_title', 'k_change_page_title' );
+function cyb_change_page_title () {
+
+  $s = get_search_query();
+  return  'Koi Search: ' . $s;
+
+}
 
 get_header();
 

@@ -645,15 +645,17 @@ function yotpo_create_order($order_id){
 
 }
 
+add_action('woocommerce_order_status_completed', 'yotpo_create_order');
+
 function our_function_for_filter ( $title = NULL, $sep = NULL, $seplocation = NULL ) {
 
-      $title = $title . ". Debug...";
+  $title = $title . ". Debug...";
 
-      if ( current_theme_supports('title-tag') ) 
-         return sprintf( '<title>%s</title>', $title );
-      else
-         return $title;
+  if ( current_theme_supports('title-tag') ) 
+     return sprintf( '<title>%s</title>', $title );
+  else
+     return $title;
 
 }
-add_filters( 'pre_get_document_title', 'our_function_for_filter', 10, 1 );
-add_filters( 'wp_title', 'our_function_for_filter', 10, 3 );
+add_filter( 'pre_get_document_title', 'our_function_for_filter', 10, 1 );
+add_filter( 'wp_title', 'our_function_for_filter', 10, 3 );

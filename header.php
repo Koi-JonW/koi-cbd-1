@@ -24,6 +24,7 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
     var SITE_GLOBALS = {
       root: '<?php echo site_url(); ?>',
     };
+    console.log('<?php echo $pagetitle; ?>');
   </script>
   <!-- Remember to add the live chat script here!! -->
 <!--  <script type="text/javascript" async src="https://cdn.livechatinc.com/tracking.js"></script>-->
@@ -31,7 +32,7 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?php echo $pagetitle?$pagetitle:the_title("","",false); ?></title>    
+  <title><?php echo isset($pagetitle)?$pagetitle:the_title("","",false); ?></title>    
 
   <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $root . '/dist/apple-icon-57x57.png'; ?>">
   <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $root . '/dist/apple-icon-60x60.png'; ?>">

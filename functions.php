@@ -646,3 +646,12 @@ function yotpo_create_order($order_id){
 }
 
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
+
+add_filter( 'document_title_parts', 'k_change_document_title_parts' );
+function k_change_document_title_parts ( $title_parts ) {
+
+    $title_parts['title'] = $title_parts['title'].'DEBUG';
+
+    return $title_parts;
+
+}

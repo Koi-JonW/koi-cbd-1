@@ -9,7 +9,7 @@ function ignore_default_title() {
 }*/
 
 add_filter( 'pre_get_document_title', 'k_change_page_title' );
-function cyb_change_page_title () {
+function k_change_page_title () {
 
   $s = get_search_query();
   return  'Koi Search: ' . $s;

@@ -4,8 +4,6 @@ global $wp;
 $root = get_template_directory_uri();
 $current_url = home_url(add_query_arg(array(), $wp->request));
 $search_text = get_search_query();
-var_dump($search_text);
-var_dump($wp);
 ?>
 
 <!DOCTYPE html>
@@ -132,6 +130,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body <?php body_class(); ?>>
+<?php
+var_dump($search_text);
+var_dump($wp);
+?>
   <script>
     (function() {
       var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;

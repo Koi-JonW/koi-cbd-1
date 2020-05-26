@@ -130,10 +130,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body <?php body_class(); ?>>
-<?php
-var_dump($search_text);
-var_dump($wp);
-?>
   <script>
     (function() {
       var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;

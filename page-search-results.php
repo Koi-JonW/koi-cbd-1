@@ -1,6 +1,5 @@
 <?php
 
-/* Template Name: 2019 Search Page */
 get_header();
 do_action('k_before_first_section');
 
@@ -10,7 +9,6 @@ do_action('k_before_first_section');
     <?php get_search_form(); ?>
   </div>
 </section>
-
 <?php
 get_footer();
 ?>

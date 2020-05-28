@@ -5,7 +5,7 @@ get_header('search');
 do_action('k_before_first_section');
 ?>
 
-<section class="k-block k-block--md k-no-padding--bottom k-no-padding--top">
+<section class="k-block k-block--md k-half-padding--bottom k-no-padding--top">
   <div class="k-inner k-inner--md">
     <p class="k-preheading k-upcase">Search Koi CBD</p>
     <h1 class="k-headline k-headline--md">Search Results</h1>

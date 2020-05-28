@@ -110,7 +110,7 @@ appearance:checkbox !important;
 .hero-media-img-top img{width:1000px !important; margin-left:-10%;}
 .sticky_banner{margin-top:8%;}
 .k-header.is-open{position:absolute !important;}
-#k-backdrop{position:relative !important;}
+/*#k-backdrop{position:relative !important;}*/
 .k-login__form--default{width:96% !important; margin:2%; }
 .k-login__form--register{width:96% !important; margin:2%;}
 }

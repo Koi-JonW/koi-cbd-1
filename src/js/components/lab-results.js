@@ -153,6 +153,34 @@ function setDefaultResults() {
       sku: ['ROG-MEN-089-0500'],
       button: $('[data-category="rollOn"]'),
       unit: ['3 oz roll-on bottle'],
+      alias: {
+        variant: ['500 mg'],
+      },
+      labResults: [],
+    },
+    {
+      categoryName: 'skincare',
+      sku: ['SKN-CLN-100-0500', 'SKN-TNR-100-0500', 'SKN-SER-030-0500', 'SKN-MST-050-0500'],
+      button: $('[data-category="skincare"]'),
+      unit: ['3.38 oz bottle', '1.69 oz bottle', '1.01 oz bottle', '1.69 oz bottle'],
+      alias: {
+        names: ['CBD Skincare | Facial Cleanser', 'CBD Skincare | Tightening Toner', 
+          'CBD Skincare | Facial Serum', 'CBD Skincare | Moisturizer Cream'],
+        variant: ['Facial Cleanser (500 mg)', 'Tightening Toner (500 mg)', 
+          'Facial Serum (500 mg)', 'Moisturizer Cream (500 mg)'],
+      },
+      labResults: [],
+    },
+    {
+      categoryName: 'hempShots',
+      sku: ['SHT-RSP-073-0025-12PK', 'SHT-WTM-073-0025-12PK', 'SHT-PCH-073-0025-12PK'],
+      button: $('[data-category="hempShots"]'),
+      unit: ['2.5 oz bottle', '2.5 oz bottle', '2.5 oz bottle'],
+      alias: {
+        names: ['Koi Hemp Wellness Shot Raspberry Punch 25 mg', 'Koi Hemp Wellness Shot Watermelon 25 mg', 
+          'Koi Hemp Sleep-Aid Shot Peach Iced Tea 25 mg'],
+        variant: ['Raspberry Punch (25mg)', 'Watermelon (25mg)', 'Peach Iced Tea (25mg)'],
+      },
       labResults: [],
     },
   ];

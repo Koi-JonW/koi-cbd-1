@@ -148,6 +148,13 @@ function setDefaultResults() {
       unit: ['100mg bath bomb'],
       labResults: [],
     },
+    {
+      categoryName: 'rollOn',
+      sku: ['ROG-MEN-089-0500'],
+      button: $('[data-category="rollOn"]'),
+      unit: ['3 oz roll-on bottle'],
+      labResults: [],
+    },
   ];
 
   // sync massaged data to global sampleTests

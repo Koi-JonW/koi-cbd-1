@@ -97,6 +97,9 @@ get_header();
       <div data-category="bathBombs" class="k-recentresults__category-button k-button k-button--default">
         <span>Bath Bombs</span>
       </div>
+      <div data-category="rollOn" class="k-recentresults__category-button k-button k-button--default">
+        <span>Roll On</span>
+      </div>
     </div>
 
     <div class="k-recentresults__spacer"></div>

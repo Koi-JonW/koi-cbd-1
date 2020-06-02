@@ -646,3 +646,11 @@ function yotpo_create_order($order_id){
 }
 
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
+
+function woocommerce_clear_cart_url() {
+	if ( isset( $_GET['clear-cart'] ) ) {
+		WC()->cart->empty_cart();
+	}
+}
+
+add_action( 'init', 'woocommerce_clear_cart_url' );

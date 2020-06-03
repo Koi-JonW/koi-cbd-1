@@ -128,14 +128,14 @@ if (sizeof($items_in_cart) == 0) { ?>
                       <?php
                       foreach($bundled_cart_items as $key => $bundled_cart_item) {
                         $bundled_product = wc_get_product($bundled_cart_item['variation_id']);
-                        $price = floatval($bundled_product->get_price());
+                        $price = floatval($cart_item['data']->get_price());
                         $price_with_discount = number_format($price - ($discount_amount * $price), 2);
                         $running_bundle_total += $price_with_discount * $bundled_cart_item['quantity'];
                         $running_bundle_full_price += $price * $bundled_cart_item['quantity'];
                       ?>
                         <li class="k-cart--item__bundleditem">
-                          <a href="<?php echo $bundled_product->get_permalink(); ?>"><?php echo $bundled_product->get_name(); ?></a>
-                          <span class="k-cart--item__bundleditem__price"><?php echo $price_with_discount . '<sup>' . ($discount_amount * 100) . '% off!</sup>'; ?></span>
+                          <a href="<?php echo $cart_item['data']->get_permalink(); ?>"><?php echo $cart_item['data']->get_name(); ?></a>
+                          <!-- <span class="k-cart--item__bundleditem__price"><?php // echo $price_with_discount . '<sup>++++' . ($discount_amount * 100) . '% off!</sup>'; ?></span> -->
                           <span class="k-cart--item__bundleditem__quantity">Quantity: <?php echo $bundled_cart_item['quantity']; ?></span>
                         </li>
                       <?php
@@ -183,10 +183,13 @@ if (sizeof($items_in_cart) == 0) { ?>
                   <div class="k-cart--item__price">
                     <?php
                     if ($_product->get_type() != 'bundle') : ?>
+
                       <p class="k-bigtext k-cartItem--price-target"><?php echo $cart->get_product_subtotal($_product, $cart_item['quantity']); ?></p>
                       <button class="k-cart-sidebar__item-update k-button k-button--primary" type="button">Update</button>
                     <?php else: ?>
-                      <p class="k-bigtext"><?php echo '$'.$running_bundle_total; ?> <span class="k-strikethrough"><?php echo '$'.$running_bundle_full_price; ?></span></p>
+                      <p class="k-bigtext">
+					<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
+<!-- <?php // echo '$'.$running_bundle_total; ?> <span class="k-strikethrough"><?php // echo '$'.$running_bundle_full_price; ?></span>--></p>
                       <button class="k-cart-sidebar__item-update k-button k-button--primary" type="button">Update</button>
                     <?php endif; ?>
                   </div>

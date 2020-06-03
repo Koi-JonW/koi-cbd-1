@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					foreach($bundled_cart_items as $bundled_cart_item) {
 						$bundled_product = wc_get_product($bundled_cart_item['variation_id']);
-						$price = floatval($bundled_product->get_price());
+						$price = floatval($cart_item['data']->get_price());
 						$price_with_discount = number_format($price - ($discount_amount * $price), 2);
 						$running_bundle_total += $price_with_discount * $bundled_cart_item['quantity'];
 						$running_bundle_full_price += $price * $bundled_cart_item['quantity'];
@@ -66,8 +66,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 								<?php if ($_product->get_type() !== 'bundle'): ?>
 									<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); ?>
 								<?php else: ?>
-									<?php echo '$'.$running_bundle_total; ?>
-									<?php echo '<span class="k-strikethrough">'.$running_bundle_full_price.'</span>'; ?>
+									<?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
+									<?php // echo '$'.$running_bundle_total; ?>
+									<?php // echo '<span class="k-strikethrough">'.$running_bundle_full_price.'</span>'; ?>
 								<?php endif; ?>
 							</p>
 						</div>
@@ -80,15 +81,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php
 									foreach($bundled_cart_items as $bundled_cart_item) :
 										$bundled_product = wc_get_product($bundled_cart_item['variation_id']);
-										$price = floatval($bundled_product->get_price());
+										$price = floatval($cart_item['data']->get_price());
 										$price_with_discount = number_format($price - ($discount_amount * $price), 2);
 										$running_bundle_total += $price_with_discount * $bundled_cart_item['quantity'];
 										$running_bundle_full_price += $price * $bundled_cart_item['quantity'];
 										?>
 										
 										<li>
-											<a href="<?php echo $bundled_product->get_permalink(); ?>"><?php echo $bundled_product->get_name(); ?></a>
-											<p><span>Bundled price: </span><?php echo $price_with_discount . '<sup>' . ($discount_amount * 100) . '% off!</sup>'; ?></p>
+											<a href="<?php echo $cart_item['data']->get_permalink(); ?>"><?php echo $cart_item['data']->get_name(); ?></a>
+											<!--<p><span>Bundled price: </span><?php // echo $price_with_discount . '<sup>' . ($discount_amount * 100) . '% off!</sup>'; ?></p> -->
 											<p><span>Quantity: </span><span><?php echo $bundled_cart_item['quantity']; ?></span></p>
 										</li>
 									<?php endforeach; ?>

@@ -1,26 +1,18 @@
-
 <?php
-add_filter('the_title', 'ignore_default_title');
 
-function ignore_default_title() {
-  $s = get_search_query();
-
-  return 'Koi Search: ' . $s;
-}
-
-get_header();
+get_header('search');
 
 do_action('k_before_first_section');
 ?>
 
-<section class="k-block k-block--md k-no-padding--bottom">
+<section class="k-block k-block--md k-no-padding--bottom k-no-padding--top">
   <div class="k-inner k-inner--md">
     <p class="k-preheading k-upcase">Search Koi CBD</p>
     <h1 class="k-headline k-headline--md">Search Results</h1>
   </div>
 </section>
 
-<section class="k-searchresults k-block k-block--md k-no-padding--top">
+<section class="k-searchresults k-block k-block--md k-no-padding--top k-half-padding--bottom">
   <div class="k-inner k-inner--md">
   <?php
     global $wp_query;

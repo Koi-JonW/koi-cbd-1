@@ -84,6 +84,7 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    width: 100%;
 
     .k-figure {
       position: relative;
@@ -118,8 +119,7 @@
     }
 
     &--badges {
-      flex-basis: 50%;
-      margin-top: -5em;
+      width: 100%;
     }
 
     &--bottom {
@@ -163,8 +163,7 @@
     }
 
     &--badges {
-      flex-basis: 20%;
-      margin-top: 0;
+      width: 20%;
     }
 
     &--copy,

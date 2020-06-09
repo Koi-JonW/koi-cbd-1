@@ -1,6 +1,7 @@
 <?php
-
 /**
+ * test
+ *
  * Single coupon ( for the "Select Free Product" on Cart or Checkout page )
  *
  * This template can be overridden by copying it to yourtheme/woocommerce-auto-added-coupons/coupon-select-free-product.php

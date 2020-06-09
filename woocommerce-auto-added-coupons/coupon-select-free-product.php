@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single coupon ( for the "Select Free Product" on Cart or Checkout page )
  *

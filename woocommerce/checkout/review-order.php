@@ -225,6 +225,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="k-review-order--meta">
 		
 	</div>
+	<?php
+	if(get_field('show_in_the_footer','51')){
+		echo '<br/>';
+		the_field('coupon_alerts','51');
+	}
+	?>
 
 </div>
 <!-- <table class="shop_table woocommerce-checkout-review-order-table">

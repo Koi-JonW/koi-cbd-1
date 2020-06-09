@@ -1,7 +1,5 @@
 <?php
 /**
- * test
- *
  * Single coupon ( for the "Select Free Product" on Cart or Checkout page )
  *
  * This template can be overridden by copying it to yourtheme/woocommerce-auto-added-coupons/coupon-select-free-product.php
@@ -56,7 +54,11 @@ $class = 'wjecf-cols cols-' . ceil( $n / ceil( $n / 4 ) ) . ' cols-lg-' . ceil( 
 <div class="wjecf-select-free-products coupon-<?php echo esc_attr( sanitize_title( $coupon_code ) ); ?>">
 	<h3><?php $coupon_select = WJECF_API()->get_select_free_product_message( $coupon ); ?>
 	<?php echo $str = str_replace("\\", "", $coupon_select); ?></h3>
-	<h4>Do you have a free gift? Check to be sure your gift is selected before submitting your order!</h4>
+	<?php
+	if(get_field('show_in_the_header','51')){ 
+		the_field('coupon_alerts','51');
+	}
+	?>
 	<input type="hidden" name="<?php echo $name_prefix; ?>[coupon]" value="<?php echo esc_attr( $coupon_code ); ?>" />
 	<input type="hidden" id="<?php echo $totalizer_id; ?>" data-wjecf-qty-max="<?php echo $max_quantity; ?>" />
 	<ul class="<?php echo esc_attr( $class ); ?>">

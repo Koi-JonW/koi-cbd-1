@@ -231,7 +231,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		the_field('coupon_alerts','51');
 	}
 	?>
-
+	<div class="freeprod"></div>
 </div>
 <!-- <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>

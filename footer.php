@@ -352,6 +352,8 @@ $root = get_template_directory_uri();
       });
     });
     */
+
+$(".wjecf-fragment-checkout-select-free-product").insertAfter(".freeprod");
   </script>
   <!-- Swell Integration :: END -->
 

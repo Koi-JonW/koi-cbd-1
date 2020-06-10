@@ -52,13 +52,13 @@ $class = 'wjecf-cols cols-' . ceil( $n / ceil( $n / 4 ) ) . ' cols-lg-' . ceil( 
 
 ?>
 <div class="wjecf-select-free-products coupon-<?php echo esc_attr( sanitize_title( $coupon_code ) ); ?>">
-	<h3><?php $coupon_select = WJECF_API()->get_select_free_product_message( $coupon ); ?>
-	<?php echo $str = str_replace("\\", "", $coupon_select); ?></h3>
 	<?php
 	if(get_field('show_in_the_header','51')){ 
-		the_field('coupon_alerts','51');
+		echo '<br/>'.get_field('coupon_alerts','51');
 	}
 	?>
+	<h3><?php $coupon_select = WJECF_API()->get_select_free_product_message( $coupon ); ?>
+	<?php echo $str = str_replace("\\", "", $coupon_select); ?></h3>
 	<input type="hidden" name="<?php echo $name_prefix; ?>[coupon]" value="<?php echo esc_attr( $coupon_code ); ?>" />
 	<input type="hidden" id="<?php echo $totalizer_id; ?>" data-wjecf-qty-max="<?php echo $max_quantity; ?>" />
 	<ul class="<?php echo esc_attr( $class ); ?>">

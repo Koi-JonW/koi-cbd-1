@@ -148,6 +148,27 @@ function setDefaultResults() {
       unit: ['100mg bath bomb'],
       labResults: [],
     },
+    {
+      categoryName: 'rollOn',
+      sku: ['ROG-MEN-089-0500'],
+      button: $('[data-category="rollOn"]'),
+      unit: ['3 oz roll-on bottle'],
+      labResults: [],
+    },
+    {
+      categoryName: 'skincare',
+      sku: ['SKN-CLN-100-0500', 'SKN-TNR-100-0500', 'SKN-SER-030-0500', 'SKN-MST-050-0500'],
+      button: $('[data-category="skincare"]'),
+      unit: ['3.38 oz bottle', '1.69 oz bottle', '1.01 oz bottle', '1.69 oz bottle'],
+      labResults: [],
+    },
+    {
+      categoryName: 'hempShots',
+      sku: ['SHT-RSP-073-0025-12PK', 'SHT-WTM-073-0025-12PK', 'SHT-PCH-073-0025-12PK'],
+      button: $('[data-category="hempShots"]'),
+      unit: ['2.5 oz bottle', '2.5 oz bottle', '2.5 oz bottle'],
+      labResults: [],
+    },
   ];
 
   // sync massaged data to global sampleTests

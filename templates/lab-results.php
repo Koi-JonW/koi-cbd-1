@@ -97,6 +97,15 @@ get_header();
       <div data-category="bathBombs" class="k-recentresults__category-button k-button k-button--default">
         <span>Bath Bombs</span>
       </div>
+      <div data-category="rollOn" class="k-recentresults__category-button k-button k-button--default">
+        <span>Roll On</span>
+      </div>
+      <div data-category="skincare" class="k-recentresults__category-button k-button k-button--default">
+        <span>Skincare</span>
+      </div>
+      <div data-category="hempShots" class="k-recentresults__category-button k-button k-button--default">
+        <span>Hemp Shots</span>
+      </div>
     </div>
 
     <div class="k-recentresults__spacer"></div>

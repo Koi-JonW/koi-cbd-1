@@ -88,4 +88,9 @@ $class = 'wjecf-cols cols-' . ceil( $n / ceil( $n / 4 ) ) . ' cols-lg-' . ceil( 
 	?>
 	</ul>
 	<p>
+<?php
+	if(get_field('show_in_the_footer','51')){ 
+		echo '<br/>'.get_field('coupon_alerts','51');
+	}
+	?>
 </div>

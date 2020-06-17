@@ -5,7 +5,7 @@
   $fields = get_fields();
   $site_content = get_fields('option');
 
-  get_header();
+  get_header('homepage');
 
   /**
    * This page relies on the include(locate_template()) hack.
@@ -84,5 +84,5 @@
   get_template_part('partials/process-preview');
   echo "</section>";
 
-  get_footer();
+  get_footer('homepage');
 ?>

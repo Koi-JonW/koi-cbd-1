@@ -35,6 +35,7 @@ form.cart {
     border-radius: 2em !important;
     font-size: 20px;
     height: 60px;
+    width: 25%;
 
     &:hover {
       background-color: darken($primary, 15%) !important;
@@ -84,7 +85,7 @@ form.cart {
 
   .quantity,
   .single_add_to_cart_button {
-    width: 48.5%;
+    width: 15%;
   }
 
   .quantity {

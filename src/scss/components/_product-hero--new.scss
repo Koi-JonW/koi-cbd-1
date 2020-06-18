@@ -29,10 +29,12 @@
 form.cart {
   button[type='submit'] {
     @extend .k-button;
-    padding: 1.425em 1.15em !important;
+    padding: 0em 1.15em !important;
     background-color: $primary !important;
     border-color: $primary !important;
-    border-radius: 0.4em !important;
+    border-radius: 2em !important;
+    font-size: 20px;
+    height: 60px;
 
     &:hover {
       background-color: darken($primary, 15%) !important;
@@ -98,6 +100,7 @@ form.cart {
       box-shadow: none;
       background: $true-white;
       outline: none;
+      height: 60px;
     }
   }
 

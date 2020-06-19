@@ -647,7 +647,14 @@ function yotpo_create_order($order_id){
 
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
 
-add_action('wp_footer', 'billing_country_state_update_checkout', 50);
+function woocommerce_clear_cart_url() {
+	if ( isset( $_GET['clear-cart'] ) ) {
+		WC()->cart->empty_cart();
+	}
+}
+
+add_action( 'init', 'woocommerce_clear_cart_url' );
+
 function billing_country_state_update_checkout() {
     if ( ! is_checkout() ) return;
     ?>
@@ -660,13 +667,15 @@ function billing_country_state_update_checkout() {
                 },
                 trigger_update_checkout: function() {
                     t.reset_update_checkout_timer(), t.dirtyInput = !1,
+                    $(document.body).trigger("calc_line_taxes")
                     $(document.body).trigger("update_checkout")
                 }
             };
+            $(document.body).trigger('calc_line_taxes');
             $(document.body).trigger('update_checkout');
-            console.log('Event: update_checkout');
         });
     });
     </script>
     <?php
 }
+add_action('wp_footer', 'billing_country_state_update_checkout', 50);

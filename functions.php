@@ -647,13 +647,13 @@ function yotpo_create_order($order_id){
 
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
 
-add_action('wp_footer', 'billing_country_update_checkout', 50);
-function billing_country_update_checkout() {
+add_action('wp_footer', 'billing_country_state_update_checkout', 50);
+function billing_country_state_update_checkout() {
     if ( ! is_checkout() ) return;
     ?>
     <script type="text/javascript">
     jQuery(function($){
-        $('select#billing_country, select#shipping_country').on( 'change', function (){
+        $('select#billing_country, select#shipping_country, select#billing_state, select#shipping_state').on( 'change', function (){
             var t = { updateTimer: !1,  dirtyInput: !1,
                 reset_update_checkout_timer: function() {
                     clearTimeout(t.updateTimer)

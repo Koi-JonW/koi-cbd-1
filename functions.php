@@ -674,6 +674,7 @@ function wc_checkout_form_save_data_on_reload() {
 
 
         let shipping_different_address = sessionStorage.getItem('ship-to-different-address');
+        if (shipping_different_address !== null) $('#ship-to-different-address').val(shipping_different_address);
 
         if(shipping_different_address){
           let shipping_first_name = sessionStorage.getItem('shipping_first_name');
@@ -698,6 +699,7 @@ function wc_checkout_form_save_data_on_reload() {
         sessionStorage.setItem("order_comments", $('#order_comments').val());
 
         let shipping_different_address = $("#ship-to-different-address").is(':checked');
+        sessionStorage.setItem("ship-to-different-address", shipping_different_address);
 
         if(shipping_different_address){
           sessionStorage.setItem("shipping_first_name", $('#shipping_first_name').val());

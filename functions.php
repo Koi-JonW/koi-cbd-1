@@ -647,35 +647,66 @@ function yotpo_create_order($order_id){
 
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
 
-function woocommerce_clear_cart_url() {
-	if ( isset( $_GET['clear-cart'] ) ) {
-		WC()->cart->empty_cart();
-	}
-}
-
-add_action( 'init', 'woocommerce_clear_cart_url' );
-
-function billing_country_state_update_checkout() {
+function wc_checkout_form_save_data_on_reload() {
     if ( ! is_checkout() ) return;
     ?>
     <script type="text/javascript">
-    jQuery(function($){
-        $('select#billing_country, select#shipping_country, select#billing_state, select#shipping_state').on( 'change', function (){
-            var t = { updateTimer: !1,  dirtyInput: !1,
-                reset_update_checkout_timer: function() {
-                    clearTimeout(t.updateTimer)
-                },
-                trigger_update_checkout: function() {
-                    t.reset_update_checkout_timer(), t.dirtyInput = !1,
-                    $(document.body).trigger("calc_line_taxes")
-                    $(document.body).trigger("update_checkout")
-                }
-            };
-            $(document.body).trigger('calc_line_taxes');
-            $(document.body).trigger('update_checkout');
-        });
-    });
+    window.onload = function() {
+      jQuery(function($){
+        if (sessionStorage.getItem('billing_first_name') == "billing_first_name") {
+          return;
+        }
+
+        let billing_first_name = sessionStorage.getItem('billing_first_name');
+        if (billing_first_name !== null) $('#billing_first_name').val(billing_first_name);
+
+        let billing_last_name = sessionStorage.getItem('billing_last_name');
+        if (billing_last_name !== null) $('#billing_last_name').val(billing_last_name);
+
+        let billing_company = sessionStorage.getItem('billing_company');
+        if (billing_company !== null) $('#billing_company').val(billing_company);
+
+        let billing_phone = sessionStorage.getItem('billing_phone');
+        if (billing_phone !== null) $('#billing_phone').val(billing_phone);
+
+        let order_comments = sessionStorage.getItem('order_comments');
+        if (order_comments !== null) $('#order_comments').val(billing_phone);
+
+
+        let shipping_different_address = sessionStorage.getItem('ship-to-different-address');
+
+        if(shipping_different_address){
+          let shipping_first_name = sessionStorage.getItem('shipping_first_name');
+          if (shipping_first_name !== null) $('#shipping_first_name').val(shipping_first_name);
+
+          let shipping_last_name = sessionStorage.getItem('shipping_last_name');
+          if (shipping_last_name !== null) $('#shipping_last_name').val(shipping_last_name);
+
+          let shipping_company = sessionStorage.getItem('shipping_company');
+          if (shipping_company !== null) $('#shipping_company').val(shipping_company);
+        }
+
+      });
+    }
+
+    window.onbeforeunload = function() {
+      jQuery(function($){
+        sessionStorage.setItem("billing_first_name", $('#billing_first_name').val());
+        sessionStorage.setItem("billing_last_name", $('#billing_last_name').val());
+        sessionStorage.setItem("billing_company", $('#billing_company').val());
+        sessionStorage.setItem("billing_phone", $('#billing_phone').val());
+        sessionStorage.setItem("order_comments", $('#order_comments').val());
+
+        let shipping_different_address = $("#ship-to-different-address").is(':checked');
+
+        if(shipping_different_address){
+          sessionStorage.setItem("shipping_first_name", $('#shipping_first_name').val());
+          sessionStorage.setItem("shipping_last_name", $('#shipping_last_name').val());
+          sessionStorage.setItem("shipping_company", $('#shipping_company').val());
+        }
+      });
+    }
     </script>
     <?php
 }
-add_action('wp_footer', 'billing_country_state_update_checkout', 50);
+add_action('wp_footer', 'wc_checkout_form_save_data_on_reload', 50);

@@ -648,7 +648,23 @@ function yotpo_create_order($order_id){
 add_action('woocommerce_order_status_completed', 'yotpo_create_order');
 
 function wc_checkout_form_save_data_on_reload() {
+    if(is_wc_endpoint_url( 'order-received' )) { //clear session storage
+    ?>
+      <script type="text/javascript">
+        sessionStorage.removeItem("billing_first_name");
+        sessionStorage.removeItem("billing_last_name");
+        sessionStorage.removeItem("billing_company");
+        sessionStorage.removeItem("billing_phone");
+        sessionStorage.removeItem("ship-to-different-address");
+        sessionStorage.removeItem("shipping_first_name");
+        sessionStorage.removeItem("shipping_last_name");
+        sessionStorage.removeItem("shipping_company");
+      </script>
+    <?php
+    }
+
     if ( ! is_checkout() ) return;
+    
     ?>
     <script type="text/javascript">
     window.onload = function() {

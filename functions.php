@@ -655,6 +655,7 @@ function wc_checkout_form_save_data_on_reload() {
         sessionStorage.removeItem("billing_last_name");
         sessionStorage.removeItem("billing_company");
         sessionStorage.removeItem("billing_phone");
+        sessionStorage.removeItem("billing_email");
         sessionStorage.removeItem("order_comments");
         sessionStorage.removeItem("ship-to-different-address");
         sessionStorage.removeItem("shipping_first_name");
@@ -685,6 +686,9 @@ function wc_checkout_form_save_data_on_reload() {
 
         let billing_phone = sessionStorage.getItem('billing_phone');
         if (billing_phone !== null) $('#billing_phone').val(billing_phone);
+
+        let billing_email = sessionStorage.getItem('billing_email');
+        if (billing_email !== null) $('#billing_email').val(billing_email);
 
         let order_comments = sessionStorage.getItem('order_comments');
         if (order_comments !== null) $('#order_comments').val(billing_phone);

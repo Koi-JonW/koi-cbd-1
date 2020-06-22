@@ -655,6 +655,7 @@ function wc_checkout_form_save_data_on_reload() {
         sessionStorage.removeItem("billing_last_name");
         sessionStorage.removeItem("billing_company");
         sessionStorage.removeItem("billing_phone");
+        sessionStorage.removeItem("order_comments");
         sessionStorage.removeItem("ship-to-different-address");
         sessionStorage.removeItem("shipping_first_name");
         sessionStorage.removeItem("shipping_last_name");

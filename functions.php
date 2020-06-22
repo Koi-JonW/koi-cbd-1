@@ -677,6 +677,9 @@ function wc_checkout_form_save_data_on_reload() {
         if (shipping_different_address !== null) $('#ship-to-different-address').val(shipping_different_address);
 
         if(shipping_different_address){
+
+          $('#ship-to-different-address').trigger('click');
+
           let shipping_first_name = sessionStorage.getItem('shipping_first_name');
           if (shipping_first_name !== null) $('#shipping_first_name').val(shipping_first_name);
 

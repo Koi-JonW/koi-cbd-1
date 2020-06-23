@@ -334,7 +334,6 @@ $root = get_template_directory_uri();
       }
 
     });
-    /*
     $(document).ready(function() {
       $(document).on('select2:select', '.k-checkout #billing_state', function() {
         $('<div>')
@@ -351,7 +350,6 @@ $root = get_template_directory_uri();
         }, 2000);
       });
     });
-    */
 
 $(".wjecf-fragment-checkout-select-free-product").insertAfter(".freeprod");
   </script>

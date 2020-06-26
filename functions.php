@@ -736,3 +736,23 @@ function wc_checkout_form_save_data_on_reload() {
     <?php
 }
 add_action('wp_footer', 'wc_checkout_form_save_data_on_reload', 50);
+
+// -- Yoast
+
+function get_post_title(WP_Post $post): string {
+  $yoast_title = get_post_meta($post->ID, '_yoast_wpseo_title', true);
+  if (empty($yoast_title)) {
+      $wpseo_titles = get_option('wpseo_titles', []);
+      $yoast_title = isset($wpseo_titles['title-' . $post->post_type]) ? $wpseo_titles['title-' . $post->post_type] : get_the_title();
+  }
+  return wpseo_replace_vars($yoast_title, $post);
+}
+
+function get_post_description(WP_Post $post): string {
+  $yoast_description = get_post_meta($post->ID, '_yoast_wpseo_metadesc', true);
+  if (empty($yoast_description)) {
+      $wpseo_titles = get_option('wpseo_titles', []);
+      $yoast_description = isset($wpseo_titles['metadesc-' . $post->post_type]) ? $wpseo_titles['metadesc-' . $post->post_type] : '';
+  }
+  return wpseo_replace_vars($yoast_description, $post);
+}

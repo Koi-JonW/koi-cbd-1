@@ -735,9 +735,6 @@ function wc_checkout_form_save_data_on_reload() {
     </script>
     <?php
 }
-<<<<<<< HEAD
-add_action('wp_footer', 'wc_checkout_form_save_data_on_reload', 50);
-=======
 add_action('wp_footer', 'wc_checkout_form_save_data_on_reload', 50);
 
 // -- Yoast
@@ -759,4 +756,3 @@ function get_post_description(WP_Post $post): string {
   }
   return wpseo_replace_vars($yoast_description, $post);
 }
->>>>>>> cw-125-yoast

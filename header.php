@@ -8,10 +8,14 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+  <!-- HEADER BASE -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><?php the_title(); ?></title>
+
+  <title><?php echo get_post_title($post); ?></title>
+  <meta name="description" content="<?php echo get_post_description($post); ?>">
+
   <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $root . '/dist/apple-icon-57x57.png'; ?>">
   <link rel="apple-touch-icon" sizes="60x60" href="<?php echo $root . '/dist/apple-icon-60x60.png'; ?>">
   <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $root . '/dist/apple-icon-72x72.png'; ?>">

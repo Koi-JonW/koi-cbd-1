@@ -426,18 +426,14 @@ function um_account_tab__veterans( $info ) {
 add_filter('um_account_content_hook_veterans', 'um_account_content_hook_veterans');
 function um_account_content_hook_veterans( $output ){
 	ob_start();
-	?>
-		
-	<div style="text-align: center;" class="um-field">
-	<p id="veteran-heading" >To Thank All 
+?>
+<div style="text-align: center;" class="um-field">
+<p id="veteran-heading" >To Thank All 
 The Men & Women Who've Served Our Country, Koi Offers All Members of The 
 United States Military Access To Our Veteran Discount Program</p>
-
-	<a id="veteran-button" href="https://koicbd.com/veteran-application/">Apply Now</a>
-
-	</div>		
-		
-	<?php
+<a id="veteran-button" href="https://koicbd.com/veteran-application/">Apply Now</a>
+</div>		
+<?php
 		
 	$output .= ob_get_contents();
 	ob_end_clean();
@@ -649,110 +645,118 @@ add_action('woocommerce_order_status_completed', 'yotpo_create_order');
 
 function wc_checkout_form_save_data_on_reload() {
     if(is_wc_endpoint_url( 'order-received' )) { //clear session storage
-    ?>
-      <script type="text/javascript">
-        sessionStorage.removeItem("billing_first_name");
-        sessionStorage.removeItem("billing_last_name");
-        sessionStorage.removeItem("billing_company");
-        sessionStorage.removeItem("billing_phone");
-        sessionStorage.removeItem("billing_email");
-        sessionStorage.removeItem("order_comments");
-        sessionStorage.removeItem("ship-to-different-address");
-        sessionStorage.removeItem("shipping_first_name");
-        sessionStorage.removeItem("shipping_last_name");
-        sessionStorage.removeItem("shipping_company");
-      </script>
-    <?php
+?>
+<script type="text/javascript">
+  sessionStorage.removeItem("billing_first_name");
+  sessionStorage.removeItem("billing_last_name");
+  sessionStorage.removeItem("billing_company");
+  sessionStorage.removeItem("billing_phone");
+  sessionStorage.removeItem("billing_email");
+  sessionStorage.removeItem("order_comments");
+  sessionStorage.removeItem("ship-to-different-address");
+  sessionStorage.removeItem("shipping_first_name");
+  sessionStorage.removeItem("shipping_last_name");
+  sessionStorage.removeItem("shipping_company");
+</script>
+<?php
     }
 
     if ( ! is_checkout() ) return;
     
-    ?>
-    <script type="text/javascript">
-    window.onload = function() {
-      jQuery(function($){
-        if (sessionStorage.getItem('billing_first_name') == "billing_first_name") {
-          return;
-        }
-
-        let billing_first_name = sessionStorage.getItem('billing_first_name');
-        if (billing_first_name !== null) $('#billing_first_name').val(billing_first_name);
-
-        let billing_last_name = sessionStorage.getItem('billing_last_name');
-        if (billing_last_name !== null) $('#billing_last_name').val(billing_last_name);
-
-        let billing_company = sessionStorage.getItem('billing_company');
-        if (billing_company !== null) $('#billing_company').val(billing_company);
-
-        let billing_phone = sessionStorage.getItem('billing_phone');
-        if (billing_phone !== null) $('#billing_phone').val(billing_phone);
-
-        let billing_email = sessionStorage.getItem('billing_email');
-        if (billing_email !== null) $('#billing_email').val(billing_email);
-
-        let order_comments = sessionStorage.getItem('order_comments');
-        if (order_comments !== null) $('#order_comments').val(billing_phone);
-
-
-        let shipping_different_address = sessionStorage.getItem('ship-to-different-address');
-        if (shipping_different_address !== null) $('#ship-to-different-address').val(shipping_different_address);
-
-        if(shipping_different_address){
-
-          $('#ship-to-different-address').trigger('click');
-
-          let shipping_first_name = sessionStorage.getItem('shipping_first_name');
-          if (shipping_first_name !== null) $('#shipping_first_name').val(shipping_first_name);
-
-          let shipping_last_name = sessionStorage.getItem('shipping_last_name');
-          if (shipping_last_name !== null) $('#shipping_last_name').val(shipping_last_name);
-
-          let shipping_company = sessionStorage.getItem('shipping_company');
-          if (shipping_company !== null) $('#shipping_company').val(shipping_company);
-        }
-
-      });
+?>
+<script type="text/javascript">
+window.onload = function() {
+  jQuery(function($){
+    if (sessionStorage.getItem('billing_first_name') == "billing_first_name") {
+      return;
     }
 
-    window.onbeforeunload = function() {
-      jQuery(function($){
-        sessionStorage.setItem("billing_first_name", $('#billing_first_name').val());
-        sessionStorage.setItem("billing_last_name", $('#billing_last_name').val());
-        sessionStorage.setItem("billing_company", $('#billing_company').val());
-        sessionStorage.setItem("billing_phone", $('#billing_phone').val());
-        sessionStorage.setItem("order_comments", $('#order_comments').val());
+    let billing_first_name = sessionStorage.getItem('billing_first_name');
+    if (billing_first_name !== null) $('#billing_first_name').val(billing_first_name);
 
-        let shipping_different_address = $("#ship-to-different-address").is(':checked');
-        sessionStorage.setItem("ship-to-different-address", shipping_different_address);
+    let billing_last_name = sessionStorage.getItem('billing_last_name');
+    if (billing_last_name !== null) $('#billing_last_name').val(billing_last_name);
 
-        if(shipping_different_address){
-          sessionStorage.setItem("shipping_first_name", $('#shipping_first_name').val());
-          sessionStorage.setItem("shipping_last_name", $('#shipping_last_name').val());
-          sessionStorage.setItem("shipping_company", $('#shipping_company').val());
-        }
-      });
+    let billing_company = sessionStorage.getItem('billing_company');
+    if (billing_company !== null) $('#billing_company').val(billing_company);
+
+    let billing_phone = sessionStorage.getItem('billing_phone');
+    if (billing_phone !== null) $('#billing_phone').val(billing_phone);
+
+    let billing_email = sessionStorage.getItem('billing_email');
+    if (billing_email !== null) $('#billing_email').val(billing_email);
+
+    let order_comments = sessionStorage.getItem('order_comments');
+    if (order_comments !== null) $('#order_comments').val(billing_phone);
+
+
+    let shipping_different_address = sessionStorage.getItem('ship-to-different-address');
+    if (shipping_different_address !== null) $('#ship-to-different-address').val(shipping_different_address);
+
+    if(shipping_different_address){
+
+      $('#ship-to-different-address').trigger('click');
+
+      let shipping_first_name = sessionStorage.getItem('shipping_first_name');
+      if (shipping_first_name !== null) $('#shipping_first_name').val(shipping_first_name);
+
+      let shipping_last_name = sessionStorage.getItem('shipping_last_name');
+      if (shipping_last_name !== null) $('#shipping_last_name').val(shipping_last_name);
+
+      let shipping_company = sessionStorage.getItem('shipping_company');
+      if (shipping_company !== null) $('#shipping_company').val(shipping_company);
     }
-    </script>
-    <?php
+
+  });
+}
+
+window.onbeforeunload = function() {
+  jQuery(function($){
+    sessionStorage.setItem("billing_first_name", $('#billing_first_name').val());
+    sessionStorage.setItem("billing_last_name", $('#billing_last_name').val());
+    sessionStorage.setItem("billing_company", $('#billing_company').val());
+    sessionStorage.setItem("billing_phone", $('#billing_phone').val());
+    sessionStorage.setItem("order_comments", $('#order_comments').val());
+
+    let shipping_different_address = $("#ship-to-different-address").is(':checked');
+    sessionStorage.setItem("ship-to-different-address", shipping_different_address);
+
+    if(shipping_different_address){
+      sessionStorage.setItem("shipping_first_name", $('#shipping_first_name').val());
+      sessionStorage.setItem("shipping_last_name", $('#shipping_last_name').val());
+      sessionStorage.setItem("shipping_company", $('#shipping_company').val());
+    }
+  });
+}
+</script>
+<?php
 }
 add_action('wp_footer', 'wc_checkout_form_save_data_on_reload', 50);
 
 // -- Yoast
 
-function get_post_title(WP_Post $post): string {
-  $yoast_title = get_post_meta($post->ID, '_yoast_wpseo_title', true);
-  if (empty($yoast_title)) {
-      $wpseo_titles = get_option('wpseo_titles', []);
-      $yoast_title = isset($wpseo_titles['title-' . $post->post_type]) ? $wpseo_titles['title-' . $post->post_type] : get_the_title();
+function get_post_title($post): string {
+  if($post){
+    $yoast_title = get_post_meta($post->ID, '_yoast_wpseo_title', true);
+    if (empty($yoast_title)) {
+        $wpseo_titles = get_option('wpseo_titles', []);
+        $yoast_title = isset($wpseo_titles['title-' . $post->post_type]) ? $wpseo_titles['title-' . $post->post_type] : get_the_title();
+    }
+    return wpseo_replace_vars($yoast_title, $post);
+  } else {
+    return '';
   }
-  return wpseo_replace_vars($yoast_title, $post);
 }
 
-function get_post_description(WP_Post $post): string {
-  $yoast_description = get_post_meta($post->ID, '_yoast_wpseo_metadesc', true);
-  if (empty($yoast_description)) {
-      $wpseo_titles = get_option('wpseo_titles', []);
-      $yoast_description = isset($wpseo_titles['metadesc-' . $post->post_type]) ? $wpseo_titles['metadesc-' . $post->post_type] : '';
+function get_post_description($post): string {
+  if($post){
+    $yoast_description = get_post_meta($post->ID, '_yoast_wpseo_metadesc', true);
+    if (empty($yoast_description)) {
+        $wpseo_titles = get_option('wpseo_titles', []);
+        $yoast_description = isset($wpseo_titles['metadesc-' . $post->post_type]) ? $wpseo_titles['metadesc-' . $post->post_type] : '';
+    }
+    return wpseo_replace_vars($yoast_description, $post);
+  } else {
+    return '';
   }
-  return wpseo_replace_vars($yoast_description, $post);
 }

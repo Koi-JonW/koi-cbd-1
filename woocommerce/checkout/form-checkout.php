@@ -71,6 +71,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 }
 
 ?>
+<?php if ( is_user_logged_in() ) { ?>
 <section class="k-checkout k-block k-block--md k-no-padding--top k-no-padding--bottom">
 	<div class="k-inner k-inner--sm">
 		<form name="checkout" method="post" class="k-form checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
@@ -152,3 +153,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 	</div>
 </section>
+<?php
+} else {
+   include('register-checkout.php');
+}
+?>

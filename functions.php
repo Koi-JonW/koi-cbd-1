@@ -760,3 +760,15 @@ function get_post_description($post): string {
     return '';
   }
 }
+add_action( 'woocommerce_after_shipping_rate', 'action_after_shipping_rate', 20, 2 );
+function action_after_shipping_rate ( $method, $index ) {
+    // Targeting checkout page only:
+    if( is_cart() ) return; // Exit on cart page
+
+    if( 'free_shipping:1' === $method->id ) {
+        echo __('<div style="font-size:12px; color:#666666;">4-8 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+    }
+    if( 'local_pickup:20' === $method->id ) {
+        echo __('<div style="font-size:12px; color:#666666;">2-4 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+    }
+}

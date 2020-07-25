@@ -227,6 +227,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 	<div class="freeprod"></div>
 </div>
+<?php if(get_field('promotional_area')){ the_field('promotional_area'); } ?>
 <!-- <table class="shop_table woocommerce-checkout-review-order-table">
 	<thead>
 		<tr>

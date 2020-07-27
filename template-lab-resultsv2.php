@@ -25,6 +25,7 @@ $args = array(
   'hide_empty'   => $empty
 );
 ?>
+<ul>
 <?php $all_categories = get_categories( $args );
 
 //print_r($all_categories);
@@ -35,10 +36,7 @@ foreach ($all_categories as $cat) {
 
 ?>     
 
-<?php       
-
-        echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'dddddddddddddd</a>'; ?>
-
+<li><?php echo $cat->name; ?>
 
         <?php
         $args2 = array(
@@ -54,15 +52,18 @@ foreach ($all_categories as $cat) {
         );
         $sub_cats = get_categories( $args2 );
         if($sub_cats) {
+			echo '<ul>';
             foreach($sub_cats as $sub_category) {
-                echo  $sub_category->name .'11111111';
+                echo  '<li>'.$sub_category->name.'</li>';
             }
+			echo '</ul>';
 
         } ?>
 
-
+</li>
 
     <?php }     
 }
 ?>
+</ul>
 <?php get_footer(lp); ?>

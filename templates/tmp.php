@@ -1,9 +1,8 @@
 <?php
-defined('ABSPATH') || exit;
-/* Template Name: V2 Lab Results 2020 */
-
+/* Template Name: TMP */
 
 get_header();
+
 
 function get_subcategories_by_category_id($category_id){
 
@@ -90,11 +89,12 @@ function get_product_type($post_title){
                 <div class="accordion">
                     <div class="accordion-link"><?php echo($variation['attributes']['attribute_strength']); ?></div>
 		    <div class="accordion-details">
+			<pre>
 			<?php $lab_results = array_filter($lab_results_variations, function($item) use ($variation){
                             return ($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes');
                         }); ?>
-                        <pre><?php // var_dump($lab_results); ?></pre>
-<?php echo $lab_results['sku']; ?>
+			</pre>
+                        <pre><?php var_dump($lab_results); ?></pre>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -103,6 +103,7 @@ function get_product_type($post_title){
     </div>
 </div>
 <?php endforeach; ?>
- 
 
-<?php get_footer(lp); ?>
+<?php
+get_footer();
+?>

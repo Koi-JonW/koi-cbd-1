@@ -53,8 +53,45 @@ function get_product_type($post_title){
 
 ?>
 <?php get_header(); ?>
-<?php $category_ids = [265,5157,266,256,259,264]; ?>
+<section class="k-hero k-hero--twocol k-hero--labresults k-hero--loaded">
+  <div class="k-hero--bgimg lazyload--progress lazyload--complete" data-src="<?php echo esc_url( home_url( '/' ) ); ?>wp-content/themes/KOI-2019/dist/img/lab-results-hero-1-20.jpg" style="background-image: url(https://koicbdstaging.wpengine.com/wp-content/themes/KOI-2019/dist/img/lab-results-hero-1-20.jpg)"></div>
+  <div class="k-inner k-inner--md">
 
+    <div class="k-hero__main">
+    
+      <div class="k-hero__heading">
+        <h1 class="k-preheading k-upcase">Lab Results</h1>
+        <h2 class="k-headline k-headline--md">From Plant to Finished Product</h2>
+      </div>
+    
+      <div class="k-hero__body k-rte-content">
+        <p>All Koi products are lab-tested for purity, consistency, and safety. Plus, we offer full traceability on every batch of our CBD.</p>
+      </div>
+
+    </div>
+  
+  </div>
+</section>
+<nav class="breadcrumbs">
+	<div class="k-inner k-inner--md">
+		<ul class="breadcrumbs-links">
+			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+			<li>Lab Results</li>
+		</ul>
+	</div>
+</nav><!--end breadcrumbs-->
+<section class="k-recentresults k-block k-block--md k-no-padding--bottom">
+	<div class="k-inner k-inner--sm">
+		<div class="k-recentresults__intro">
+			<h3 class="k-headline k-headline--md">Recent Lab Results</h3>
+			<p class="k-rte-content">
+			Knowing exactly what is in your CBD product is important, from the potency to the purity. At Koi, we test our USA-grown hemp extracts before we infuse them into our products, and then test every final batch we make with an accredited, independent lab. All the details are made available, providing transparency and trust.      
+			</p>
+		</div><!--end k-recentresults__intro-->
+	</div><!--end k-inner k-inner--sm-->
+</section>
+
+<?php $category_ids = [265,5157,266,256,259,264]; ?>
 <div class="category-wrapper">
 <?php foreach($category_ids as $category_id): ?>
 <?php $category = get_term_by('id', $category_id, 'product_cat');  ?>

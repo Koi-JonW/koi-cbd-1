@@ -76,17 +76,21 @@ function get_product_type($post_title){
                     <?php if($product_wc->is_type('variable')): ?>
                         <?php $variations = $product_wc->get_available_variations(); ?>
                         <?php foreach($variations as $variation): ?>
-                        <div class="accordion">
+                        <?php $lab_results = array_filter($lab_results_variations, function($item) use ($variation){
+                            return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes'));
+                        }); ?>
+                        <?php $lab_results = count($lab_results) ? end($lab_results) : []; if($lab_results): ?>
+			<div class="accordion">
                             <div id="<?php echo($variation['variation_id']); ?>" class="accordion-link"><?php echo($variation['attributes']['attribute_strength']); ?>  <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span></div>
                             <div class="accordion-details">
                                 <?php $lab_results = array_filter($lab_results_variations, function($item) use ($variation){
-                                    return ($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes');
+                                    return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes'));
 				}); ?>
 				<?php $lab_results = count($lab_results) ? end($lab_results) : []; ?>
-				<pre><?php // var_dump($lab_results); ?></pre>
                                 <div id="<?php echo($lab_results['variant_id']); ?>"><?php echo($lab_results['variant_id']); ?></div>
                             </div>
-                        </div>
+			</div>
+                        <?php endif; ?>
                         <?php endforeach; ?>
 		    <?php else: ?>
 		    <?php // -- ?>
@@ -161,7 +165,7 @@ jQuery(".divv").fadeOut();
 </script>
 
 <style>
-.popup-content{width:100%; max-width:1000px; border:1px solid #f5f5f5; background-color:#F7F7F7; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin:0 auto; position:relative; margin-top:10%;}
+.popup-content{width:100%; max-width:1000px; border:10px solid #ffffff; background-color:#F7F7F7; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin:0 auto; position:relative; margin-top:10%;}
 .popup-area-a{width:30%; margin:2%;}
 .popup-area-b{width:29%; margin:2%;}
 .popup-area-a h3{margin:0px; padding:0px;}
@@ -219,13 +223,81 @@ jQuery(".divv").fadeOut();
     padding: 0px 0;
 }
 .accordion-link {
-    padding: 10px;
+    padding: 10px 10px 10px 30px;
     background: #CFCFCF;
     border-radius: 0px;
     cursor: pointer;
     border-bottom:1px solid #A3A3A3;
+    box-sizing:border-box;
 }
 .accordion-details {}
+
+@media only screen and (max-width:1100px){
+
+.popup-content{width:90%; max-width:1000px; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin-top:20%;}
+.popup-area-a{width:30%; margin:2%;}
+.popup-area-b{width:29%; margin:2%;}
+.close-pp{width:40px; height:40px; background-color:#000; color:#fff; position:absolute; right:-20px; top:-20px; border-radius:50px; font-size:25px; line-height:40px; text-align:center; cursor:pointer;}
+
+.category-wrapper {
+    	padding: 20px;
+	display:flex;
+	flex-wrap:wrap;
+}
+.category-block {
+    display: inline-block;
+    width: 32.33%;
+    margin:5px 0.5%;
+}
+.category-title {
+    text-align: center;
+    padding:25px 0px;
+    margin: 10px;
+    border:1px solid #DADADA;
+    background-color:#fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size:14px;
+}
+
+.accordion-title {
+    padding: 10px 10px 10px 20px;
+    background: #F7F7F7;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size:12px;
+}
+.accordion-link {
+    font-size:12px;
+}
+
+}
+
+@media only screen and (max-width:767px){
+.popup-content{width:90%; max-width:1000px; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin-top:50%;}
+.popup-area-a{width:96%; margin:2%;}
+.popup-area-b{width:96%; margin:2%;}
+.popup-area-b .red-btn-coa{padding:15px 25px;}
+.close-pp{width:30px; height:30px; right:-20px; top:-20px; font-size:20px; line-height:30px;}
+
+.popup-area-a h3{margin-bottom:0px !important;}
+}
+
+@media only screen and (max-width:850px){
+.category-block {
+    display: inline-block;
+    width: 48%;
+    margin:5px 1%;
+}
+}
+
+@media only screen and (max-width:560px){
+.category-block {
+    display: inline-block;
+    width: 98%;
+    margin:5px 1%;
+}
+}
 </style>
 
 <?php get_footer(lp); ?>

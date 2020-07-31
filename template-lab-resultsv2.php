@@ -19,6 +19,8 @@ function get_subcategories_by_category_id($category_id){
 
 function get_products_by_category_id($category_id){
 
+    wp_reset_query();
+
     $args = array(
         'post_type' => 'product',
         'post_status' => 'publish',
@@ -48,6 +50,246 @@ function get_product_type($post_title){
     } else {
         return '---';
     }
+
+}
+
+function prepare_view($category_ids){
+
+    $result = [];
+
+    foreach($category_ids as $category_id){
+
+        $category = get_term_by('id', $category_id, 'product_cat');
+
+        $arr_category = [
+            'title' => $category->name,
+            'content' => []
+        ];
+
+        $sub_categories = get_subcategories_by_category_id($category->term_id);
+
+        if($sub_categories){
+
+            $arr_category['has_subcategories'] = true;
+
+            foreach($sub_categories as $sub_category){
+
+                $arr_sub_category = [
+                    'title' => $sub_category->name,
+                    'content' => []
+                ];
+
+                $products = get_products_by_category_id($sub_category->term_id);
+
+                foreach($products as $product){
+
+                    $arr_product = [
+                        'title' => get_product_type($product->post_title),
+                        'content' => []
+                    ];
+
+                    $product_wc = wc_get_product($product->ID);
+                    $product_repeater_lab_results = get_field('lab_results_variations', $product->ID);
+
+                    if($product_wc->is_type('variable')){
+
+                        $arr_product['has_variations'] = true;
+
+                        $product_variations = $product_wc->get_available_variations();
+
+                        foreach($product_variations as $variation){
+
+                            $product_lab_results = array_filter($product_repeater_lab_results, function($item) use ($variation){ return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes')); });
+                            $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+
+                            if($product_lab_results){
+
+                                $arr_product_coa_urls = [];
+
+                                foreach($arr_product_coa_urls as $item){
+
+                                    $arr_product_coa_urls[] = $item['file_url_var'];
+
+                                }
+
+                                $arr_results = [
+                                    'title' => $product_lab_results['strength_variations'],
+                                    'results' => [
+                                        'variant_id' => $product_lab_results['variant_id'],
+                                        'title' => $product->post_title,
+                                        'strength' => $product_lab_results['strength_variations'],
+                                        'size' => $product_lab_results['size_variations'],
+                                        'batch' => $product_lab_results['number_batch_variations'],
+                                        'coa_urls' => $arr_product_coa_urls
+                                    ]
+                                ];
+
+                                $arr_product['content'][] = $arr_results;
+
+                            }
+
+                        }
+
+                    } else {
+
+                        $arr_product['has_variations'] = false;
+
+                        $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return $item['visible'] == 'yes'; });
+                        $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+
+                        if($product_lab_results){
+
+                            $arr_product_coa_urls = [];
+
+                            foreach($arr_product_coa_urls as $item){
+
+                                $arr_product_coa_urls[] = $item['file_url_var'];
+
+                            }
+
+                            $arr_results = [
+                                'title' => $product_lab_results['strength_variations'],
+                                'results' => [
+                                    'variant_id' => $product_lab_results['variant_id'],
+                                    'title' => $product->post_title,
+                                    'strength' => $product_lab_results['strength_variations'],
+                                    'size' => $product_lab_results['size_variations'],
+                                    'batch' => $product_lab_results['number_batch_variations'],
+                                    'coa_urls' => $arr_product_coa_urls
+                                ]
+                            ];
+
+                            $arr_product['content'][] = $arr_results;
+
+                        }
+
+                    }
+
+                    // --
+
+                    if($arr_product['content']){
+                        $arr_sub_category['content'][] = $arr_product;
+                    }
+
+                }
+
+                // --
+
+                if($arr_sub_category['content']){
+                    $arr_category['content'][] = $arr_sub_category;
+                }
+
+            }
+
+        } else {
+
+            $arr_category['has_subcategories'] = false;
+
+            $products = get_products_by_category_id($category->term_id);
+
+            foreach($products as $product){
+
+                $arr_product = [
+                    'title' => get_product_type($product->post_title),
+                    'content' => []
+                ];
+
+                $product_wc = wc_get_product($product->ID);
+                $product_repeater_lab_results = get_field('lab_results_variations', $product->ID);
+
+                if($product_wc->is_type('variable')){
+
+                    $arr_product['has_variations'] = true;
+
+                    $product_variations = $product_wc->get_available_variations();
+
+                    foreach($product_variations as $variation){
+
+                        $product_lab_results = array_filter($product_repeater_lab_results, function($item) use ($variation){ return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes')); });
+                        $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+
+                        if($product_lab_results){
+
+                            $arr_product_coa_urls = [];
+
+                            foreach($arr_product_coa_urls as $item){
+
+                                $arr_product_coa_urls[] = $item['file_url_var'];
+
+                            }
+
+                            $arr_results = [
+                                'title' => $product_lab_results['strength_variations'],
+                                'results' => [
+                                    'variant_id' => $product_lab_results['variant_id'],
+                                    'title' => $product->post_title,
+                                    'strength' => $product_lab_results['strength_variations'],
+                                    'size' => $product_lab_results['size_variations'],
+                                    'batch' => $product_lab_results['number_batch_variations'],
+                                    'coa_urls' => $arr_product_coa_urls
+                                ]
+                            ];
+
+                            $arr_product['content'][] = $arr_results;
+
+                        }
+
+                    }
+
+                } else {
+
+                    $arr_product['has_variations'] = false;
+
+                    $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return $item['visible'] == 'yes'; });
+                    $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+
+                    if($product_lab_results){
+
+                        $arr_product_coa_urls = [];
+
+                        foreach($arr_product_coa_urls as $item){
+
+                            $arr_product_coa_urls[] = $item['file_url_var'];
+
+                        }
+
+                        $arr_results = [
+                            'title' => $product_lab_results['strength_variations'],
+                            'results' => [
+                                'variant_id' => $product_lab_results['variant_id'],
+                                'title' => $product->post_title,
+                                'strength' => $product_lab_results['strength_variations'],
+                                'size' => $product_lab_results['size_variations'],
+                                'batch' => $product_lab_results['number_batch_variations'],
+                                'coa_urls' => $arr_product_coa_urls
+                            ]
+                        ];
+
+                        $arr_product['content'][] = $arr_results;
+
+                    }
+
+                }
+
+                // --
+
+                if($arr_product['content']){
+                    $arr_category['content'][] = $arr_product;
+                }
+
+            }
+
+        }
+
+        // --
+
+        if($arr_category['content']){
+            $result[] = $arr_category;
+        }
+
+    }
+
+    return $result;
 
 }
 
@@ -91,57 +333,100 @@ function get_product_type($post_title){
 	</div><!--end k-inner k-inner--sm-->
 </section>
 
+<!-- LAB-RESULTS:BEGIN  -->
+
 <?php $category_ids = [265,5157,266,256,259,264]; ?>
+<?php $lab_results_view = prepare_view($category_ids); ?>
 <div class="category-wrapper">
-<?php foreach($category_ids as $category_id): ?>
-<?php $category = get_term_by('id', $category_id, 'product_cat');  ?>
-<div class="category-block">
-    <div class="category-title"><?php echo($category->name); ?> <span class="arr">&#9660;</span></div>
-    <div class="category-content">
-        <?php $sub_categories = get_subcategories_by_category_id($category->term_id); ?>
-        <?php foreach($sub_categories as $sub_category): ?>
-        <div class='accordion'>
-            <div class='accordion-title'><?php echo($sub_category->name); ?> <span class="arr" style="font-size:13px;">&#9660;</span></div>
-            <div class='accordion-content'>
-                <?php $products = get_products_by_category_id($sub_category->term_id); ?>
-		<?php foreach($products as $product): ?>
-		<?php $product_wc = wc_get_product($product->ID); ?>
-                <?php $lab_results_variations = get_field('lab_results_variations', $product->ID); ?>
-                <div class='accordion'>
-                    <div class='accordion-title'><?php echo(get_product_type($product->post_title)); ?><span class="arr" style="font-size:13px;">&#9660;</span></div>
-                    <div class='accordion-content'>
-                    <?php if($product_wc->is_type('variable')): ?>
-                        <?php $variations = $product_wc->get_available_variations(); ?>
-                        <?php foreach($variations as $variation): ?>
-                        <?php $lab_results = array_filter($lab_results_variations, function($item) use ($variation){
-                            return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes'));
-                        }); ?>
-                        <?php $lab_results = count($lab_results) ? end($lab_results) : []; if($lab_results): ?>
-			<div class="accordion">
-                            <div id="<?php echo($variation['variation_id']); ?>" class="accordion-link"><?php echo($variation['attributes']['attribute_strength']); ?>  <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span></div>
-                            <div class="accordion-details">
-                                <?php $lab_results = array_filter($lab_results_variations, function($item) use ($variation){
-                                    return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes'));
-				}); ?>
-				<?php $lab_results = count($lab_results) ? end($lab_results) : []; ?>
-                                <div id="<?php echo($lab_results['variant_id']); ?>"><?php echo($lab_results['variant_id']); ?></div>
-                            </div>
-			</div>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-		    <?php else: ?>
-		    <?php // -- ?>
-                    <?php endif; ?>
-		    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
+<?php foreach($lab_results_view as $category): ?>
+    <div class="category-block">
+	<div class="category-title">
+            <?php echo($category['title']); ?>
+            <span class="arr">&#9660;</span>
         </div>
+        <div class="category-content">
+        <?php if($category['has_subcategories']): ?>
+        <?php foreach($category['content'] as $sub_category): ?>
+            <div class='accordion'>
+                <div class='accordion-title'>
+                    <?php echo($sub_category['title']); ?>
+                    <span class="arr" style="font-size:13px;">&#9660;</span>
+                </div>
+                <div class='accordion-content'>
+                    <?php foreach($sub_category['content'] as $product): ?>
+                    <div class='accordion'>
+                        <div class='accordion-title'>
+                            <?php echo($product['title']); ?>
+                            <span class="arr" style="font-size:13px;">&#9660;</span>
+                        </div>
+                        <div class='accordion-content'>
+                        <?php if($product['has_variations']): ?>
+                        <?php foreach($product['content'] as $variation): ?>
+                            <div class='accordion'>
+                                <div id="<?php echo($variation['results']['variant_id']); ?>" class="accordion-link">
+                                    <?php echo($variation['title']); ?>
+                                    <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
+                                </div>
+                                <div class="accordion-details"> <!-- --> </div>
+                            </div>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                        <?php foreach($product['content'] as $item): ?>
+                            <div class="accordion">
+                                <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
+                                    <?php echo($item['title']); ?>
+                                    <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
+                                </div>
+                                <div class="accordion-details"> <!-- --> </div>
+                            </div>
+                        <?php endforeach; ?>
+			<?php endif; ?>
+                        </div>
+		    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
         <?php endforeach; ?>
+        <?php else: ?>
+        <?php foreach($category['content'] as $product): ?>
+            <div class='accordion'>
+                <div class='accordion-title'>
+                    <?php echo($product['title']); ?>
+                    <span class="arr" style="font-size:13px;">&#9660;</span>
+                </div>
+                <div class='accordion-content'>
+                <?php if($product['has_variations']): ?>
+                <?php foreach($product['content'] as $variation): ?>
+                    <div class='accordion'>
+                        <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
+                            <?php echo($item['strength']); ?>
+                            <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
+                        </div>
+                        <div class="accordion-details"> <!-- --> </div>
+                    </div>
+                <?php endforeach; ?>
+                <?php else: ?>
+                <?php foreach($product['content'] as $item): ?>
+                    <div class="accordion">
+                        <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
+                            <?php echo($item['title']); ?>
+                            <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
+                        </div>
+                        <div class="accordion-details"> <!-- --> </div>
+                    </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+	<?php endif; ?>
+	</div>
     </div>
-</div>
 <?php endforeach; ?>
 </div>
+
+<!-- LAB-RESULTS:END -->
+
 <?php $args = array(
         'post_type'   => 'product',
         'post_status' => 'publish',
@@ -178,6 +463,77 @@ endif;
 
 <?php endwhile; ?>
 
+<section class="k-labresults k-block k-block--sm k-no-padding--bottom" style="padding-bottom: 4em !important;">
+  <div class="k-inner k-inner--sm">
+    <div class="k-labresults__spacer"></div>
+  </div>
+  <div class="k-inner k-inner--md">
+
+    <div id="resultsembedtarget" class="k-labresults__searchform">
+      <div class="k-labresults__content">
+        <h4 class="k-headline k-headline--sm">Search by Batch</h4>
+        <p class="k-rte-content">Find the lab results of every Koi product by using its unique batch number. Not sure where to find your product's batch number? Check out <a href="https://koicbdstaging.wpengine.com/wp-content/uploads/tracking-with-batch-numbers.jpg" target="_blank" rel="noopener noreferrer">this example.</a></p>
+      </div>
+      <form class="k-form" id="k-resultssearch-" method="post" action="#resultsembedtarget">
+        <div class="form-content-lr">
+		<div class="form-content-lr-inputext">
+            <input type="text" name="lab-result-search" id="k-resultssearchval" placeholder="Enter Batch Number">
+		</div><!--end form-content-lr-inputext-->
+		<div class="form-content-lr-inputsubmit">
+            <input type="submit" class="k-button k-button--primary k-upcase" value="Search">
+		</div><!--end form-content-lr-inputsubmit -->
+        </div>
+      </form>
+    </div>
+
+<div class="k-labresults__main" style="padding-top:0px !important;">
+<div>
+<?php
+$show_batch = $_POST['lab-result-search'];
+	   $args = array(
+        'post_type'   => 'product',
+        'post_status' => 'publish',
+        'orderby'     => 'date',
+        'order'       => 'DESC',
+        'posts_per_page' => -1
+    ); $products = new WP_Query( $args ); $wp_products = array(); 
+?>
+<?php while ( $products->have_posts() ): ?>
+        <?php ($products->the_post()); ?>
+		<?php
+			if( have_rows('lab_results_variations') ):
+				while( have_rows('lab_results_variations') ) : the_row();
+					if($show_batch == get_sub_field('number_batch_variations')){
+		?>
+<div class="popup-content" style="margin-top:0px !important;">
+	<div class="popup-area-a"><h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo get_the_title(); ?></h3></div>
+		<div class="popup-area-b">
+			Variant: <?php echo get_sub_field('strength_variations'); ?><br/>
+			Size: <?php echo get_sub_field('size_variations'); ?><br/>
+			Batch #: <?php echo get_sub_field('number_batch_variations'); ?>
+		</div><!--end popup-area-b-->
+		<div class="popup-area-b">
+		<?php
+				if( have_rows('coa_url_batch_variations') ):
+					while( have_rows('coa_url_batch_variations') ) : the_row();
+							$sub_url = get_sub_field('file_url_var');
+						echo '<a class="red-btn-coa" target="_blank" href="'.$sub_url.'">View this produc\'s Certificate of Analysis (COA)</a>';
+
+					endwhile;
+				endif;
+		?>
+		</div><!--end popup-area-b-->
+</div><!--end popup-content-->
+					<?php }
+				endwhile;
+			endif;
+		?>
+<?php endwhile; ?>
+</div><!--end resultsembedtarget-->
+</div><!--end k-labresults__main-->
+
+  </div><!--end k-inner-->
+</section><!--end k-labresults-->
 <script>
 <?php while ( $products->have_posts() ): ?>
         <?php ($products->the_post()); ?>
@@ -198,10 +554,14 @@ endif;
 jQuery(".close-pp").click(function(){
 jQuery(".divv").fadeOut();
 });
-
 </script>
 
 <style>
+.form-content-lr{width:100%; display:flex; flex-wrap:wrap; max-width:767px;}
+.form-content-lr-inputext{width:75%; border-left:1px solid #ccc; border-top:1px solid #ccc; border-bottom:1px solid #ccc; border-radius:5px; padding:4px 0px 0px 0px !important; margin-right:-10px;}
+.form-content-lr-inputext input{width:100% !important; max-width:100% !important;  height:50px;}
+.form-content-lr-inputsubmit{width:25%;}
+.form-content-lr-inputsubmit input{padding:20px 0px !important; font-size:17px;}
 .popup-content{width:100%; max-width:1000px; border:10px solid #ffffff; background-color:#F7F7F7; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin:0 auto; position:relative; margin-top:10%;}
 .popup-area-a{width:30%; margin:2%;}
 .popup-area-b{width:29%; margin:2%;}

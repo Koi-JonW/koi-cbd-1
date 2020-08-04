@@ -47,21 +47,24 @@
       </div>
       <div class="k-footer--item k-footer--links k-rte-content">
         <div class="k-footer--links__item">
-          <h4 class="k-upcase k-weight--lg">Shop CBD</h4>
+          <!-- <h4 class="k-upcase k-weight--lg">Shop CBD</h4>-->
 
-          <?php wp_nav_menu( array( 'theme_location' => 'categories-menu' ) ); ?>
-          
-        </div>
-        <div class="k-footer--links__item">
-          <h4 class="k-upcase k-weight--lg">Company</h4>
+          <?php // wp_nav_menu( array( 'theme_location' => 'categories-menu' ) ); ?>
+		  <h4 class="k-upcase k-weight--lg">Company</h4>
 
           <?php wp_nav_menu( array( 'theme_location' => 'footer-company-menu' ) ); ?>
-
+          
         </div>
         <div class="k-footer--links__item">
           <h4 class="k-upcase k-weight--lg">Legal</h4>
 
           <?php wp_nav_menu( array( 'theme_location' => 'footer-legal-menu') ); ?>
+
+        </div>
+        <div class="k-footer--links__item">
+          <!-- <h4 class="k-upcase k-weight--lg">Legal</h4>
+
+          <?php // wp_nav_menu( array( 'theme_location' => 'footer-legal-menu') ); ?> -->
 
         </div>
         </ul>

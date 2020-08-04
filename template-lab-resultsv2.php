@@ -106,10 +106,8 @@ function prepare_view($category_ids){
 
                                 $arr_product_coa_urls = [];
 
-                                foreach($arr_product_coa_urls as $item){
-
+                                foreach($product_lab_results['coa_url_batch_variations'] as $item){
                                     $arr_product_coa_urls[] = $item['file_url_var'];
-
                                 }
 
                                 $arr_results = [
@@ -134,17 +132,15 @@ function prepare_view($category_ids){
 
                         $arr_product['has_variations'] = false;
 
-                        $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return $item['visible'] == 'yes'; });
+                        $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return ($item['visible'] == 'yes' && $item['variant_id'] != ''); });
                         $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
                         if($product_lab_results){
 
                             $arr_product_coa_urls = [];
 
-                            foreach($arr_product_coa_urls as $item){
-
+                            foreach($product_lab_results['coa_url_batch_variations'] as $item){
                                 $arr_product_coa_urls[] = $item['file_url_var'];
-
                             }
 
                             $arr_results = [
@@ -212,10 +208,8 @@ function prepare_view($category_ids){
 
                             $arr_product_coa_urls = [];
 
-                            foreach($arr_product_coa_urls as $item){
-
+                            foreach($product_lab_results['coa_url_batch_variations'] as $item){
                                 $arr_product_coa_urls[] = $item['file_url_var'];
-
                             }
 
                             $arr_results = [
@@ -240,17 +234,15 @@ function prepare_view($category_ids){
 
                     $arr_product['has_variations'] = false;
 
-                    $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return $item['visible'] == 'yes'; });
+		    $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return ($item['visible'] == 'yes' && $item['variant_id'] != ''); });
                     $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
                     if($product_lab_results){
 
                         $arr_product_coa_urls = [];
 
-                        foreach($arr_product_coa_urls as $item){
-
+			foreach($product_lab_results['coa_url_batch_variations'] as $item){
                             $arr_product_coa_urls[] = $item['file_url_var'];
-
                         }
 
                         $arr_results = [
@@ -359,7 +351,7 @@ function prepare_view($category_ids){
                             <?php echo($product['title']); ?>
                             <span class="arr" style="font-size:13px;">&#9660;</span>
                         </div>
-                        <div class='accordion-content'>
+			<div class='accordion-content'>
                         <?php if($product['has_variations']): ?>
                         <?php foreach($product['content'] as $variation): ?>
                             <div class='accordion'>
@@ -367,18 +359,44 @@ function prepare_view($category_ids){
                                     <?php echo($variation['title']); ?>
                                     <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
                                 </div>
-                                <div class="accordion-details"> <!-- --> </div>
-                            </div>
+                                <div class="accordion-popup">
+                                    <div class="popup-content">
+                                        <div class="close-pp">X</div>
+                                        <div class="popup-area-a">
+                                            <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
+                                        </div>
+                                        <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
+                                        <div class="popup-area-b">
+                                        <?php foreach($variation['results']['coa_urls'] as $url): ?>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+			    </div>
                         <?php endforeach; ?>
                         <?php else: ?>
-                        <?php foreach($product['content'] as $item): ?>
+			<?php foreach($product['content'] as $item): ?>
                             <div class="accordion">
                                 <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
                                     <?php echo($item['title']); ?>
                                     <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
                                 </div>
-                                <div class="accordion-details"> <!-- --> </div>
-                            </div>
+                                <div class="accordion-popup">
+                                    <div class="popup-content">
+                                        <div class="close-pp">X</div>
+                                        <div class="popup-area-a">
+                                            <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
+                                        </div>
+                                        <div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
+                                        <div class="popup-area-b">
+                                        <?php foreach($item['results']['coa_urls'] as $url): ?>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+	  		    </div>
                         <?php endforeach; ?>
 			<?php endif; ?>
                         </div>
@@ -402,17 +420,43 @@ function prepare_view($category_ids){
                             <?php echo($item['strength']); ?>
                             <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
                         </div>
-                        <div class="accordion-details"> <!-- --> </div>
-                    </div>
+                        <div class="accordion-popup">
+                            <div class="popup-content">
+                                <div class="close-pp">X</div>
+                                <div class="popup-area-a">
+                                    <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
+                                </div>
+                                <div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
+                                <div class="popup-area-b">
+                                <?php foreach($item['results']['coa_urls'] as $url): ?>
+                                    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+		    </div>
                 <?php endforeach; ?>
                 <?php else: ?>
-                <?php foreach($product['content'] as $item): ?>
+		<?php foreach($product['content'] as $item): ?>
                     <div class="accordion">
                         <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
                             <?php echo($item['title']); ?>
                             <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
                         </div>
-                        <div class="accordion-details"> <!-- --> </div>
+                        <div class="accordion-popup">
+                            <div class="popup-content">
+                                <div class="close-pp">X</div>
+                                <div class="popup-area-a">
+                                    <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
+                                </div>
+				<div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
+				<div class="popup-area-b">
+				<?php foreach($item['results']['coa_urls'] as $url): ?>
+				    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                <?php endforeach; ?>
+				</div>
+			    </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
                 <?php endif; ?>
@@ -427,41 +471,7 @@ function prepare_view($category_ids){
 
 <!-- LAB-RESULTS:END -->
 
-<?php $args = array(
-        'post_type'   => 'product',
-        'post_status' => 'publish',
-        'orderby'     => 'date',
-        'order'       => 'DESC',
-        'posts_per_page' => -1
-    ); $products = new WP_Query( $args ); $wp_products = array(); 
-?>
-<?php while ( $products->have_posts() ): ?>
-        <?php ($products->the_post()); ?>
-<?php
-if( have_rows('lab_results_variations') ):
-	while( have_rows('lab_results_variations') ) : the_row();
-		echo '<div class="divv '.get_sub_field('variant_id').'" style="display:none; position:fixed; background-color: rgba(0,0,0,0.5); width:100%; height:100%; top:0px; left:0px; z-index:99999;">';
-		echo '<div class="popup-content">';
-		echo '<div class="close-pp">X</div>';
-		echo '<div class="popup-area-a"><h3 class="k-headline k-headline--sm k-promoslider--titlerow__item">'.get_the_title().'</h3></div>';
-		echo '<div class="popup-area-b">Variant: '.get_sub_field('strength_variations').'<br/>';
-		echo 'Size: '.get_sub_field('size_variations').'<br/>';
-		echo 'Batch #: '.get_sub_field('number_batch_variations').'</div>';
-		echo '<div class="popup-area-b">';
-		if( have_rows('coa_url_batch_variations') ):
-			while( have_rows('coa_url_batch_variations') ) : the_row();
-        			$sub_url = get_sub_field('file_url_var');
-				echo '<a class="red-btn-coa" target="_blank" href="'.$sub_url.'">View this produc\'s Certificate of Analysis (COA)</a>';
-
-			endwhile;
-		endif;
-		echo '</div>';
-		echo '</div></div>';		
-	endwhile;
-endif;
-?>
-
-<?php endwhile; ?>
+<!-- LAB-SEARCH: BEGIN -->
 
 <section class="k-labresults k-block k-block--sm k-no-padding--bottom" style="padding-bottom: 4em !important;">
   <div class="k-inner k-inner--sm">
@@ -534,27 +544,8 @@ $show_batch = $_POST['lab-result-search'];
 
   </div><!--end k-inner-->
 </section><!--end k-labresults-->
-<script>
-<?php while ( $products->have_posts() ): ?>
-        <?php ($products->the_post()); ?>
-<?php
-if( have_rows('lab_results_variations') ):
-	while( have_rows('lab_results_variations') ) : the_row(); ?>
-	<?php if(get_sub_field('variant_id')){ ?>
-		jQuery("#<?php echo get_sub_field('variant_id'); ?>").click(function(){
-		jQuery(".divv").fadeOut();
-		jQuery(".<?php echo get_sub_field('variant_id'); ?>").fadeToggle();
-		});
-	<?php } ?>
-<?php	endwhile;
-endif;
-?>
-<?php endwhile; ?>
 
-jQuery(".close-pp").click(function(){
-jQuery(".divv").fadeOut();
-});
-</script>
+<!-- LAB-SEARCH: END -->
 
 <style>
 .form-content-lr{width:100%; display:flex; flex-wrap:wrap; max-width:767px;}
@@ -612,8 +603,8 @@ jQuery(".divv").fadeOut();
     cursor: pointer;
 }
 .accordion .accordion .accordion-title {
-	background: #EAEAEA;
-	border-bottom:1px solid #A3A3A3;
+    background: #EAEAEA;
+    border-bottom:1px solid #A3A3A3;
 }
 .accordion-content {
     display: none;
@@ -628,6 +619,25 @@ jQuery(".divv").fadeOut();
     box-sizing:border-box;
 }
 .accordion-details {}
+
+.accordion-popup {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    display: none;
+}
+
+.accordion-popup .red-btn-coa {
+    margin-bottom: 5px;
+}
+
+.accordion-popup .red-btn-coa:last-child {
+    margin-bottom: 0;
+}
 
 @media only screen and (max-width:1100px){
 
@@ -704,16 +714,19 @@ jQuery(".divv").fadeOut();
 
 
 $(document).ready(function(){
-   $('.category-title').on('click', function(){
+    $('.category-title').on('click', function(){
         $(this).parent().find('.accordion-details').fadeOut();
         $(this).parent().find('>.category-content').fadeToggle();
-   });
-   $('.accordion-title').on('click', function(){
+    });
+    $('.accordion-title').on('click', function(){
         $(this).parent().find('.accordion-details').fadeOut();
         $(this).parent().find('>.accordion-content').fadeToggle();
-   });
-   // $('.accordion-link').on('click', function(){
-      //  $(this).parent().find('>.accordion-details').fadeIn();
-   // });
+    });
+    $('.accordion-link').on('click', function(){
+        $(this).parent().find('>.accordion-popup').fadeIn();
+    });
+    $('.accordion-popup .close-pp').on('click', function(){
+        $(this).parents('.accordion-popup').fadeOut();
+    });
 });
 </script>

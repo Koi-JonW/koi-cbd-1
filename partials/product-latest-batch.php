@@ -243,7 +243,7 @@ if( have_rows('coa_url_batch_variations') ):
 <?php
     endwhile;
 endif;
-?>            <a class="k-accent-text" href="https://koicbdstaging.wpengine.com/lab-results">Looking for other product lab results? Click Here.</a>
+?>            <a class="k-accent-text" href="<?php echo esc_url( home_url( '/lab-results' ) ); ?>">Looking for other product lab results? Click Here.</a>
           </div>
 
         </div>

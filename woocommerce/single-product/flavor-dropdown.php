@@ -8,11 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
-
 $cat_name = get_the_terms($product->get_id(), 'product_cat');
 $product_category = reset($cat_name)->slug;
 $product_is_bundle = get_class($product) === 'WC_Product_Bundle';
-if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 || reset($product->get_category_ids()) == 256)) : // CBD Oil/Tincture
+// if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 || reset($product->get_category_ids()) == 256)) : // CBD Oil/Tincture
 
   $other_tinctures = wc_get_products(array(
     'limit' => -1,
@@ -55,7 +54,7 @@ if ($product_is_bundle === false && (reset($product->get_category_ids()) == 265 
 </div>
 <?php 
 }else{
-echo '<br/>';
+// echo '<br/>';
 }
  ?>
-<?php endif; ?>
+<?php // endif; ?>

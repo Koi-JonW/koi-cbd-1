@@ -3,6 +3,20 @@ defined('ABSPATH') || exit;
 /* Template Name: V2 Lab Results 2020 */
 
 
+function get_root_categories(){
+
+    $args = array(
+       'hierarchical' => 1,
+       'show_option_none' => '',
+       'hide_empty' => 0,
+       'parent' => 0,
+       'taxonomy' => 'product_cat'
+    );
+
+    return(get_categories($args));
+
+}
+
 function get_subcategories_by_category_id($category_id){
 
     $args = array(
@@ -327,7 +341,8 @@ function prepare_view($category_ids){
 
 <!-- LAB-RESULTS:BEGIN  -->
 
-<?php $category_ids = [265,5157,266,256,259,264]; ?>
+<?php $root_categories = get_root_categories(); ?>
+<?php $category_ids = array_map(function($item){ return $item->term_id; }, $root_categories); ?>
 <?php $lab_results_view = prepare_view($category_ids); ?>
 <div class="category-wrapper">
 <?php foreach($lab_results_view as $category): ?>
@@ -416,8 +431,8 @@ function prepare_view($category_ids){
                 <?php if($product['has_variations']): ?>
                 <?php foreach($product['content'] as $variation): ?>
                     <div class='accordion'>
-                        <div id="<?php echo($item['results']['variant_id']); ?>" class="accordion-link">
-                            <?php echo($item['strength']); ?>
+                        <div id="<?php echo($variation['results']['variant_id']); ?>" class="accordion-link">
+                            <?php echo($variation['title']); ?>
                             <span class="arr" style="font-size:25px; margin-top:-10px;">&#9656;</span>
                         </div>
                         <div class="accordion-popup">
@@ -426,9 +441,9 @@ function prepare_view($category_ids){
                                 <div class="popup-area-a">
                                     <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
                                 </div>
-                                <div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
+                                <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
                                 <div class="popup-area-b">
-                                <?php foreach($item['results']['coa_urls'] as $url): ?>
+                                <?php foreach($variation['results']['coa_urls'] as $url): ?>
                                     <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
                                 <?php endforeach; ?>
                                 </div>
@@ -462,8 +477,8 @@ function prepare_view($category_ids){
                 <?php endif; ?>
                 </div>
             </div>
-        <?php endforeach; ?>
-	<?php endif; ?>
+	<?php endforeach; ?>
+        <?php endif; ?>
 	</div>
     </div>
 <?php endforeach; ?>

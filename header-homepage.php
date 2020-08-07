@@ -88,6 +88,7 @@ appearance:checkbox !important;
 -moz-appearance:checkbox !important; min-width:0px !important; margin-top:-7px; margin-right:5px;}
 
 
+
 @media only screen and (max-width:1260px){
 .k-header--nav a{font-size: 15px !important;}
 .k-header--nav li{margin-right: 8px !important;}
@@ -98,6 +99,10 @@ appearance:checkbox !important;
 .select_options_text{font-size:15px !important;}
 }
 @media only screen and (max-width:992px){
+.k-footer--logo .k-figure{margin:0 auto !important;}
+footer .social-icons{max-width:175px; padding-left:15px; margin:0 auto; margin-top:25px; margin-bottom:25px;}
+.k-footer--links__item{text-align:center !important; margin-bottom:30px !important;}
+
 .hero-media-img-top{margin-top:135px;}
 .sticky_banner{margin-top:85px;}
 .k-header--nav a{font-size: 13px !important;}

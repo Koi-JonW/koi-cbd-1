@@ -45,11 +45,11 @@
           </figure>
         </a>
         <h3 class="k-headline k-headline--xs">
-          <a href="<?php echo site_url().'/cbd-tinctures'; ?>">CBD Tinctures & Sprays</a>
+          <a href="<?php echo site_url().'/cbd-tinctures'; ?>">CBD Tinctures & Shots</a>
         </h3>
         <div class="k-rte-content">
           <p><?php echo $overview_fields['tinctures_copy']; ?></p>
-          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-tinctures'; ?>">Shop CBD Tinctures & Sprays &rarr;</a>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-tinctures'; ?>">Shop CBD Tinctures & Shots &rarr;</a>
         </div>
       </div>
     </div>
@@ -87,11 +87,11 @@
           </figure>
         </a>
         <h3 class="k-headline k-headline--xs">
-          <a href="<?php echo site_url().'/cbd-topicals'; ?>">CBD Balms</a>
+          <a href="<?php echo site_url().'/cbd-topicals'; ?>">CBD Balms & Gels</a>
         </h3>
         <div class="k-rte-content">
           <p><?php echo $overview_fields['topicals_copy']; ?></p>
-          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-topicals'; ?>">Shop CBD Balms &rarr;</a>
+          <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-topicals'; ?>">Shop CBD Balms & Gels &rarr;</a>
         </div>
       </div>
     </div>
@@ -167,11 +167,11 @@
         
         <div class="k-overview--vape__text">
           <h3 class="k-headline k-headline--xs">
-            <a href="<?php echo site_url().'/cbd-vape-juice'; ?>">CBD Vape Juices and Devices</a>
+            <a href="<?php echo site_url().'/cbd-vape-juice'; ?>">CBD Vape & Hemp Flower</a>
           </h3>
           <div class="k-rte-content">
             <p><?php echo $overview_fields['vape_copy']; ?></p>
-            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-vape-juice'; ?>">Shop CBD Vape Juices and Devices &rarr;</a>
+            <a class="k-button k-button--primary" href="<?php echo site_url().'/cbd-vape-juice'; ?>">Shop CBD Vape & Hemp Flower &rarr;</a>
           </div>
         </div>
       </div>

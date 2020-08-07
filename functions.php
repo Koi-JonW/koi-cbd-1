@@ -766,9 +766,50 @@ function action_after_shipping_rate ( $method, $index ) {
     if( is_cart() ) return; // Exit on cart page
 
     if( 'free_shipping:1' === $method->id ) {
-        echo __('<div style="font-size:12px; color:#666666;">4-8 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+        echo __('<div style="font-size:12px; color:#666666;">10-14 Bus. Days (Shipping times may be longer due to carrier volume)</div>');
     }
     if( 'local_pickup:20' === $method->id ) {
-        echo __('<div style="font-size:12px; color:#666666;">2-4 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+        echo __('<div style="font-size:12px; color:#666666;">5-7 Bus. Days (Shipping times may be longer due to carrier volume)</div>');
     }
 }
+
+
+// NEW POSTS TYPES
+function create_posttype() {
+ 
+    register_post_type( 'movies',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Movies' ),
+                'singular_name' => __( 'Movie' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'movies'),
+            'show_in_rest' => true,
+ 
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+
+register_post_type(
+    'Movies',
+    array(
+        'hierarchical' => true,
+        'public' => true,
+        'rewrite' => array(
+            'slug'       => 'my_post_type',
+            'with_front' => false,
+        ),
+        'supports' => array(
+            'page-attributes' /* This will show the post parent field */,
+            'title',
+            'editor',
+            'something-else',
+        ),
+        // Other arguments
+    )
+);

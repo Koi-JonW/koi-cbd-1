@@ -383,7 +383,7 @@ function prepare_view($category_ids){
                                         <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
                                         <div class="popup-area-b">
                                         <?php foreach($variation['results']['coa_urls'] as $url): ?>
-                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
                                         <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -406,7 +406,7 @@ function prepare_view($category_ids){
                                         <div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
                                         <div class="popup-area-b">
                                         <?php foreach($item['results']['coa_urls'] as $url): ?>
-                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
                                         <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -444,7 +444,7 @@ function prepare_view($category_ids){
                                 <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
                                 <div class="popup-area-b">
                                 <?php foreach($variation['results']['coa_urls'] as $url): ?>
-                                    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
                                 <?php endforeach; ?>
                                 </div>
                             </div>
@@ -467,7 +467,7 @@ function prepare_view($category_ids){
 				<div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
 				<div class="popup-area-b">
 				<?php foreach($item['results']['coa_urls'] as $url): ?>
-				    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?> rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+				    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
                                 <?php endforeach; ?>
 				</div>
 			    </div>

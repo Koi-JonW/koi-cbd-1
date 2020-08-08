@@ -587,7 +587,8 @@ function yotpo_create_order($order_id){
   $order_ip = $order->get_customer_ip_address();
   $order_user_agent = $order->get_customer_user_agent();
   $order_currency = $order->get_currency();
-  
+  $order_date = date_format(date_create($order->get_date_created()), 'Y-m-d H:i:s');
+
   $order_total = (float)$order->get_total();
   $order_total = number_format($order_total, 2, '-', '-');
   $order_total = str_replace('-', '', $order_total);
@@ -597,16 +598,45 @@ function yotpo_create_order($order_id){
   $order_user_data = get_userdata($order_user->id);
   $order_user_email = $order_user_data->user_email;
 
+  $order_coupon = $order->get_coupons();
+  $order_coupon = count($order_coupon) ? end($order_coupon)['code'] : '';
+
+  $order_items = [];
+
+  foreach($order->get_items() as $item){
+        
+    $item_price = (float)$item['subtotal'];
+    $item_price = number_format($item_price, 2, '-', '-');
+    $item_price = str_replace('-', '', $item_price);
+    $item_price = (int)str_replace('-', '', $item_price);      
+  
+    $order_items[] = array(
+      'id'=>$item['product_id'],
+      'name'=>$item['name'],
+      'price_cents'=>$item_price,
+      'quantity'=>$item['quantity']
+    );
+  }
+
+  $order_discount_total = (float)$order->get_discount_total();
+  $order_discount_total = number_format($order_discount_total, 2, '-', '-');
+  $order_discount_total = str_replace('-', '', $order_discount_total);
+  $order_discount_total = (int)str_replace('-', '', $order_discount_total);
+
   $swell_options = get_option('swell_options');
   $swell_url = 'https://app.swellrewards.com/api/v2/orders';
   $swell_data = array(
-    "ip_address" => $order_ip,
-    "user_agent" => $order_user_agent,
-    "order_id" => $order_id,
     "customer_email" => $order_user_email,
     "total_amount_cents" => $order_total,
     "currency_code" => $order_currency,
-    "status" => "Completed"
+    "order_id" => $order_id,
+    "status" => "paid",
+    "created_at" => $order_date,
+    "coupon_code" => $order_coupon,
+    "ip_address" => $order_ip,
+    "user_agent" => $order_user_agent,
+    "discount_amount_cents" => $order_discount_total,
+    "items" => $order_items
   );
 
   $ch = curl_init();

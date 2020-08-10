@@ -729,9 +729,17 @@ $show_batch = $_POST['lab-result-search'];
 
 
 $(document).ready(function(){
+	$('.category-title').on('click', function(){
+	$(".accordion-details").hide();
+	$(".category-content").hide();
+	$(".accordion-popup").hide();
+	$(".accordion-content").hide();
+    });
+
     $('.category-title').on('click', function(){
         $(this).parent().find('.accordion-details').fadeOut();
         $(this).parent().find('>.category-content').fadeToggle();
+
     });
     $('.accordion-title').on('click', function(){
         $(this).parent().find('.accordion-details').fadeOut();

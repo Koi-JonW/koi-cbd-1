@@ -656,13 +656,16 @@ function yotpo_create_order($order_id){
   // --
 
   $swell_log  = '-- [' . date('y-m-d H:i:s') . '] yotpo_create_order' . PHP_EOL;
-  $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
-  $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
-  $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
   $swell_log .= "- customer_email: {$order_user_email}" . PHP_EOL;
   $swell_log .= "- total_amount_cents: {$order_total}" . PHP_EOL;
   $swell_log .= "- currency_code: {$order_currency}" . PHP_EOL;
-  $swell_log .= "- status: Completed" . PHP_EOL;
+  $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
+  $swell_log .= "- status: paid" . PHP_EOL;
+  $swell_log .= "- created_at: {$order_date}" . PHP_EOL;
+  $swell_log .= "- coupon_code: {$coupon_code}" . PHP_EOL;
+  $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
+  $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
+  $swell_log .= "- discount_amount_cents: {$discount_amount_cents}" . PHP_EOL;
   $swell_log .= "- result:" . PHP_EOL;
   $swell_log .= $swell_result . PHP_EOL;
   $swell_log .= "--" . PHP_EOL;

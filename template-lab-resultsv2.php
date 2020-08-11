@@ -383,7 +383,7 @@ function prepare_view($category_ids){
                                         <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
                                         <div class="popup-area-b">
                                         <?php foreach($variation['results']['coa_urls'] as $url): ?>
-                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this Product's Certificate of Analysis (COA)</a>
                                         <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -406,7 +406,7 @@ function prepare_view($category_ids){
                                         <div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
                                         <div class="popup-area-b">
                                         <?php foreach($item['results']['coa_urls'] as $url): ?>
-                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                            <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this Product's Certificate of Analysis (COA)</a>
                                         <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -444,7 +444,7 @@ function prepare_view($category_ids){
                                 <div class="popup-area-b">Variant: <?php echo($variation['results']['strength']); ?><br>Size: <?php echo($variation['results']['size']); ?><br>Batch #: <?php echo($variation['results']['batch']); ?></div>
                                 <div class="popup-area-b">
                                 <?php foreach($variation['results']['coa_urls'] as $url): ?>
-                                    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+                                    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this Product's Certificate of Analysis (COA)</a>
                                 <?php endforeach; ?>
                                 </div>
                             </div>
@@ -467,7 +467,7 @@ function prepare_view($category_ids){
 				<div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
 				<div class="popup-area-b">
 				<?php foreach($item['results']['coa_urls'] as $url): ?>
-				    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this produc's Certificate of Analysis (COA)</a>
+				    <a class="red-btn-coa" target="_blank" href="<?php echo($url); ?>" rel="noopener noreferrer">View this Product's Certificate of Analysis (COA)</a>
                                 <?php endforeach; ?>
 				</div>
 			    </div>
@@ -531,7 +531,16 @@ $show_batch = $_POST['lab-result-search'];
 					if($show_batch == get_sub_field('number_batch_variations')){
 		?>
 <div class="popup-content" style="margin-top:0px !important;">
-	<div class="popup-area-a"><h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo get_the_title(); ?></h3></div>
+	<div class="popup-area-a">
+<h3 class="k-headline k-headline--sm k-promoslider--titlerow__item">
+<?php  
+$post_title = get_the_title();
+$pos = strpos ($post_title,"|");
+$len = strlen($post_title);
+echo $producto = substr($post_title, $pos+1, $len);
+?>
+</h3>
+</div>
 		<div class="popup-area-b">
 			Variant: <?php echo get_sub_field('strength_variations'); ?><br/>
 			Size: <?php echo get_sub_field('size_variations'); ?><br/>
@@ -542,7 +551,7 @@ $show_batch = $_POST['lab-result-search'];
 				if( have_rows('coa_url_batch_variations') ):
 					while( have_rows('coa_url_batch_variations') ) : the_row();
 							$sub_url = get_sub_field('file_url_var');
-						echo '<a class="red-btn-coa" target="_blank" href="'.$sub_url.'">View this produc\'s Certificate of Analysis (COA)</a>';
+						echo '<a class="red-btn-coa" target="_blank" href="'.$sub_url.'">View this product\'s Certificate of Analysis (COA)</a>';
 
 					endwhile;
 				endif;
@@ -576,7 +585,7 @@ $show_batch = $_POST['lab-result-search'];
 .popup-area-b .red-btn-coa:hover{box-shadow:0px 10px 10px #ccc;}
 .close-pp{width:40px; height:40px; background-color:#000; color:#fff; position:absolute; right:-20px; top:-20px; border-radius:50px; font-family:"Recoleta Regular", serif; font-size:25px; line-height:40px; text-align:center; cursor:pointer;}
 
-.arr{float:right; margin-right:25px;}
+.arr{float:right; margin-right:25px; position:absolute; right:25px;}
 .category-wrapper {
     	padding: 20px;
 	display:flex;

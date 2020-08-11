@@ -585,7 +585,7 @@ echo $producto = substr($post_title, $pos+1, $len);
 .popup-area-b .red-btn-coa:hover{box-shadow:0px 10px 10px #ccc;}
 .close-pp{width:40px; height:40px; background-color:#000; color:#fff; position:absolute; right:-20px; top:-20px; border-radius:50px; font-family:"Recoleta Regular", serif; font-size:25px; line-height:40px; text-align:center; cursor:pointer;}
 
-.arr{float:right; margin-right:25px; position:absolute; right:25px;}
+.arr{float:right; margin-right:25px; position:absolute; right:-5px;}
 .category-wrapper {
     	padding: 20px;
 	display:flex;
@@ -604,6 +604,7 @@ echo $producto = substr($post_title, $pos+1, $len);
     background-color:#fff;
     border-radius: 5px;
     cursor: pointer;
+    position:relative;
 }
 .category-title:hover{
     border:1px solid #F4B13E;
@@ -619,12 +620,14 @@ echo $producto = substr($post_title, $pos+1, $len);
 }
 .accordion .accordion {
     padding: 0 0px 0px 0;
+	position:relative;
 }
 .accordion-title {
     padding: 10px 10px 10px 20px;
     background: #F7F7F7;
     border-radius: 0px;
     cursor: pointer;
+    position:relative;
 }
 .accordion .accordion .accordion-title {
     background: #EAEAEA;

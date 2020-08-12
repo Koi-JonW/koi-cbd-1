@@ -514,7 +514,8 @@ function prepare_view($category_ids){
 <div class="k-labresults__main" style="padding-top:0px !important;">
 <div>
 <?php
-$show_batch = $_POST['lab-result-search'];
+	   $show_batch = $_POST['lab-result-search'];
+	   $show_batch = strtoupper($show_batch);
 	   $args = array(
         'post_type'   => 'product',
         'post_status' => 'publish',

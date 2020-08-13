@@ -65,9 +65,8 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 
   <link rel="stylesheet" href="<?php echo $root.'/dist/css/main.css?v=1.12.4' ?>" />
 <style type="text/css">
-
 .tabs-2020{margin:0; padding:0px; list-style:none; display:flex; flex-wrap:wrap; border-left:1px solid #ccc;}
-.tabs-2020 li{border-top:1px solid #ccc; border-right:1px solid #ccc; padding:15px 50px;} 
+.tabs-2020 li{border-top:1px solid #ccc; border-right:1px solid #ccc; padding:15px 10px; width:20%; text-align:center;} 
 .tabs-2020 li a{color:#ccc; text-decoration:none;}
 .tabs-2020 li:hover a{color:#000; text-decoration:none;}
 .ui-tabs-active{background-color:#000;}
@@ -105,6 +104,9 @@ appearance:checkbox !important;
 @media only screen and (max-width:1200px){
 .select_options_area, .select_options_text{width:100%; float:none;}
 .select_options_text{font-size:15px !important;}
+}
+@media only screen and (max-width:900px){
+.tabs-2020 li{border-top:1px solid #ccc; border-right:1px solid #ccc; padding:15px 10px; width:100%; text-align:center;} 
 }
 @media only screen and (max-width:992px){
 .k-footer--logo .k-figure{margin:0 auto !important;}

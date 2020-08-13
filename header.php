@@ -65,6 +65,14 @@ $current_url = home_url(add_query_arg(array(), $wp->request));
 
   <link rel="stylesheet" href="<?php echo $root.'/dist/css/main.css?v=1.12.4' ?>" />
 <style type="text/css">
+
+.tabs-2020{margin:0; padding:0px; list-style:none; display:flex; flex-wrap:wrap; border-left:1px solid #ccc;}
+.tabs-2020 li{border-top:1px solid #ccc; border-right:1px solid #ccc; padding:15px 50px;} 
+.tabs-2020 li a{color:#ccc; text-decoration:none;}
+.tabs-2020 li:hover a{color:#000; text-decoration:none;}
+.ui-tabs-active{background-color:#000;}
+.ui-tabs-active a{color:fff !important;}
+
 .hero-media-img-top{margin-top:165px;}
 .sticky_banner{margin-top:110px;}
 
@@ -120,6 +128,14 @@ footer .social-icons{max-width:175px; padding-left:15px; margin:0 auto; margin-t
 #k-backdrop{position:relative !important;}
 .k-login__form--default{width:96% !important; margin:2%; }
 .k-login__form--register{width:96% !important; margin:2%;}
+
+.tabs-2020{margin:0; padding:0px; list-style:none; display:flex; flex-wrap:wrap; border-left:1px solid #ccc;}
+.tabs-2020 li{border-top:1px solid #ccc; border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:15px 50px; width:100%; text-align:center;} 
+.tabs-2020 li a{color:#ccc; text-decoration:none;}
+.tabs-2020 li:hover a{color:#000; text-decoration:none;}
+.ui-tabs-active{background-color:#000;}
+.ui-tabs-active a{color:fff !important;}
+
 }
 @media only screen and (max-width:480px){
 .hero-media-img-top{margin-top:30%;}

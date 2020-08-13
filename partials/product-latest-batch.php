@@ -189,7 +189,74 @@
     </div>
 
     <div class="k-latestbatch--main">
-      <?php if ($product_wc_type == 'variable') : ?>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  jQuery( function() {
+    jQuery( "#tabs" ).tabs();
+  } );
+  </script>
+
+<div id="tabs">
+<?php
+if( have_rows('lab_results_variations') ):
+    $a_tab_count = "1";
+    echo '<ul class="tabs-2020">';
+    while( have_rows('lab_results_variations') ) : the_row(); 
+    $b_tab_count = $a_tab_count++;
+?>
+    <li><a href="#tabs-<?php echo $b_tab_count; ?>"><?php echo get_sub_field('strength_variations'); ?> <?php if(get_sub_field('size_variations')){ echo '('.get_sub_field('size_variations').')'; } ?></a></li>
+<?php
+    endwhile; 
+    echo '</ul>';  
+endif;
+?>
+<?php
+if( have_rows('lab_results_variations') ):
+    $a_content_count = "1";
+    while( have_rows('lab_results_variations') ) : the_row(); 
+    $b_content_count = $a_content_count++;
+?>
+
+         <div class="k-latestbatch__results" id="tabs-<?php echo $b_content_count; ?>">
+        <div class="k-latestbatch__results-liner">
+          <div class="k-latestbatch__results-column">
+            <div>
+              <p class="k-headline k-headline--sm"><?php the_title(); ?></p>
+            </div>
+          </div>
+
+          <div class="k-latestbatch__results-column">
+            <div>
+              <p class="k-latestbatch--size">Strength: <span><?php echo get_sub_field('strength_variations'); ?></span></p>
+              <p class="k-latestbatch--size">Size: <span><?php echo get_sub_field('size_variations'); ?></span></p>
+              <p class="k-latestbatch--batchnum">Batch #: <span id="k-batchid" class="k-upcase k-latestbatch--strength"><?php echo get_sub_field('number_batch_variations'); ?></span></p>
+            </div>
+          </div>
+                    <div class="k-latestbatch__results-column">
+
+<?php
+if( have_rows('coa_url_batch_variations') ):
+    while( have_rows('coa_url_batch_variations') ) : the_row(); ?>
+<a id="k-coaurl" class="k-weight--lg" href="<?php echo get_sub_field('file_url_var'); ?>" target="_blank" rel="noopener noreferrer">View this product's<br>Certificate of Analysis (COA)</a>
+<div style="width:100%; height:5px;"></div>
+<?php
+    endwhile;
+endif;
+?>            <a class="k-accent-text" href="<?php echo esc_url( home_url( '/lab-results' ) ); ?>">Looking for other product lab results? Click Here.</a>
+          </div>
+
+        </div>
+      </div>
+
+
+<?php
+    endwhile; 
+endif;
+?> 
+</div><!--end tabs-->
+
+      <?php if ($product_wc_type == '-variable') : ?>
       <nav class="k-latestbatch--tabs">
       <?php
       foreach($product->get_available_variations() as $i => $variant) :
@@ -208,11 +275,11 @@
         </div>
       <?php endforeach; ?>
       </nav>
-      <?php elseif ($product_wc_type == 'simple'): ?>
+      <?php elseif ($product_wc_type == '-simple'): ?>
         <div class="k-latestbatch--tabs__tab active" data-product-sku="<?php echo $product->sku ?>">
           <span class="k-latestbatch__variant-name"><?php echo $product->name; ?></span>
         </div>
-      <?php elseif ($product_wc_type == 'bundle'): ?>
+      <?php elseif ($product_wc_type == '-bundle'): ?>
         <nav class="k-latestbatch--tabs">
           <?php
           $bundled_items = $product->get_bundled_items();  
@@ -246,7 +313,7 @@
           <?php endforeach; ?>
         </nav>
       <?php endif; ?>
-      <div class="k-latestbatch__results">
+      <div class="k-latestbatch__results" style="display:none;">
         <div class="k-latestbatch__results-liner">
           <div class="k-latestbatch__results-column">
             <div>

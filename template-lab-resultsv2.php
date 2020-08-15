@@ -499,16 +499,16 @@ function prepare_view($category_ids){
         <h4 class="k-headline k-headline--sm">Search by Batch</h4>
         <p class="k-rte-content">Find the lab results of every Koi product by using its unique batch number. Not sure where to find your product's batch number? Check out <a href="https://koicbdstaging.wpengine.com/wp-content/uploads/tracking-with-batch-numbers.jpg" target="_blank" rel="noopener noreferrer">this example.</a></p>
       </div>
-      <form class="k-form" id="k-resultssearch-" method="post" action="#resultsembedtarget">
+      <div  class="k-form" id="k-resultssearch-">
         <div class="form-content-lr">
 		<div class="form-content-lr-inputext">
             <input type="text" name="lab-result-search" id="k-resultssearchval" placeholder="Enter Batch Number">
 		</div><!--end form-content-lr-inputext-->
 		<div class="form-content-lr-inputsubmit">
-            <input type="submit" class="k-button k-button--primary k-upcase" value="Search">
+            <input type="submit" id="btn" class="k-button k-button--primary k-upcase" value="Search" style="width:100%;">
 		</div><!--end form-content-lr-inputsubmit -->
         </div>
-      </form>
+      </div>
     </div>
 
 <div class="k-labresults__main" style="padding-top:0px !important;">
@@ -529,9 +529,9 @@ function prepare_view($category_ids){
 		<?php
 			if( have_rows('lab_results_variations') ):
 				while( have_rows('lab_results_variations') ) : the_row();
-					if($show_batch == get_sub_field('number_batch_variations')){
+					if(get_sub_field('searchable') == 'yes'){
 		?>
-<div class="popup-content" style="margin-top:0px !important;">
+<div class="popup-content rep rep_<?php echo get_sub_field('number_batch_variations'); ?>" style="margin-top:0px !important; display:none; width:100%;">
 	<div class="popup-area-a">
 <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item">
 <?php  
@@ -564,6 +564,18 @@ echo $producto = substr($post_title, $pos+1, $len);
 			endif;
 		?>
 <?php endwhile; ?>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#btn').click(function(){ 
+            
+            $report = jQuery('#k-resultssearchval').val();
+            jQuery('.rep').fadeOut("slow");
+            jQuery('.rep_'+$report).slideToggle("slow");
+
+       //      alert($report);
+        });
+    });
+</script>
 </div><!--end resultsembedtarget-->
 </div><!--end k-labresults__main-->
 
@@ -581,7 +593,7 @@ echo $producto = substr($post_title, $pos+1, $len);
 .popup-content{width:100%; max-width:1000px; border:10px solid #ffffff; background-color:#F7F7F7; display:flex; flex-wrap:wrap; align-content: center; align-items: center; margin:0 auto; position:relative; margin-top:10%;}
 .popup-area-a{width:30%; margin:2%;}
 .popup-area-b{width:29%; margin:2%;}
-.popup-area-a h3{margin:0px; padding:0px;}
+.popup-area-a h3{margin:0px; padding:0px; font-size:30px !important;}
 .popup-area-b .red-btn-coa{color:#fff; background-color:#FE0002; display:block; box-sizing:border-box; padding:25px; text-align:center; border-radius:5px;}
 .popup-area-b .red-btn-coa:hover{box-shadow:0px 10px 10px #ccc;}
 .close-pp{width:40px; height:40px; background-color:#000; color:#fff; position:absolute; right:-20px; top:-20px; border-radius:50px; font-family:"Recoleta Regular", serif; font-size:25px; line-height:40px; text-align:center; cursor:pointer;}

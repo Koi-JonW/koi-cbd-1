@@ -203,10 +203,12 @@ if( have_rows('lab_results_variations') ):
     $a_tab_count = "1";
     echo '<ul class="tabs-2020">';
     while( have_rows('lab_results_variations') ) : the_row(); 
+    if(get_sub_field('visible') == 'yes'){ 
     $b_tab_count = $a_tab_count++;
 ?>
     <li><a href="#tabs-<?php echo $b_tab_count; ?>"><?php echo get_sub_field('strength_variations'); ?> <?php if(get_sub_field('size_variations')){ echo '('.get_sub_field('size_variations').')'; } ?></a></li>
 <?php
+    }
     endwhile; 
     echo '</ul>';  
 endif;
@@ -215,6 +217,7 @@ endif;
 if( have_rows('lab_results_variations') ):
     $a_content_count = "1";
     while( have_rows('lab_results_variations') ) : the_row(); 
+    if(get_sub_field('visible') == 'yes'){
     $b_content_count = $a_content_count++;
 ?>
 
@@ -251,6 +254,7 @@ endif;
 
 
 <?php
+    }
     endwhile; 
 endif;
 ?> 

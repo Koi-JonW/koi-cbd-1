@@ -60,8 +60,7 @@ defined( 'ABSPATH' ) || exit;
 		<?php do_action( 'woocommerce_before_checkout_registration_form', $checkout ); ?>
 
 		<?php if ( $checkout->get_checkout_fields( 'account' ) ) : ?>
-
-			<div class="create-account">
+			<div class="create-account-delete" style="width:50%; float:right; clear:both;">
 				<?php foreach ( $checkout->get_checkout_fields( 'account' ) as $key => $field ) : ?>
 					<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
 				<?php endforeach; ?>

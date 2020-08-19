@@ -587,7 +587,8 @@ function yotpo_create_order($order_id){
   $order_ip = $order->get_customer_ip_address();
   $order_user_agent = $order->get_customer_user_agent();
   $order_currency = $order->get_currency();
-  
+  $order_date = date_format(date_create($order->get_date_created()), 'Y-m-d H:i:s');
+
   $order_total = (float)$order->get_total();
   $order_total = number_format($order_total, 2, '-', '-');
   $order_total = str_replace('-', '', $order_total);
@@ -597,16 +598,45 @@ function yotpo_create_order($order_id){
   $order_user_data = get_userdata($order_user->id);
   $order_user_email = $order_user_data->user_email;
 
+  $order_coupon = $order->get_coupons();
+  $order_coupon = count($order_coupon) ? end($order_coupon)['code'] : '';
+
+  $order_items = [];
+
+  foreach($order->get_items() as $item){
+        
+    $item_price = (float)$item['subtotal'];
+    $item_price = number_format($item_price, 2, '-', '-');
+    $item_price = str_replace('-', '', $item_price);
+    $item_price = (int)str_replace('-', '', $item_price);      
+  
+    $order_items[] = array(
+      'id'=>$item['product_id'],
+      'name'=>$item['name'],
+      'price_cents'=>$item_price,
+      'quantity'=>$item['quantity']
+    );
+  }
+
+  $order_discount_total = (float)$order->get_discount_total();
+  $order_discount_total = number_format($order_discount_total, 2, '-', '-');
+  $order_discount_total = str_replace('-', '', $order_discount_total);
+  $order_discount_total = (int)str_replace('-', '', $order_discount_total);
+
   $swell_options = get_option('swell_options');
   $swell_url = 'https://app.swellrewards.com/api/v2/orders';
   $swell_data = array(
-    "ip_address" => $order_ip,
-    "user_agent" => $order_user_agent,
-    "order_id" => $order_id,
     "customer_email" => $order_user_email,
     "total_amount_cents" => $order_total,
     "currency_code" => $order_currency,
-    "status" => "Completed"
+    "order_id" => $order_id,
+    "status" => "paid",
+    "created_at" => $order_date,
+    "coupon_code" => $order_coupon,
+    "ip_address" => $order_ip,
+    "user_agent" => $order_user_agent,
+    "discount_amount_cents" => $order_discount_total,
+    "items" => $order_items
   );
 
   $ch = curl_init();
@@ -626,13 +656,16 @@ function yotpo_create_order($order_id){
   // --
 
   $swell_log  = '-- [' . date('y-m-d H:i:s') . '] yotpo_create_order' . PHP_EOL;
-  $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
-  $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
-  $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
   $swell_log .= "- customer_email: {$order_user_email}" . PHP_EOL;
   $swell_log .= "- total_amount_cents: {$order_total}" . PHP_EOL;
   $swell_log .= "- currency_code: {$order_currency}" . PHP_EOL;
-  $swell_log .= "- status: Completed" . PHP_EOL;
+  $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
+  $swell_log .= "- status: paid" . PHP_EOL;
+  $swell_log .= "- created_at: {$order_date}" . PHP_EOL;
+  $swell_log .= "- coupon_code: {$coupon_code}" . PHP_EOL;
+  $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
+  $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
+  $swell_log .= "- discount_amount_cents: {$discount_amount_cents}" . PHP_EOL;
   $swell_log .= "- result:" . PHP_EOL;
   $swell_log .= $swell_result . PHP_EOL;
   $swell_log .= "--" . PHP_EOL;
@@ -813,3 +846,56 @@ register_post_type(
         // Other arguments
     )
 );
+
+
+
+
+// Adds password-confirmation to user registration page (/my-account/)
+add_filter( 'woocommerce_register_form', 'pixel_registration_password_repeat', 9 );
+// Priority 10 will probably work for you, but in my situation, 
+// a reCAPTCHA element loads between the password boxes, so I used 9.
+function pixel_registration_password_repeat() {
+    ?>
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+        <label for="password_confirm"><?php _e( 'Confirm Password', 'woocommerce' ); ?> <span class="required">*</span></label>
+        <input type="password" class="input-text" name="password_confirm" id="password_confirm">
+    </p>
+    <?php
+}
+
+
+// Adds password-confirmation to user registration during checkout phase
+add_filter( 'woocommerce_checkout_fields', 'pixel_checkout_registration_password_repeat', 10, 1 );
+function pixel_checkout_registration_password_repeat( $fields ) {
+    if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) {
+        $fields['account']['account_password_confirm'] = array(
+            'type'        => 'password',
+            'label'       => __( '', 'woocommerce' ),
+            'required'    => true,
+            'placeholder' => esc_attr__( 'Confirm password', 'woocommerce' )
+        );
+    }
+    return $fields;
+}
+
+
+// Form-specific password validation step.
+add_filter( 'woocommerce_registration_errors', 'pixel_validate_registration_passwords', 10, 3 );
+function pixel_validate_registration_passwords( $errors, $username, $email ) {
+    global $woocommerce;
+    extract( $_POST );
+
+    if ( isset( $password ) || ! empty( $password ) ) {
+        // This code runs for new user registration on the /my-account/ page.
+        if ( strcmp( $password, $password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    } else if ( isset( $account_password ) || ! empty( $account_password ) ) {
+        // This code runs for new user registration during checkout process.
+        if ( strcmp( $account_password, $account_password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    }
+
+    return $errors;
+}

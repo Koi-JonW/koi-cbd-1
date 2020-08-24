@@ -2,7 +2,6 @@
 defined('ABSPATH') || exit;
 /* Template Name: V2 Lab Results 2020 */
 
-
 function get_root_categories(){
 
     $args = array(
@@ -114,24 +113,24 @@ function prepare_view($category_ids){
                         foreach($product_variations as $variation){
 
                             $product_lab_results = array_filter($product_repeater_lab_results, function($item) use ($variation){ return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes')); });
-                            $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+                            // $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
-                            if($product_lab_results){
+                            foreach($product_lab_results as $product_lab_result){
 
                                 $arr_product_coa_urls = [];
 
-                                foreach($product_lab_results['coa_url_batch_variations'] as $item){
+                                foreach($product_lab_result['coa_url_batch_variations'] as $item){
                                     $arr_product_coa_urls[] = $item['file_url_var'];
                                 }
 
                                 $arr_results = [
-                                    'title' => $product_lab_results['strength_variations'],
+                                    'title' => $product_lab_result['strength_variations'],
                                     'results' => [
-                                        'variant_id' => $product_lab_results['variant_id'],
+                                        'variant_id' => $product_lab_result['variant_id'],
                                         'title' => $product->post_title,
-                                        'strength' => $product_lab_results['strength_variations'],
-                                        'size' => $product_lab_results['size_variations'],
-                                        'batch' => $product_lab_results['number_batch_variations'],
+                                        'strength' => $product_lab_result['strength_variations'],
+                                        'size' => $product_lab_result['size_variations'],
+                                        'batch' => $product_lab_result['number_batch_variations'],
                                         'coa_urls' => $arr_product_coa_urls
                                     ]
                                 ];
@@ -147,24 +146,24 @@ function prepare_view($category_ids){
                         $arr_product['has_variations'] = false;
 
                         $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return ($item['visible'] == 'yes' && $item['variant_id'] != ''); });
-                        $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+                        // $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
-                        if($product_lab_results){
+                        foreach($product_lab_results as $product_lab_result){
 
                             $arr_product_coa_urls = [];
 
-                            foreach($product_lab_results['coa_url_batch_variations'] as $item){
+                            foreach($product_lab_result['coa_url_batch_variations'] as $item){
                                 $arr_product_coa_urls[] = $item['file_url_var'];
                             }
 
                             $arr_results = [
-                                'title' => $product_lab_results['strength_variations'],
+                                'title' => $product_lab_result['strength_variations'],
                                 'results' => [
-                                    'variant_id' => $product_lab_results['variant_id'],
+                                    'variant_id' => $product_lab_result['variant_id'],
                                     'title' => $product->post_title,
-                                    'strength' => $product_lab_results['strength_variations'],
-                                    'size' => $product_lab_results['size_variations'],
-                                    'batch' => $product_lab_results['number_batch_variations'],
+                                    'strength' => $product_lab_result['strength_variations'],
+                                    'size' => $product_lab_result['size_variations'],
+                                    'batch' => $product_lab_result['number_batch_variations'],
                                     'coa_urls' => $arr_product_coa_urls
                                 ]
                             ];
@@ -216,24 +215,24 @@ function prepare_view($category_ids){
                     foreach($product_variations as $variation){
 
                         $product_lab_results = array_filter($product_repeater_lab_results, function($item) use ($variation){ return (($item['variant_id'] == strval($variation['variation_id'])) && ($item['visible'] == 'yes')); });
-                        $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+                        // $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
-                        if($product_lab_results){
+                        foreach($product_lab_results as $product_lab_result){
 
                             $arr_product_coa_urls = [];
 
-                            foreach($product_lab_results['coa_url_batch_variations'] as $item){
+                            foreach($product_lab_result['coa_url_batch_variations'] as $item){
                                 $arr_product_coa_urls[] = $item['file_url_var'];
                             }
 
                             $arr_results = [
-                                'title' => $product_lab_results['strength_variations'],
+                                'title' => $product_lab_result['strength_variations'],
                                 'results' => [
-                                    'variant_id' => $product_lab_results['variant_id'],
+                                    'variant_id' => $product_lab_result['variant_id'],
                                     'title' => $product->post_title,
-                                    'strength' => $product_lab_results['strength_variations'],
-                                    'size' => $product_lab_results['size_variations'],
-                                    'batch' => $product_lab_results['number_batch_variations'],
+                                    'strength' => $product_lab_result['strength_variations'],
+                                    'size' => $product_lab_result['size_variations'],
+                                    'batch' => $product_lab_result['number_batch_variations'],
                                     'coa_urls' => $arr_product_coa_urls
                                 ]
                             ];
@@ -249,24 +248,24 @@ function prepare_view($category_ids){
                     $arr_product['has_variations'] = false;
 
 		    $product_lab_results = array_filter($product_repeater_lab_results, function($item){ return ($item['visible'] == 'yes' && $item['variant_id'] != ''); });
-                    $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
+                    // $product_lab_results = $product_lab_results ? end($product_lab_results) : [];
 
-                    if($product_lab_results){
+                    foreach($product_lab_results as $product_lab_result){
 
                         $arr_product_coa_urls = [];
 
-			foreach($product_lab_results['coa_url_batch_variations'] as $item){
+			foreach($product_lab_result['coa_url_batch_variations'] as $item){
                             $arr_product_coa_urls[] = $item['file_url_var'];
                         }
 
                         $arr_results = [
-                            'title' => $product_lab_results['strength_variations'],
+                            'title' => $product_lab_result['strength_variations'],
                             'results' => [
-                                'variant_id' => $product_lab_results['variant_id'],
+                                'variant_id' => $product_lab_result['variant_id'],
                                 'title' => $product->post_title,
-                                'strength' => $product_lab_results['strength_variations'],
-                                'size' => $product_lab_results['size_variations'],
-                                'batch' => $product_lab_results['number_batch_variations'],
+                                'strength' => $product_lab_result['strength_variations'],
+                                'size' => $product_lab_result['size_variations'],
+                                'batch' => $product_lab_result['number_batch_variations'],
                                 'coa_urls' => $arr_product_coa_urls
                             ]
                         ];
@@ -462,7 +461,7 @@ function prepare_view($category_ids){
                             <div class="popup-content">
                                 <div class="close-pp">X</div>
                                 <div class="popup-area-a">
-                                    <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item"><?php echo($product['title']); ?></h3>
+                                    <h3 class="k-headline k-headline--sm k-promoslider--titlerow__item">11111111<?php echo($product['title']); ?></h3>
                                 </div>
 				<div class="popup-area-b">Variant: <?php echo($item['results']['strength']); ?><br>Size: <?php echo($item['results']['size']); ?><br>Batch #: <?php echo($item['results']['batch']); ?></div>
 				<div class="popup-area-b">

@@ -846,3 +846,56 @@ register_post_type(
         // Other arguments
     )
 );
+
+
+
+
+// Adds password-confirmation to user registration page (/my-account/)
+add_filter( 'woocommerce_register_form', 'pixel_registration_password_repeat', 9 );
+// Priority 10 will probably work for you, but in my situation, 
+// a reCAPTCHA element loads between the password boxes, so I used 9.
+function pixel_registration_password_repeat() {
+    ?>
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+        <label for="password_confirm"><?php _e( 'Confirm Password', 'woocommerce' ); ?> <span class="required">*</span></label>
+        <input type="password" class="input-text" name="password_confirm" id="password_confirm">
+    </p>
+    <?php
+}
+
+
+// Adds password-confirmation to user registration during checkout phase
+add_filter( 'woocommerce_checkout_fields', 'pixel_checkout_registration_password_repeat', 10, 1 );
+function pixel_checkout_registration_password_repeat( $fields ) {
+    if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) {
+        $fields['account']['account_password_confirm'] = array(
+            'type'        => 'password',
+            'label'       => __( '', 'woocommerce' ),
+            'required'    => true,
+            'placeholder' => esc_attr__( 'Confirm password', 'woocommerce' )
+        );
+    }
+    return $fields;
+}
+
+
+// Form-specific password validation step.
+add_filter( 'woocommerce_registration_errors', 'pixel_validate_registration_passwords', 10, 3 );
+function pixel_validate_registration_passwords( $errors, $username, $email ) {
+    global $woocommerce;
+    extract( $_POST );
+
+    if ( isset( $password ) || ! empty( $password ) ) {
+        // This code runs for new user registration on the /my-account/ page.
+        if ( strcmp( $password, $password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    } else if ( isset( $account_password ) || ! empty( $account_password ) ) {
+        // This code runs for new user registration during checkout process.
+        if ( strcmp( $account_password, $account_password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    }
+
+    return $errors;
+}

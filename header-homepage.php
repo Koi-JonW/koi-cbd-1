@@ -132,7 +132,6 @@ footer .social-icons{max-width:175px; padding-left:15px; margin:0 auto; margin-t
 <script>
 var $ = jQuery.noConflict();
 $(document).ready(function(){
-    console.log("hi I am tesing");
     $("#k-nav-trigger").click(function() {
         $("html, body").animate({ scrollTop: 0 }, "fast");
         return false;

@@ -34,6 +34,9 @@
   <meta name="theme-color" content="#ffffff">
 
   <?php /* wp_head(); */ ?>
+  <script type='text/javascript' src='https://cdn.swellrewards.com/loader/QKpaXjrazd3-y0015RhCpA.js?ver=5.4.2'></script>
+  <script type='text/javascript' src='//www.refersion.com/tracker/v3/pub_46754b00a701abd9b65e.js?ver=5.4.2'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script>
     // IntersectionObserver polyfill
@@ -129,6 +132,7 @@ footer .social-icons{max-width:175px; padding-left:15px; margin:0 auto; margin-t
 <script>
 var $ = jQuery.noConflict();
 $(document).ready(function(){
+    console.log("hi I am tesing");
     $("#k-nav-trigger").click(function() {
         $("html, body").animate({ scrollTop: 0 }, "fast");
         return false;

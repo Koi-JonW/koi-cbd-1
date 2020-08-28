@@ -799,9 +799,103 @@ function action_after_shipping_rate ( $method, $index ) {
     if( is_cart() ) return; // Exit on cart page
 
     if( 'free_shipping:1' === $method->id ) {
-        echo __('<div style="font-size:12px; color:#666666;">4-8 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+        echo __('<div style="font-size:12px; color:#666666;">10-14 Bus. Days (Shipping times may be longer due to carrier volume)</div>');
     }
     if( 'local_pickup:20' === $method->id ) {
-        echo __('<div style="font-size:12px; color:#666666;">2-4 Bus. Days (Shipping times could be longer due to carrier volume)</div>');
+        echo __('<div style="font-size:12px; color:#666666;">5-7 Bus. Days (Shipping times may be longer due to carrier volume)</div>');
     }
+}
+
+
+// NEW POSTS TYPES
+function create_posttype() {
+ 
+    register_post_type( 'movies',
+    // CPT Options
+        array(
+            'labels' => array(
+                'name' => __( 'Movies' ),
+                'singular_name' => __( 'Movie' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'movies'),
+            'show_in_rest' => true,
+ 
+        )
+    );
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );
+
+register_post_type(
+    'Movies',
+    array(
+        'hierarchical' => true,
+        'public' => true,
+        'rewrite' => array(
+            'slug'       => 'my_post_type',
+            'with_front' => false,
+        ),
+        'supports' => array(
+            'page-attributes' /* This will show the post parent field */,
+            'title',
+            'editor',
+            'something-else',
+        ),
+        // Other arguments
+    )
+);
+
+
+
+
+// Adds password-confirmation to user registration page (/my-account/)
+add_filter( 'woocommerce_register_form', 'pixel_registration_password_repeat', 9 );
+// Priority 10 will probably work for you, but in my situation, 
+// a reCAPTCHA element loads between the password boxes, so I used 9.
+function pixel_registration_password_repeat() {
+    ?>
+    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+        <label for="password_confirm"><?php _e( 'Confirm Password', 'woocommerce' ); ?> <span class="required">*</span></label>
+        <input type="password" class="input-text" name="password_confirm" id="password_confirm">
+    </p>
+    <?php
+}
+
+
+// Adds password-confirmation to user registration during checkout phase
+add_filter( 'woocommerce_checkout_fields', 'pixel_checkout_registration_password_repeat', 10, 1 );
+function pixel_checkout_registration_password_repeat( $fields ) {
+    if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) {
+        $fields['account']['account_password_confirm'] = array(
+            'type'        => 'password',
+            'label'       => __( '', 'woocommerce' ),
+            'required'    => true,
+            'placeholder' => esc_attr__( 'Confirm password', 'woocommerce' )
+        );
+    }
+    return $fields;
+}
+
+
+// Form-specific password validation step.
+add_filter( 'woocommerce_registration_errors', 'pixel_validate_registration_passwords', 10, 3 );
+function pixel_validate_registration_passwords( $errors, $username, $email ) {
+    global $woocommerce;
+    extract( $_POST );
+
+    if ( isset( $password ) || ! empty( $password ) ) {
+        // This code runs for new user registration on the /my-account/ page.
+        if ( strcmp( $password, $password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    } else if ( isset( $account_password ) || ! empty( $account_password ) ) {
+        // This code runs for new user registration during checkout process.
+        if ( strcmp( $account_password, $account_password_confirm ) !== 0 ) {
+            return new WP_error( 'registration-error', __( 'Passwords do not match', 'woocommerce' ) );
+        }
+    }
+
+    return $errors;
 }

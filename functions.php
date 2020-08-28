@@ -662,10 +662,10 @@ function yotpo_create_order($order_id){
   $swell_log .= "- order_id: {$order_id}" . PHP_EOL;
   $swell_log .= "- status: paid" . PHP_EOL;
   $swell_log .= "- created_at: {$order_date}" . PHP_EOL;
-  $swell_log .= "- coupon_code: {$coupon_code}" . PHP_EOL;
+  $swell_log .= "- coupon_code: {$order_coupon}" . PHP_EOL;
   $swell_log .= "- ip_address: {$order_ip}" . PHP_EOL;
   $swell_log .= "- user_agent: {$order_user_agent}" . PHP_EOL;
-  $swell_log .= "- discount_amount_cents: {$discount_amount_cents}" . PHP_EOL;
+  $swell_log .= "- discount_amount_cents: {$order_discount_total}" . PHP_EOL;
   $swell_log .= "- result:" . PHP_EOL;
   $swell_log .= $swell_result . PHP_EOL;
   $swell_log .= "--" . PHP_EOL;
